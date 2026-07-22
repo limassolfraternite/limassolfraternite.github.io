@@ -91,6 +91,37 @@ Branch: **main**, folder: **/ (root)** → **Save**. Live in about a minute.
 
 ---
 
+## 2b. How caching is handled (important)
+
+GitHub Pages sends `Cache-Control: max-age=600` on every file and **gives you no way to
+change it.** Left alone, that means a visitor who saw the site in the last 10 minutes
+could be shown a stale copy after you publish an update — or, worse, a cached `index.html`
+paired with a fresh `content.js`, which can render incorrectly.
+
+This site solves it automatically. Every asset is referenced with a version token:
+
+```html
+<link rel="stylesheet" href="assets/css/style.css?v=__V__">
+```
+
+On every push, `.github/workflows/deploy.yml` replaces `__V__` with that commit's hash
+before publishing. Each deploy therefore produces **brand-new asset URLs**, which a
+browser has never seen and cannot have cached. Visitors always get a matched set of
+HTML, CSS and JS.
+
+**You do not have to do anything for this to work** — including when you edit files in
+the GitHub web editor. The workflow runs on every push and fails loudly if any token is
+left unreplaced.
+
+The only thing still cached for up to 10 minutes is `index.html` itself, which GitHub
+controls. That is harmless: a visitor either gets the whole old version or the whole new
+one, never a broken mixture.
+
+> Do **not** add `<meta http-equiv="Cache-Control">` tags. Modern browsers ignore them,
+> and they give a false sense of having fixed the problem.
+
+---
+
 ## 3. Updating the site
 
 Everything the club will realistically want to change lives in **one file**:

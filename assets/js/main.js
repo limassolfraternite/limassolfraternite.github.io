@@ -536,6 +536,169 @@
     });
   })();
 
+  /* ------------------------------------------------------- SCROLL SPY ----- */
+  /* Highlights the nav link for whatever section you are currently reading,
+     so you always know where you are in a long page. */
+  (function () {
+    var links = [].slice.call(document.querySelectorAll('.nav__links a[href^="#"]:not(.btn)'));
+    if (!links.length || !('IntersectionObserver' in window)) return;
+
+    var map = {};
+    links.forEach(function (a) {
+      var s = document.querySelector(a.getAttribute('href'));
+      if (s) map[s.id] = a;
+    });
+
+    var visible = {};
+    var spy = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { visible[e.target.id] = e.isIntersecting; });
+      var current = null;
+      Object.keys(map).forEach(function (id) {
+        if (visible[id] && !current) current = id;
+      });
+      links.forEach(function (a) { a.classList.remove('is-here'); });
+      if (current && map[current]) map[current].classList.add('is-here');
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+
+    Object.keys(map).forEach(function (id) { spy.observe(document.getElementById(id)); });
+  })();
+
+  /* ------------------------------------------------------ BACK TO TOP ----- */
+  (function () {
+    var btn = el('button', 'totop', '<span aria-hidden="true">↑</span>');
+    btn.type = 'button';
+    btn.setAttribute('aria-label', 'Back to top');
+    document.body.appendChild(btn);
+
+    btn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+      var brand = $('.brand'); if (brand) brand.focus({ preventScroll: true });
+    });
+
+    var t = false;
+    window.addEventListener('scroll', function () {
+      if (t) return;
+      t = true;
+      requestAnimationFrame(function () {
+        t = false;
+        btn.classList.toggle('show', window.scrollY > window.innerHeight * 1.2);
+      });
+    }, { passive: true });
+  })();
+
+  /* --------------------------------------------------- COPY THE EMAIL ----- */
+  (function () {
+    var link = $('#m-mail');
+    if (!link || !navigator.clipboard) return;
+
+    var btn = el('button', 'copy', 'Copy');
+    btn.type = 'button';
+    btn.setAttribute('aria-label', 'Copy email address');
+    link.insertAdjacentElement('afterend', btn);
+
+    btn.addEventListener('click', function () {
+      navigator.clipboard.writeText(link.textContent.trim()).then(function () {
+        btn.textContent = 'Copied';
+        btn.classList.add('copy--ok');
+        setTimeout(function () {
+          btn.textContent = 'Copy';
+          btn.classList.remove('copy--ok');
+        }, 1800);
+      }).catch(function () { btn.textContent = 'Press Ctrl+C'; });
+    });
+  })();
+
+  /* ------------------------------------------------- ADD TO CALENDAR ------ */
+  /* Builds a recurring .ics for the monthly meeting entirely in the browser.
+     Someone who is interested at 1am can put it in their calendar instantly
+     instead of trying to remember "last Friday, sometime". */
+  (function () {
+    var host = $('#m-map');
+    var c = C.club;
+    if (!host || !c) return;
+
+    var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+
+    /* first occurrence: the next last-Friday-of-the-month at the meeting time */
+    var lastFriday = function (y, m) {
+      var d = new Date(y, m + 1, 0);                       /* last day of month */
+      d.setDate(d.getDate() - ((d.getDay() + 2) % 7));     /* walk back to Friday */
+      return d;
+    };
+    var hhmm = (c.meetTime || '19:30').split(':');
+    var now = new Date();
+    var first = lastFriday(now.getFullYear(), now.getMonth());
+    first.setHours(+hhmm[0] || 19, +hhmm[1] || 30, 0, 0);
+    if (first < now) first = lastFriday(now.getFullYear(), now.getMonth() + 1);
+    first.setHours(+hhmm[0] || 19, +hhmm[1] || 30, 0, 0);
+
+    var stamp = function (d) {
+      return d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate()) +
+             'T' + pad(d.getHours()) + pad(d.getMinutes()) + '00';
+    };
+    var end = new Date(first.getTime() + 90 * 60000);
+    /* commas and semicolons are field separators in iCalendar and must be escaped */
+    var ics = function (s) { return String(s).replace(/([,;\\])/g, '\\$1'); };
+
+    var btn = el('button', 'btn btn--ghost btn--sm', 'Add to calendar');
+    btn.type = 'button';
+    host.insertAdjacentElement('afterend', btn);
+
+    btn.addEventListener('click', function () {
+      var body = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//Limassol Fraternite Lions Club//Website//EN',
+        'CALSCALE:GREGORIAN',
+        'METHOD:PUBLISH',
+        'BEGIN:VEVENT',
+        'UID:monthly-meeting-' + stamp(first) + '@limassolfraternite',
+        'DTSTAMP:' + stamp(new Date()),
+        'DTSTART:' + stamp(first),
+        'DTEND:' + stamp(end),
+        'RRULE:FREQ=MONTHLY;BYDAY=-1FR',
+        'SUMMARY:' + ics(c.name + ' — monthly meeting'),
+        'LOCATION:' + ics(c.venue + ', ' + c.address),
+        'DESCRIPTION:' + ics('Visitors are welcome. Meetings run in English. ' +
+          'No obligation and nothing to prepare. Questions: ' + c.email),
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ].join('\r\n');
+
+      var url = URL.createObjectURL(new Blob([body], { type: 'text/calendar;charset=utf-8' }));
+      var a = el('a');
+      a.href = url;
+      a.download = 'limassol-fraternite-lions-meeting.ics';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    });
+  })();
+
+  /* ------------------------------------------------ LIGHTBOX SWIPE -------- */
+  (function () {
+    var box = $('#lb');
+    if (!box) return;
+    var x0 = null, y0 = null;
+
+    box.addEventListener('touchstart', function (e) {
+      x0 = e.changedTouches[0].clientX;
+      y0 = e.changedTouches[0].clientY;
+    }, { passive: true });
+
+    box.addEventListener('touchend', function (e) {
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0;
+      var dy = e.changedTouches[0].clientY - y0;
+      /* only treat it as a swipe if it is clearly horizontal */
+      if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+        $(dx < 0 ? '#lbNext' : '#lbPrev').click();
+      }
+      x0 = y0 = null;
+    }, { passive: true });
+  })();
+
   /* --------------------------------------------------------------- INIT --- */
   watch(document);
 })();

@@ -1,0 +1,60 @@
+name: Deploy website
+
+# Runs on every push to main — including edits made in the GitHub web editor.
+# Its job is to stamp the commit hash onto every CSS/JS URL before publishing,
+# so browsers can never serve a stale or mismatched copy of the site.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:        # lets you re-deploy by hand from the Actions tab
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Stamp asset URLs with the commit hash (cache busting)
+        run: |
+          set -euo pipefail
+          V="${GITHUB_SHA::8}"
+          echo "Cache-busting version: $V"
+
+          # index.html and 404.html reference assets as  style.css?v=__V__
+          # Replacing the token gives every deploy a unique URL, so a browser
+          # holding an old copy is forced to fetch the new one immediately
+          # instead of waiting out GitHub Pages' fixed 10-minute max-age.
+          find . -name '*.html' -not -path './.git/*' -print0 \
+            | xargs -0 sed -i "s/__V__/$V/g"
+
+          echo "--- verifying no tokens were left behind ---"
+          if grep -rn '__V__' --include='*.html' .; then
+            echo "ERROR: an unreplaced __V__ token remains" >&2
+            exit 1
+          fi
+          echo "OK: all asset URLs stamped with $V"
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
