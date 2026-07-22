@@ -171,7 +171,19 @@ const CONTENT = {
     },
     {
       q: "Can I bring my own idea instead of joining an existing project?",
-      a: "Yes, and we would prefer it. Bring a problem you have actually seen in Limassol and a rough plan. We will help you turn it into something that ships."
+      a: "Yes, and we would prefer it. Bring a problem you have actually seen in Limassol and a rough plan. We will help you turn it into something that ships — and through Lions Clubs International Foundation grants there is a genuine route to funding it."
+    },
+    {
+      q: "Is this a political or religious organisation?",
+      a: "No, and that is written into the rules rather than left to good manners. The Lions International Purposes explicitly state that partisan politics and sectarian religion shall not be debated by club members. People of every background and belief work side by side here."
+    },
+    {
+      q: "What actually is LCIF?",
+      a: "Lions Clubs International Foundation — the charitable foundation of Lions International. It has awarded over US$1.3 billion in grants across 200 countries, funding everything from disaster relief to local community projects. It is the mechanism that lets a club our size attempt things far beyond our own budget."
+    },
+    {
+      q: "Do I get anything out of it, honestly?",
+      a: "Yes, and we would rather say so than pretend otherwise. You get project management experience with real stakes, a network across 200 countries, access to international youth programmes and exchanges, and references from people who have watched you deliver something. Service is the point; the growth is real too."
     }
   ],
 
