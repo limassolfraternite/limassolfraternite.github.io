@@ -1,14 +1,25 @@
 /* =============================================================================
    LIMASSOL FRATERNITÉ LIONS CLUB — behaviour
-   No dependencies. ~9KB unminified. Everything degrades gracefully.
-   Content comes from data/content.js (loaded before this file).
+   No dependencies. Everything degrades gracefully.
+
+   Loaded after data/i18n.js (translations) and data/content.js (club content).
+
+   Structure
+     1. helpers + language resolution
+     2. applyI18n()  — translates the fixed HTML
+     3. render*()    — builds every dynamic section from CONTENT
+     4. setLang()    — swaps language and re-runs 2 and 3
+     5. one-time interaction wiring (nav, lightbox, form, scroll effects)
    ============================================================================= */
 (function () {
   'use strict';
 
-  /* content.js declares `const CONTENT`, which does NOT become a window property.
-     Read the binding directly, guarded in case the file failed to load. */
+  /* ------------------------------------------------------------- HELPERS --- */
   var C = (typeof CONTENT !== 'undefined' && CONTENT) ? CONTENT : {};
+  var STRINGS = (typeof I18N !== 'undefined' && I18N) ? I18N : {};
+  var LANGUAGES = (typeof LANGS !== 'undefined' && LANGS)
+    ? LANGS : [{ code: 'en', label: 'EN', name: 'English' }];
+
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var el = function (t, c, h) {
     var n = document.createElement(t);
@@ -16,50 +27,63 @@
     if (h != null) n.innerHTML = h;
     return n;
   };
-  /* escape user content so a stray < in content.js can never break the page */
+  /* escape content so a stray < in a content file can never break the page */
   var esc = function (s) {
     return String(s == null ? '' : s)
       .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;');
   };
-  var placeholder = function (label) {
-    return '<div class="ph"><span>' + esc(label || 'Photo coming soon') + '</span></div>';
-  };
 
-  var CATS = {
-    environment: 'Environment', health: 'Health', youth: 'Youth',
-    hunger: 'Hunger', tech: 'Technology', community: 'Community'
-  };
-  var STATUS = { live: 'Live now', complete: 'Completed', upcoming: 'Upcoming' };
+  /* ------------------------------------------------------------ LANGUAGE --- */
+  var LS_KEY = 'lfl-lang';
+  var DEFAULT_LANG = 'en';
+  var codes = LANGUAGES.map(function (l) { return l.code; });
 
-  /* ---------------------------------------------------------------- NAV --- */
-  var nav = $('#nav'), burger = $('#burger'), links = $('#navLinks');
+  /* Priority: ?lang= in the URL (so a link can be shared in a chosen language)
+     > a previously saved choice > the visitor's browser language > English. */
+  var pickLang = function () {
+    var q = null;
+    try { q = new URLSearchParams(window.location.search).get('lang'); } catch (e) {}
+    if (q && codes.indexOf(q) > -1) return q;
 
-  var onScroll = function () {
-    nav.classList.toggle('nav--stuck', window.scrollY > 40);
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+    var saved = null;
+    try { saved = localStorage.getItem(LS_KEY); } catch (e) {}   /* private mode */
+    if (saved && codes.indexOf(saved) > -1) return saved;
 
-  burger.addEventListener('click', function () {
-    var open = nav.classList.toggle('nav--open');
-    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-  });
-  links.addEventListener('click', function (e) {
-    if (e.target.closest('a')) {
-      nav.classList.remove('nav--open');
-      burger.setAttribute('aria-expanded', 'false');
+    var nav = (navigator.languages || [navigator.language || '']).join(',').toLowerCase();
+    for (var i = 0; i < codes.length; i++) {
+      if (codes[i] !== 'en' && nav.indexOf(codes[i]) > -1) return codes[i];
     }
-  });
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && nav.classList.contains('nav--open')) burger.click();
-  });
+    return DEFAULT_LANG;
+  };
 
-  /* ------------------------------------------------------------- REVEAL --- */
+  var lang = pickLang();
+
+  /* UI string by key — falls back to English, then the key itself, so a missing
+     translation degrades to readable text rather than an empty gap. */
+  var t = function (key) {
+    var e = STRINGS[key];
+    if (!e) return key;
+    return e[lang] || e[DEFAULT_LANG] || key;
+  };
+
+  /* Resolve a content value that may be a plain string OR a {en,el,fr} block. */
+  var tr = function (v) {
+    if (v == null) return '';
+    if (typeof v === 'string' || typeof v === 'number') return v;
+    return v[lang] || v[DEFAULT_LANG] || '';
+  };
+
+  var CAT = function (k) { return t('cat.' + k) === 'cat.' + k ? k : t('cat.' + k); };
+  var placeholder = function (label) {
+    return '<div class="ph"><span>' + esc(label || t('gal.soonPhoto')) + '</span></div>';
+  };
+
+  /* ------------------------------------------------------------- REVEAL ---- */
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var pending = [];          /* elements still waiting to be revealed */
+  var pending = [];
   var io = null;
+  var firstRender = true;
 
   var show = function (n) {
     n.classList.add('in');
@@ -73,13 +97,13 @@
       entries.forEach(function (en) { if (en.isIntersecting) show(en.target); });
       /* threshold 0 (not a percentage) so elements taller than the viewport
          still trigger reliably; the negative bottom margin delays the reveal
-         until the element is properly on screen rather than clipping the edge. */
+         until the element is properly on screen. */
     }, { threshold: 0, rootMargin: '0px 0px -80px 0px' });
   }
 
-  /* Backup sweep. IntersectionObserver samples at its own rate, so a very fast
-     scroll can pass an element without ever delivering a callback for it. This
-     guarantees nothing is ever left permanently invisible. */
+  /* Backup sweep — IntersectionObserver samples at its own rate, so a very fast
+     scroll can pass an element without delivering a callback. This guarantees
+     nothing is ever left permanently invisible. */
   var sweep = function () {
     for (var i = pending.length - 1; i >= 0; i--) {
       if (pending[i].getBoundingClientRect().top < window.innerHeight - 80) show(pending[i]);
@@ -94,9 +118,14 @@
 
   var watch = function (root) {
     var nodes = (root || document).querySelectorAll('.reveal:not(.in)');
-    if (!io) { [].forEach.call(nodes, function (n) { n.classList.add('in'); }); return; }
+    /* After a language switch the reader is already mid-page — re-animating
+       everything would be disorienting, so show it immediately instead. */
+    if (!io || !firstRender) {
+      [].forEach.call(nodes, function (n) { n.classList.add('in'); });
+      return;
+    }
     [].forEach.call(nodes, function (n, i) {
-      if (n.dataset.watched) return;            /* watch() may cover a node twice */
+      if (n.dataset.watched) return;
       n.dataset.watched = '1';
       n.style.transitionDelay = Math.min(i % 8, 6) * 60 + 'ms';
       pending.push(n);
@@ -105,230 +134,247 @@
     sweep();
   };
 
-  /* -------------------------------------------------------------- STATS --- */
-  (function () {
+  /* ==========================================================================
+     TRANSLATE THE FIXED HTML
+     data-i18n       -> textContent
+     data-i18n-html  -> innerHTML (for text that contains markup)
+     data-i18n-attr  -> "placeholder:key" or "aria-label:key,title:key2"
+     ========================================================================== */
+  function applyI18n() {
+    document.documentElement.lang = lang;
+
+    [].forEach.call(document.querySelectorAll('[data-i18n]'), function (n) {
+      n.textContent = t(n.getAttribute('data-i18n'));
+    });
+    [].forEach.call(document.querySelectorAll('[data-i18n-html]'), function (n) {
+      n.innerHTML = esc(t(n.getAttribute('data-i18n-html')));
+    });
+    [].forEach.call(document.querySelectorAll('[data-i18n-attr]'), function (n) {
+      n.getAttribute('data-i18n-attr').split(',').forEach(function (pair) {
+        var bits = pair.split(':');
+        if (bits.length === 2) n.setAttribute(bits[0].trim(), t(bits[1].trim()));
+      });
+    });
+  }
+
+  /* ==========================================================================
+     DYNAMIC SECTIONS
+     ========================================================================== */
+  var galleryItems = [];
+  var activeFilter = 'all';
+
+  /* -------------------------------------------------------------- STATS ---- */
+  function renderStats() {
     var host = $('#statsGrid');
     if (!host || !C.stats) return;
+    host.innerHTML = '';
+
     C.stats.forEach(function (s) {
-      var n = el('div', 'stat reveal',
+      host.appendChild(el('div', 'stat reveal',
         '<b data-to="' + Number(s.value) + '" data-sfx="' + esc(s.suffix || '') + '"' +
           (s.plain ? ' data-plain="1"' : '') + '>0</b>' +
-        '<u>' + esc(s.label) + '</u><i>' + esc(s.note || '') + '</i>');
-      host.appendChild(n);
+        '<u>' + esc(tr(s.label)) + '</u><i>' + esc(tr(s.note)) + '</i>'));
     });
 
-    /* `plain` stats skip thousands separators — years must read 1917, not 1,917 */
-    var fmt = function (v, plain) {
-      return plain ? String(v) : v.toLocaleString('en-GB');
-    };
+    /* `plain` skips thousands separators — years must read 1917, not 1,917 */
+    var fmt = function (v, plain) { return plain ? String(v) : v.toLocaleString('en-GB'); };
 
     var count = function (node) {
       var to = +node.dataset.to, sfx = node.dataset.sfx || '';
       var plain = node.dataset.plain === '1';
-      if (reduce) { node.textContent = fmt(to, plain) + sfx; return; }
+      if (reduce || !firstRender) { node.textContent = fmt(to, plain) + sfx; return; }
       var start = null, dur = 1600;
       var step = function (ts) {
         if (start === null) start = ts;
         var p = Math.min((ts - start) / dur, 1);
-        var e = 1 - Math.pow(1 - p, 3);                    /* easeOutCubic */
+        var e = 1 - Math.pow(1 - p, 3);                       /* easeOutCubic */
         node.textContent = fmt(Math.round(to * e), plain) + (p === 1 ? sfx : '');
         if (p < 1) requestAnimationFrame(step);
       };
       requestAnimationFrame(step);
     };
 
-    if ('IntersectionObserver' in window) {
+    var nodes = host.querySelectorAll('b[data-to]');
+    if ('IntersectionObserver' in window && firstRender) {
       var so = new IntersectionObserver(function (es) {
         es.forEach(function (e) {
           if (e.isIntersecting) { count(e.target); so.unobserve(e.target); }
         });
       }, { threshold: 0.5 });
-      [].forEach.call(host.querySelectorAll('b[data-to]'), function (b) { so.observe(b); });
+      [].forEach.call(nodes, function (b) { so.observe(b); });
     } else {
-      [].forEach.call(host.querySelectorAll('b[data-to]'), count);
+      [].forEach.call(nodes, count);
     }
-  })();
+  }
 
-  /* ----------------------------------------------------------- PROJECTS --- */
-  (function () {
+  /* ----------------------------------------------------------- PROJECTS ---- */
+  function renderProjects() {
     var host = $('#projects'), bar = $('#filters'), empty = $('#projectsEmpty');
     if (!host || !C.projects) return;
 
-    var present = ['all'].concat(Object.keys(CATS).filter(function (k) {
+    var order = ['environment', 'health', 'youth', 'hunger', 'tech', 'community'];
+    var present = ['all'].concat(order.filter(function (k) {
       return C.projects.some(function (p) { return p.category === k; });
     }));
+    if (present.indexOf(activeFilter) === -1) activeFilter = 'all';
 
-    present.forEach(function (k, i) {
-      var b = el('button', 'filter', k === 'all' ? 'All projects' : CATS[k]);
+    bar.innerHTML = '';
+    present.forEach(function (k) {
+      var b = el('button', 'filter', k === 'all' ? esc(t('work.filterAll')) : esc(CAT(k)));
       b.type = 'button';
-      b.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
+      b.setAttribute('aria-pressed', k === activeFilter ? 'true' : 'false');
       b.dataset.cat = k;
       bar.appendChild(b);
     });
 
-    var render = function (cat) {
-      host.innerHTML = '';
-      var list = C.projects.filter(function (p) { return cat === 'all' || p.category === cat; });
-      empty.hidden = list.length > 0;
-
-      list.forEach(function (p) {
-        var media = p.image
-          ? '<img src="' + esc(p.image) + '" alt="' + esc(p.alt || p.title) + '" loading="lazy" decoding="async" width="640" height="400">'
-          : placeholder(CATS[p.category] || 'Project');
-
-        host.appendChild(el('article', 'card reveal',
-          '<div class="card__img">' + media + '</div>' +
-          '<div class="card__body">' +
-            '<div class="card__top">' +
-              '<span class="tag tag--' + esc(p.status) + '">' + esc(STATUS[p.status] || p.status) + '</span>' +
-              '<span class="tag tag--cat">' + esc(CATS[p.category] || p.category) + '</span>' +
-            '</div>' +
-            '<h3>' + esc(p.title) + '</h3>' +
-            '<p>' + esc(p.summary) + '</p>' +
-            '<div class="card__foot">' +
-              '<span class="card__impact">' + esc(p.impact || '') + '</span>' +
-              '<span class="card__yr">' + esc(p.year || '') + '</span>' +
-            '</div>' +
-          '</div>'));
-      });
-      watch(host);
-    };
-
-    bar.addEventListener('click', function (e) {
-      var b = e.target.closest('.filter');
-      if (!b) return;
-      [].forEach.call(bar.children, function (x) { x.setAttribute('aria-pressed', 'false'); });
-      b.setAttribute('aria-pressed', 'true');
-      render(b.dataset.cat);
+    host.innerHTML = '';
+    var list = C.projects.filter(function (p) {
+      return activeFilter === 'all' || p.category === activeFilter;
     });
+    empty.hidden = list.length > 0;
 
-    render('all');
-  })();
+    list.forEach(function (p) {
+      var media = p.image
+        ? '<img src="' + esc(p.image) + '" alt="' + esc(tr(p.alt) || tr(p.title)) +
+          '" loading="lazy" decoding="async" width="640" height="400">'
+        : placeholder(CAT(p.category));
 
-  /* ------------------------------------------------------------ GALLERY --- */
-  var galleryItems = [];
-  (function () {
+      host.appendChild(el('article', 'card reveal',
+        '<div class="card__img">' + media + '</div>' +
+        '<div class="card__body">' +
+          '<div class="card__top">' +
+            '<span class="tag tag--' + esc(p.status) + '">' + esc(t('status.' + p.status)) + '</span>' +
+            '<span class="tag tag--cat">' + esc(CAT(p.category)) + '</span>' +
+          '</div>' +
+          '<h3>' + esc(tr(p.title)) + '</h3>' +
+          '<p>' + esc(tr(p.summary)) + '</p>' +
+          '<div class="card__foot">' +
+            '<span class="card__impact">' + esc(tr(p.impact)) + '</span>' +
+            '<span class="card__yr">' + esc(tr(p.year)) + '</span>' +
+          '</div>' +
+        '</div>'));
+    });
+    watch(host);
+  }
+
+  /* ------------------------------------------------------------ GALLERY ---- */
+  function renderGallery() {
     var host = $('#gallery-grid');
     if (!host || !C.gallery) return;
+    host.innerHTML = '';
+    galleryItems = [];
 
     C.gallery.forEach(function (g, i) {
       galleryItems.push(g);
       var media = g.src
-        ? '<img src="' + esc(g.src) + '" alt="' + esc(g.alt) + '" loading="lazy" decoding="async">'
-        : placeholder('Photo');
-      var f = el('figure', 'gcell',
-        media + '<figcaption>' + esc(g.caption || g.alt) + '</figcaption>');
+        ? '<img src="' + esc(g.src) + '" alt="' + esc(tr(g.alt)) + '" loading="lazy" decoding="async">'
+        : placeholder(t('gal.soonPhoto'));
+      var cap = tr(g.caption) || tr(g.alt);
+      var f = el('figure', 'gcell', media + '<figcaption>' + esc(cap) + '</figcaption>');
       f.tabIndex = 0;
       f.setAttribute('role', 'button');
-      f.setAttribute('aria-label', 'View: ' + (g.caption || g.alt));
+      f.setAttribute('aria-label', t('gal.view') + ': ' + cap);
       f.dataset.i = i;
       host.appendChild(f);
     });
+  }
 
-    var open = function (e) {
-      var c = e.target.closest('.gcell');
-      if (!c) return;
-      if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
-      e.preventDefault();
-      lightbox.open(+c.dataset.i);
-    };
-    host.addEventListener('click', open);
-    host.addEventListener('keydown', open);
-  })();
-
-  /* ------------------------------------------------------------- VIDEOS --- */
-  (function () {
+  /* ------------------------------------------------------------- VIDEOS ---- */
+  function renderVideos() {
     var host = $('#videos');
     if (!host || !C.videos) return;
+    host.innerHTML = '';
 
     C.videos.forEach(function (v) {
+      var title = tr(v.title);
       var frame;
       if (v.id) {
         /* Facade: load only a thumbnail until clicked. Keeps the page fast and
            avoids YouTube setting cookies on visitors who never press play. */
         frame =
-          '<button class="vid__lite" type="button" data-yt="' + esc(v.id) + '" aria-label="Play: ' + esc(v.title) + '">' +
+          '<button class="vid__lite" type="button" data-yt="' + esc(v.id) +
+            '" aria-label="' + esc(t('gal.play') + ': ' + title) + '">' +
             '<img src="https://i.ytimg.com/vi/' + esc(v.id) + '/hqdefault.jpg" alt="" loading="lazy" decoding="async">' +
             '<span class="vid__play"><span>▶</span></span>' +
           '</button>';
       } else {
-        frame = placeholder('Video coming soon');
+        frame = placeholder(t('gal.soonVideo'));
       }
       host.appendChild(el('article', 'vid reveal',
         '<div class="vid__frame">' + frame + '</div>' +
-        '<div class="vid__meta"><b>' + esc(v.title) + '</b><i>' + esc(v.duration || '') + '</i></div>'));
+        '<div class="vid__meta"><b>' + esc(title) + '</b><i>' + esc(v.duration || '') + '</i></div>'));
     });
+    watch(host);
+  }
 
-    host.addEventListener('click', function (e) {
-      var b = e.target.closest('.vid__lite');
-      if (!b) return;
-      var f = document.createElement('iframe');
-      f.src = 'https://www.youtube-nocookie.com/embed/' + b.dataset.yt + '?autoplay=1&rel=0';
-      f.title = 'Video player';
-      f.allow = 'accelerometer; autoplay; encrypted-media; picture-in-picture';
-      f.allowFullscreen = true;
-      b.replaceWith(f);
-    });
-  })();
-
-  /* ------------------------------------------------------------- VOICES --- */
-  (function () {
+  /* ------------------------------------------------------------- VOICES ---- */
+  function renderVoices() {
     var host = $('#voices');
     if (!host || !C.voices) return;
+    host.innerHTML = '';
     C.voices.forEach(function (v) {
       host.appendChild(el('figure', 'voice reveal',
-        '<blockquote>' + esc(v.quote) + '</blockquote>' +
-        '<cite>' + esc(v.name) + '<br><small>' + esc(v.role || '') + '</small></cite>'));
+        '<blockquote>' + esc(tr(v.quote)) + '</blockquote>' +
+        '<cite>' + esc(tr(v.name)) + '<br><small>' + esc(tr(v.role)) + '</small></cite>'));
     });
-  })();
+    watch(host);
+  }
 
-  /* --------------------------------------------------------------- NEWS --- */
-  (function () {
+  /* --------------------------------------------------------------- NEWS ---- */
+  function renderNews() {
     var host = $('#news-list');
     if (!host || !C.announcements) return;
+    host.innerHTML = '';
 
-    var KIND = { event: 'Event', news: 'Club news', call: 'Volunteers needed' };
+    var locales = { en: 'en-GB', el: 'el-GR', fr: 'fr-FR' };
     var fmt = function (iso) {
       var d = new Date(iso + 'T00:00:00');
-      return isNaN(d) ? iso : d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+      if (isNaN(d)) return iso;
+      try {
+        return d.toLocaleDateString(locales[lang] || 'en-GB',
+          { day: 'numeric', month: 'long', year: 'numeric' });
+      } catch (e) { return iso; }
     };
 
-    C.announcements
-      .slice()
+    C.announcements.slice()
       .sort(function (a, b) { return a.date < b.date ? 1 : -1; })
       .forEach(function (a) {
-        var cta = a.cta && a.cta.label
-          ? '<a class="btn btn--ghost btn--sm" href="' + esc(a.cta.href || '#contact') + '">' + esc(a.cta.label) + '</a>'
+        var label = a.cta ? tr(a.cta.label) : '';
+        var cta = label
+          ? '<a class="btn btn--ghost btn--sm" href="' + esc((a.cta && a.cta.href) || '#contact') + '">' +
+            esc(label) + '</a>'
           : '<span></span>';
         host.appendChild(el('article', 'item reveal',
           '<div class="item__date">' +
-            '<span class="tag tag--cat">' + esc(KIND[a.type] || a.type) + '</span>' +
+            '<span class="tag tag--cat">' + esc(t('kind.' + a.type)) + '</span>' +
             '<time datetime="' + esc(a.date) + '">' + esc(fmt(a.date)) + '</time>' +
           '</div>' +
-          '<div><h3>' + esc(a.title) + '</h3><p>' + esc(a.body) + '</p></div>' + cta));
+          '<div><h3>' + esc(tr(a.title)) + '</h3><p>' + esc(tr(a.body)) + '</p></div>' + cta));
       });
-  })();
+    watch(host);
+  }
 
-  /* ---------------------------------------------------------------- FAQ --- */
-  (function () {
+  /* ---------------------------------------------------------------- FAQ ---- */
+  function renderFaq() {
     var host = $('#faq-list');
     if (!host || !C.faq) return;
+    host.innerHTML = '';
 
     C.faq.forEach(function (f, i) {
       var d = el('div', 'qa');
-      var q = el('button', 'qa__q', esc(f.q));
+      var q = el('button', 'qa__q', esc(tr(f.q)));
       q.type = 'button';
       q.id = 'q' + i;
       q.setAttribute('aria-expanded', 'false');
       q.setAttribute('aria-controls', 'a' + i);
-      var a = el('div', 'qa__a', '<p>' + esc(f.a) + '</p>');
+
+      var a = el('div', 'qa__a', '<p>' + esc(tr(f.a)) + '</p>');
       a.id = 'a' + i;
       a.setAttribute('role', 'region');
       a.setAttribute('aria-labelledby', 'q' + i);
 
       q.addEventListener('click', function () {
-        var open = d.hasAttribute('open');
-        if (open) {
+        if (d.hasAttribute('open')) {
           a.style.height = a.scrollHeight + 'px';
           requestAnimationFrame(function () { a.style.height = '0px'; });
           d.removeAttribute('open');
@@ -343,33 +389,35 @@
 
       d.appendChild(q); d.appendChild(a); host.appendChild(d);
     });
-  })();
+  }
 
-  /* --------------------------------------------------------------- CLUB --- */
-  (function () {
+  /* --------------------------------------------------------------- CLUB ---- */
+  function renderClub() {
     var c = C.club; if (!c) return;
     var set = function (id, v) { var n = $(id); if (n) n.textContent = v; };
 
-    set('#m-when', c.meetDay + ' · ' + c.meetTime);
-    set('#m-where', c.venue);
-    set('#m-addr', c.address);
-    set('#m-lang', c.languages);
-    set('#m-dist', c.district);
-    set('#f-dist', c.district);
+    set('#m-when', tr(c.meetDay) + ' · ' + c.meetTime);
+    set('#m-where', tr(c.venue));
+    set('#m-addr', tr(c.address));
+    set('#m-lang', tr(c.languages));
+    set('#m-dist', tr(c.district));
+    set('#f-dist', tr(c.district));
     set('#yr', new Date().getFullYear());
 
     var mail = $('#m-mail');
     if (mail) { mail.textContent = c.email; mail.href = 'mailto:' + c.email; }
 
     var map = $('#m-map');
-    if (map) map.href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(c.mapQuery || c.address);
+    if (map) map.href = 'https://www.google.com/maps/search/?api=1&query=' +
+      encodeURIComponent(c.mapQuery || tr(c.address));
 
     var soc = $('#social');
     if (soc && c.social) {
+      soc.innerHTML = '';
       var LABEL = { facebook: 'FB', instagram: 'IG', eclubhouse: 'CLUB', lci: 'LCI' };
       var TITLE = {
         facebook: 'Facebook', instagram: 'Instagram',
-        eclubhouse: 'Our Lions e-Clubhouse page', lci: 'Lions Clubs International'
+        eclubhouse: 'Lions e-Clubhouse', lci: 'Lions Clubs International'
       };
       Object.keys(c.social).forEach(function (k) {
         if (!c.social[k]) return;
@@ -382,55 +430,105 @@
         soc.appendChild(a);
       });
     }
-  })();
+  }
 
-  /* --------------------------------------------------------------- FORM --- */
+  function renderAll() {
+    renderStats();
+    renderProjects();
+    renderGallery();
+    renderVideos();
+    renderVoices();
+    renderNews();
+    renderFaq();
+    renderClub();
+  }
+
+  /* ==========================================================================
+     LANGUAGE SWITCHER
+     ========================================================================== */
+  function setLang(next) {
+    if (codes.indexOf(next) === -1 || next === lang) return;
+    lang = next;
+    try { localStorage.setItem(LS_KEY, lang); } catch (e) {}
+
+    applyI18n();
+    renderAll();
+    syncSwitcher();
+
+    /* keep ?lang= in the address bar honest so the URL can be shared */
+    try {
+      var u = new URL(window.location.href);
+      u.searchParams.set('lang', lang);
+      history.replaceState(null, '', u);
+    } catch (e) {}
+  }
+
+  var switcher = null;
+  function syncSwitcher() {
+    if (!switcher) return;
+    [].forEach.call(switcher.querySelectorAll('button'), function (b) {
+      var on = b.dataset.lang === lang;
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  }
+
+  function buildSwitcher() {
+    var host = $('.nav__in');
+    if (!host || LANGUAGES.length < 2) return;
+
+    switcher = el('div', 'langs');
+    switcher.setAttribute('role', 'group');
+
+    LANGUAGES.forEach(function (l) {
+      var b = el('button', 'lang', esc(l.label));
+      b.type = 'button';
+      b.dataset.lang = l.code;
+      b.lang = l.code;
+      b.title = l.name;
+      b.setAttribute('aria-label', l.name);
+      b.addEventListener('click', function () { setLang(l.code); });
+      switcher.appendChild(b);
+    });
+
+    host.insertBefore(switcher, $('#burger'));
+    syncSwitcher();
+  }
+
+  /* ==========================================================================
+     ONE-TIME INTERACTION WIRING
+     ========================================================================== */
+
+  /* ----------------------------------------------------------------- NAV --- */
+  var nav = $('#nav'), burger = $('#burger'), links = $('#navLinks');
+
+  var onScroll = function () { nav.classList.toggle('nav--stuck', window.scrollY > 40); };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  burger.addEventListener('click', function () {
+    var open = nav.classList.toggle('nav--open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? t('nav.close') : t('nav.open'));
+  });
+  links.addEventListener('click', function (e) {
+    if (e.target.closest('a')) {
+      nav.classList.remove('nav--open');
+      burger.setAttribute('aria-expanded', 'false');
+    }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && nav.classList.contains('nav--open')) burger.click();
+  });
+
+  /* ------------------------------------------------------ PROJECT FILTER --- */
   (function () {
-    var form = $('#contactForm'), note = $('#formNote');
-    if (!form) return;
-    var c = C.club || {};
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var d = new FormData(form);
-      var name = (d.get('name') || '').trim();
-      var mail = (d.get('email') || '').trim();
-
-      note.className = 'form__note';
-      if (!name || !mail || mail.indexOf('@') < 1) {
-        note.textContent = 'Please add your name and a valid email address.';
-        note.classList.add('form__note--err');
-        return;
-      }
-
-      var body =
-        'Name: ' + name + '\nEmail: ' + mail +
-        '\nInterested in: ' + d.get('interest') +
-        '\n\n' + (d.get('message') || '');
-
-      /* Formspree route — set club.formEndpoint in data/content.js to enable */
-      if (c.formEndpoint) {
-        note.textContent = 'Sending…';
-        fetch(c.formEndpoint, {
-          method: 'POST', body: d, headers: { Accept: 'application/json' }
-        }).then(function (r) {
-          if (!r.ok) throw new Error('bad status');
-          form.reset();
-          note.textContent = 'Thank you — we have your message and will reply soon.';
-          note.classList.add('form__note--ok');
-        }).catch(function () {
-          note.textContent = 'Something went wrong. Please email us directly at ' + c.email;
-          note.classList.add('form__note--err');
-        });
-        return;
-      }
-
-      /* Default route — opens the visitor's mail app. Zero setup, zero cost. */
-      window.location.href = 'mailto:' + (c.email || '') +
-        '?subject=' + encodeURIComponent('Website enquiry — ' + d.get('interest')) +
-        '&body=' + encodeURIComponent(body);
-      note.textContent = 'Opening your email app… if nothing happens, write to ' + c.email;
-      note.classList.add('form__note--ok');
+    var bar = $('#filters');
+    if (!bar) return;
+    bar.addEventListener('click', function (e) {
+      var b = e.target.closest('.filter');
+      if (!b) return;
+      activeFilter = b.dataset.cat;
+      renderProjects();
     });
   })();
 
@@ -443,12 +541,13 @@
       var g = galleryItems[idx];
       if (!g) return;
       host.innerHTML = g.src
-        ? '<img src="' + esc(g.src) + '" alt="' + esc(g.alt) + '">'
-        : placeholder('Photo coming soon');
-      cap.textContent = (g.caption || g.alt || '') +
-        '  (' + (idx + 1) + ' of ' + galleryItems.length + ')';
+        ? '<img src="' + esc(g.src) + '" alt="' + esc(tr(g.alt)) + '">'
+        : placeholder(t('gal.soonPhoto'));
+      cap.textContent = (tr(g.caption) || tr(g.alt) || '') +
+        '  (' + (idx + 1) + ' ' + t('gal.of') + ' ' + galleryItems.length + ')';
     };
     var move = function (d) {
+      if (!galleryItems.length) return;
       idx = (idx + d + galleryItems.length) % galleryItems.length;
       draw();
     };
@@ -469,6 +568,19 @@
       if (e.key === 'ArrowRight') move(1);
     });
 
+    /* swipe left/right on touch devices */
+    var x0 = null, y0 = null;
+    box.addEventListener('touchstart', function (e) {
+      x0 = e.changedTouches[0].clientX; y0 = e.changedTouches[0].clientY;
+    }, { passive: true });
+    box.addEventListener('touchend', function (e) {
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0;
+      var dy = e.changedTouches[0].clientY - y0;
+      if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.5) move(dx < 0 ? 1 : -1);
+      x0 = y0 = null;
+    }, { passive: true });
+
     return {
       open: function (i) {
         last = document.activeElement;
@@ -480,7 +592,86 @@
     };
   })();
 
-  /* ----------------------------------------------------- SCROLL PROGRESS --- */
+  (function () {
+    var host = $('#gallery-grid');
+    if (!host) return;
+    var open = function (e) {
+      var c = e.target.closest('.gcell');
+      if (!c) return;
+      if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
+      e.preventDefault();
+      lightbox.open(+c.dataset.i);
+    };
+    host.addEventListener('click', open);
+    host.addEventListener('keydown', open);
+  })();
+
+  /* --------------------------------------------------------- VIDEO PLAY --- */
+  (function () {
+    var host = $('#videos');
+    if (!host) return;
+    host.addEventListener('click', function (e) {
+      var b = e.target.closest('.vid__lite');
+      if (!b) return;
+      var f = document.createElement('iframe');
+      f.src = 'https://www.youtube-nocookie.com/embed/' + b.dataset.yt + '?autoplay=1&rel=0';
+      f.title = 'Video player';
+      f.allow = 'accelerometer; autoplay; encrypted-media; picture-in-picture';
+      f.allowFullscreen = true;
+      b.replaceWith(f);
+    });
+  })();
+
+  /* --------------------------------------------------------------- FORM --- */
+  (function () {
+    var form = $('#contactForm'), note = $('#formNote');
+    if (!form) return;
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var c = C.club || {};
+      var d = new FormData(form);
+      var name = (d.get('name') || '').trim();
+      var mail = (d.get('email') || '').trim();
+
+      note.className = 'form__note';
+      if (!name || !mail || mail.indexOf('@') < 1) {
+        note.textContent = t('form.err');
+        note.classList.add('form__note--err');
+        return;
+      }
+
+      var body = 'Name: ' + name + '\nEmail: ' + mail +
+        '\nInterested in: ' + d.get('interest') + '\nLanguage: ' + lang +
+        '\n\n' + (d.get('message') || '');
+
+      /* Formspree route — set club.formEndpoint in data/content.js to enable */
+      if (c.formEndpoint) {
+        note.textContent = t('form.sending');
+        fetch(c.formEndpoint, { method: 'POST', body: d, headers: { Accept: 'application/json' } })
+          .then(function (r) {
+            if (!r.ok) throw new Error('bad status');
+            form.reset();
+            note.textContent = t('form.ok');
+            note.classList.add('form__note--ok');
+          })
+          .catch(function () {
+            note.textContent = t('form.fail') + ' ' + c.email;
+            note.classList.add('form__note--err');
+          });
+        return;
+      }
+
+      /* Default route — opens the visitor's mail app. Zero setup, zero cost. */
+      window.location.href = 'mailto:' + (c.email || '') +
+        '?subject=' + encodeURIComponent(t('form.subject') + ' — ' + d.get('interest')) +
+        '&body=' + encodeURIComponent(body);
+      note.textContent = t('form.mail') + ' ' + c.email;
+      note.classList.add('form__note--ok');
+    });
+  })();
+
+  /* ---------------------------------------------------- SCROLL PROGRESS --- */
   (function () {
     var bar = el('div', 'prog');
     document.body.appendChild(bar);
@@ -493,7 +684,7 @@
     tick();
   })();
 
-  /* ------------------------------------------------- HERO MOUSE PARALLAX --- */
+  /* ------------------------------------------------ HERO MOUSE PARALLAX --- */
   (function () {
     var bg = $('.hero__bg');
     if (!bg || reduce || !window.matchMedia('(pointer:fine)').matches) return;
@@ -514,18 +705,16 @@
   })();
 
   /* ------------------------------------------------ HERO WORD ENTRANCE ---- */
-  (function () {
+  function heroWords() {
     var h = $('.hero__h');
     if (!h || reduce) return;
-    /* wrap each top-level word in a span so it can rise into place */
     /* snapshot first — childNodes is live and we are replacing nodes inside it */
     [].slice.call(h.childNodes).forEach(function (node) {
       if (node.nodeType !== 3 || !node.textContent.trim()) return;
       var frag = document.createDocumentFragment();
       node.textContent.split(/(\s+)/).forEach(function (w) {
         if (!w.trim()) { frag.appendChild(document.createTextNode(w)); return; }
-        var s = el('span', 'word', esc(w));
-        frag.appendChild(s);
+        frag.appendChild(el('span', 'word', esc(w)));
       });
       node.replaceWith(frag);
     });
@@ -534,17 +723,15 @@
       w.style.animationDelay = (120 + i * 85) + 'ms';
       w.classList.add('rise');
     });
-  })();
+  }
 
   /* ------------------------------------------------------- SCROLL SPY ----- */
-  /* Highlights the nav link for whatever section you are currently reading,
-     so you always know where you are in a long page. */
   (function () {
-    var links = [].slice.call(document.querySelectorAll('.nav__links a[href^="#"]:not(.btn)'));
-    if (!links.length || !('IntersectionObserver' in window)) return;
+    var navLinks = [].slice.call(document.querySelectorAll('.nav__links a[href^="#"]:not(.btn)'));
+    if (!navLinks.length || !('IntersectionObserver' in window)) return;
 
     var map = {};
-    links.forEach(function (a) {
+    navLinks.forEach(function (a) {
       var s = document.querySelector(a.getAttribute('href'));
       if (s) map[s.id] = a;
     });
@@ -553,10 +740,8 @@
     var spy = new IntersectionObserver(function (es) {
       es.forEach(function (e) { visible[e.target.id] = e.isIntersecting; });
       var current = null;
-      Object.keys(map).forEach(function (id) {
-        if (visible[id] && !current) current = id;
-      });
-      links.forEach(function (a) { a.classList.remove('is-here'); });
+      Object.keys(map).forEach(function (id) { if (visible[id] && !current) current = id; });
+      navLinks.forEach(function (a) { a.classList.remove('is-here'); });
       if (current && map[current]) map[current].classList.add('is-here');
     }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
 
@@ -567,7 +752,7 @@
   (function () {
     var btn = el('button', 'totop', '<span aria-hidden="true">↑</span>');
     btn.type = 'button';
-    btn.setAttribute('aria-label', 'Back to top');
+    btn.setAttribute('data-i18n-attr', 'aria-label:toTop');
     document.body.appendChild(btn);
 
     btn.addEventListener('click', function () {
@@ -575,12 +760,12 @@
       var brand = $('.brand'); if (brand) brand.focus({ preventScroll: true });
     });
 
-    var t = false;
+    var q = false;
     window.addEventListener('scroll', function () {
-      if (t) return;
-      t = true;
+      if (q) return;
+      q = true;
       requestAnimationFrame(function () {
-        t = false;
+        q = false;
         btn.classList.toggle('show', window.scrollY > window.innerHeight * 1.2);
       });
     }, { passive: true });
@@ -591,60 +776,61 @@
     var link = $('#m-mail');
     if (!link || !navigator.clipboard) return;
 
-    var btn = el('button', 'copy', 'Copy');
+    var btn = el('button', 'copy');
     btn.type = 'button';
-    btn.setAttribute('aria-label', 'Copy email address');
+    btn.setAttribute('data-i18n', 'con.copy');
+    btn.setAttribute('data-i18n-attr', 'aria-label:con.copyAria');
     link.insertAdjacentElement('afterend', btn);
 
     btn.addEventListener('click', function () {
       navigator.clipboard.writeText(link.textContent.trim()).then(function () {
-        btn.textContent = 'Copied';
+        btn.textContent = t('con.copied');
         btn.classList.add('copy--ok');
         setTimeout(function () {
-          btn.textContent = 'Copy';
+          btn.textContent = t('con.copy');
           btn.classList.remove('copy--ok');
         }, 1800);
-      }).catch(function () { btn.textContent = 'Press Ctrl+C'; });
+      }).catch(function () { btn.textContent = 'Ctrl+C'; });
     });
   })();
 
   /* ------------------------------------------------- ADD TO CALENDAR ------ */
-  /* Builds a recurring .ics for the monthly meeting entirely in the browser.
-     Someone who is interested at 1am can put it in their calendar instantly
-     instead of trying to remember "last Friday, sometime". */
+  /* Builds a recurring .ics for the monthly meeting entirely in the browser,
+     so someone interested at 1am can put it straight into their calendar. */
   (function () {
     var host = $('#m-map');
-    var c = C.club;
-    if (!host || !c) return;
+    if (!host || !C.club) return;
+
+    var btn = el('button', 'btn btn--ghost btn--sm');
+    btn.type = 'button';
+    btn.setAttribute('data-i18n', 'con.cal');
+    host.insertAdjacentElement('afterend', btn);
 
     var pad = function (n) { return (n < 10 ? '0' : '') + n; };
-
-    /* first occurrence: the next last-Friday-of-the-month at the meeting time */
     var lastFriday = function (y, m) {
-      var d = new Date(y, m + 1, 0);                       /* last day of month */
-      d.setDate(d.getDate() - ((d.getDay() + 2) % 7));     /* walk back to Friday */
+      var d = new Date(y, m + 1, 0);                        /* last day of month */
+      d.setDate(d.getDate() - ((d.getDay() + 2) % 7));      /* walk back to Friday */
       return d;
     };
-    var hhmm = (c.meetTime || '19:30').split(':');
-    var now = new Date();
-    var first = lastFriday(now.getFullYear(), now.getMonth());
-    first.setHours(+hhmm[0] || 19, +hhmm[1] || 30, 0, 0);
-    if (first < now) first = lastFriday(now.getFullYear(), now.getMonth() + 1);
-    first.setHours(+hhmm[0] || 19, +hhmm[1] || 30, 0, 0);
-
     var stamp = function (d) {
       return d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate()) +
              'T' + pad(d.getHours()) + pad(d.getMinutes()) + '00';
     };
-    var end = new Date(first.getTime() + 90 * 60000);
     /* commas and semicolons are field separators in iCalendar and must be escaped */
     var ics = function (s) { return String(s).replace(/([,;\\])/g, '\\$1'); };
 
-    var btn = el('button', 'btn btn--ghost btn--sm', 'Add to calendar');
-    btn.type = 'button';
-    host.insertAdjacentElement('afterend', btn);
-
     btn.addEventListener('click', function () {
+      var c = C.club;
+      var hhmm = (c.meetTime || '19:30').split(':');
+      var now = new Date();
+      var first = lastFriday(now.getFullYear(), now.getMonth());
+      first.setHours(+hhmm[0] || 19, +hhmm[1] || 30, 0, 0);
+      if (first < now) {
+        first = lastFriday(now.getFullYear(), now.getMonth() + 1);
+        first.setHours(+hhmm[0] || 19, +hhmm[1] || 30, 0, 0);
+      }
+      var end = new Date(first.getTime() + 90 * 60000);
+
       var body = [
         'BEGIN:VCALENDAR',
         'VERSION:2.0',
@@ -657,10 +843,9 @@
         'DTSTART:' + stamp(first),
         'DTEND:' + stamp(end),
         'RRULE:FREQ=MONTHLY;BYDAY=-1FR',
-        'SUMMARY:' + ics(c.name + ' — monthly meeting'),
-        'LOCATION:' + ics(c.venue + ', ' + c.address),
-        'DESCRIPTION:' + ics('Visitors are welcome. Meetings run in English. ' +
-          'No obligation and nothing to prepare. Questions: ' + c.email),
+        'SUMMARY:' + ics(c.name + ' — ' + t('con.h2a')),
+        'LOCATION:' + ics(tr(c.venue) + ', ' + tr(c.address)),
+        'DESCRIPTION:' + ics(t('news.lead') + ' ' + c.email),
         'END:VEVENT',
         'END:VCALENDAR'
       ].join('\r\n');
@@ -676,29 +861,11 @@
     });
   })();
 
-  /* ------------------------------------------------ LIGHTBOX SWIPE -------- */
-  (function () {
-    var box = $('#lb');
-    if (!box) return;
-    var x0 = null, y0 = null;
-
-    box.addEventListener('touchstart', function (e) {
-      x0 = e.changedTouches[0].clientX;
-      y0 = e.changedTouches[0].clientY;
-    }, { passive: true });
-
-    box.addEventListener('touchend', function (e) {
-      if (x0 === null) return;
-      var dx = e.changedTouches[0].clientX - x0;
-      var dy = e.changedTouches[0].clientY - y0;
-      /* only treat it as a swipe if it is clearly horizontal */
-      if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.5) {
-        $(dx < 0 ? '#lbNext' : '#lbPrev').click();
-      }
-      x0 = y0 = null;
-    }, { passive: true });
-  })();
-
   /* --------------------------------------------------------------- INIT --- */
+  buildSwitcher();
+  applyI18n();
+  renderAll();
+  heroWords();
   watch(document);
+  firstRender = false;
 })();

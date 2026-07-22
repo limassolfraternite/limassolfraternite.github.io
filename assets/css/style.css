@@ -118,14 +118,24 @@ ul,ol{margin:0;padding:0;list-style:none}
 .nav--stuck .brand{color:var(--ink)}
 .brand__mark{color:var(--gold);display:flex;flex:none}
 .brand__txt{display:flex;flex-direction:column;line-height:1.15}
-.brand__txt b{font-size:.98rem;font-weight:800;letter-spacing:-.02em}
-.brand__txt i{font-style:normal;font-size:.68rem;opacity:.68;letter-spacing:.05em;text-transform:uppercase}
+/* nowrap everywhere in the bar — Greek and French labels are longer than the
+   English ones and would otherwise wrap the header onto two lines */
+.brand__txt b{font-size:.98rem;font-weight:800;letter-spacing:-.02em;white-space:nowrap}
+.brand__txt i{font-style:normal;font-size:.68rem;opacity:.68;letter-spacing:.05em;
+  text-transform:uppercase;white-space:nowrap}
 
 .nav__links{display:none;align-items:center;gap:1.9rem}
-@media(min-width:1000px){.nav__links{display:flex}}
 .nav__links a{
-  font-size:.9rem;font-weight:600;color:#fff;opacity:.85;
+  font-size:.9rem;font-weight:600;color:#fff;opacity:.85;white-space:nowrap;
   transition:opacity .2s,color .35s;position:relative;
+}
+/* The full bar only appears once there is genuinely room for the longest
+   translation; below this the hamburger is used instead. These media queries
+   must sit AFTER the base rule above, or the base font-size overrides them. */
+@media(min-width:1180px){.nav__links{display:flex}}
+@media(min-width:1180px) and (max-width:1400px){
+  .nav__links{gap:1.15rem}
+  .nav__links a{font-size:.83rem}
 }
 .nav--stuck .nav__links a{color:var(--ink)}
 .nav__links a:hover{opacity:1}
@@ -137,15 +147,38 @@ ul,ol{margin:0;padding:0;list-style:none}
 .nav__links .btn{color:var(--ink);opacity:1}
 .nav--stuck .nav__links .btn{color:var(--ink)}
 
+/* language switcher */
+.langs{display:flex;gap:2px;padding:3px;border-radius:999px;flex:none;
+  background:rgba(255,255,255,.12);border:1px solid var(--line-l);
+  transition:background .35s,border-color .35s}
+.nav--stuck .langs{background:var(--tint);border-color:var(--line)}
+.lang{
+  border:0;background:none;cursor:pointer;border-radius:999px;
+  padding:.34rem .6rem;font-size:.72rem;font-weight:800;letter-spacing:.04em;
+  color:rgba(255,255,255,.7);transition:.22s var(--ease);line-height:1.2;min-width:34px;
+}
+.nav--stuck .lang{color:var(--mut)}
+.lang:hover{color:#fff}
+.nav--stuck .lang:hover{color:var(--ink)}
+.lang[aria-pressed="true"]{background:var(--gold);color:var(--ink)}
+.nav--stuck .lang[aria-pressed="true"]{background:var(--gold);color:var(--ink)}
+@media(min-width:1180px){.langs{margin-left:1.25rem}}
+@media(max-width:1179px){
+  .langs{margin-left:auto;margin-right:.5rem}
+  .nav--open .langs{background:var(--tint);border-color:var(--line)}
+  .nav--open .lang{color:var(--mut)}
+  .nav--open .lang[aria-pressed="true"]{color:var(--ink)}
+}
+
 .burger{display:flex;flex-direction:column;gap:5px;background:none;border:0;padding:.6rem;cursor:pointer}
-@media(min-width:1000px){.burger{display:none}}
+@media(min-width:1180px){.burger{display:none}}
 .burger span{width:24px;height:2px;background:#fff;border-radius:2px;transition:.3s var(--ease)}
 .nav--stuck .burger span{background:var(--ink)}
 .nav--open .burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .nav--open .burger span:nth-child(2){opacity:0}
 .nav--open .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
-@media(max-width:999px){
+@media(max-width:1179px){
   .nav--open .nav__links{
     display:flex;flex-direction:column;align-items:stretch;gap:0;
     position:fixed;inset:64px 0 auto;background:var(--paper);

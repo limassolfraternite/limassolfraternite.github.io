@@ -202,17 +202,35 @@ directly via `file://` also works but the contact form behaves slightly differen
 ## 7. File map
 
 ```
-index.html            The whole page — structure and copy
-404.html              Friendly not-found page
-data/content.js       ← THE ONLY FILE YOU NEED TO EDIT
-assets/css/style.css  All styling
-assets/js/main.js     All behaviour
-assets/img/           Your photos go here
-robots.txt            Search engine instructions
-sitemap.xml           Search engine index
-.nojekyll             Stops GitHub Pages mangling the folder
-EDITING.md            Plain-English editing guide for club members
+index.html                    The whole page — structure and copy
+404.html                      Friendly not-found page
+data/content.js               ← projects, photos, news, FAQ, club details
+data/i18n.js                  ← menus and fixed wording, in EN / EL / FR
+assets/css/style.css          All styling
+assets/js/main.js             All behaviour
+assets/img/                   Your photos go here
+.github/workflows/deploy.yml  Cache-busting + deploy (runs itself)
+robots.txt                    Search engine instructions
+sitemap.xml                   Search engine index
+.nojekyll                     Stops GitHub Pages mangling the folder
+EDITING.md                    Plain-English editing guide for club members
 ```
+
+---
+
+## 8. Languages
+
+The site ships in **English, Greek and French** — the three languages the club
+actually works in. Visitors switch with the EN / ΕΛ / FR buttons in the header.
+
+Language is chosen on first visit in this order:
+`?lang=` in the URL → their saved choice → their browser language → English.
+
+Share `…/?lang=el` or `…/?lang=fr` to open the site directly in that language.
+
+Translations live in `data/i18n.js`; per-item content can be translated inline in
+`data/content.js`. **Missing translations fall back to English**, so the site is
+never broken by a partial translation. See `EDITING.md` for how to add a language.
 
 ---
 

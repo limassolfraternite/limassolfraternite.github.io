@@ -2,7 +2,92 @@
 
 Written for club members. No coding knowledge assumed.
 
-Everything you will ever need to change is in **one file**: `data/content.js`
+There are **two** files you may need to touch:
+
+| File | Holds |
+|---|---|
+| `data/content.js` | Projects, photos, videos, announcements, FAQ, club details |
+| `data/i18n.js` | Menus, buttons and the fixed page wording, in all three languages |
+
+---
+
+## Languages — English, Greek, French
+
+Visitors pick their language with the **EN / ΕΛ / FR** buttons in the top right.
+The site also chooses automatically on a first visit:
+
+1. A `?lang=` in the web address wins — e.g. `…/?lang=el` always opens in Greek.
+   **Use this when sharing a link** with a Greek- or French-speaking audience.
+2. Otherwise their previous choice is remembered on that device.
+3. Otherwise their browser's own language is used.
+4. Otherwise English.
+
+### Writing text in three languages
+
+Anywhere in `data/content.js` you can write text in one of two ways:
+
+```js
+title: "Lions Quest"                                        // same in all languages
+
+title: { en: "Youth camps", el: "Κατασκηνώσεις", fr: "Camps" }   // one per language
+```
+
+**If a language is missing, English is shown instead** — so a half-translated
+entry still works and never leaves a blank space on the page.
+
+### Adding a new project in three languages
+
+```js
+{
+  title: { en: "Beach cleanup", el: "Καθαρισμός παραλίας", fr: "Nettoyage de plage" },
+  category: "environment",
+  status: "complete",
+  year: "2026",
+  summary: {
+    en: "What you did and who it helped.",
+    el: "Τι κάνατε και ποιον βοήθησε.",
+    fr: "Ce que vous avez fait et qui cela a aidé."
+  },
+  impact: "310 kg",
+  image: "assets/img/projects/cleanup.jpg",
+  alt: { en: "Volunteers on the beach", el: "Εθελοντές στην παραλία", fr: "Bénévoles sur la plage" }
+},
+```
+
+Only have English for now? Just write `title: "Beach cleanup"` and translate later.
+
+### Changing a menu item or button
+
+Those live in `data/i18n.js`. Find the key and edit the three values:
+
+```js
+"nav.join": { en: "Join us", el: "Γίνε μέλος", fr: "Adhérer" },
+```
+
+> Keep menu labels **short**. Greek and French words are usually longer than the
+> English, and an over-long label pushes the top bar out of shape.
+
+### Adding a fourth language
+
+In `data/i18n.js`, add the language to the list at the top:
+
+```js
+const LANGS = [
+  { code: "en", label: "EN", name: "English" },
+  { code: "el", label: "ΕΛ", name: "Ελληνικά" },
+  { code: "fr", label: "FR", name: "Français" },
+  { code: "ru", label: "RU", name: "Русский" }      // new
+];
+```
+
+Then add `ru:` to each entry. Anything you have not translated yet falls back to
+English automatically, so you can add the language first and translate over time.
+
+---
+
+## Everything else
+
+The rest of this guide covers `data/content.js`.
 
 ---
 
