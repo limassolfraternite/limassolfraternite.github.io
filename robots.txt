@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://samuelakosaonyejekwe.github.io/limassol-fraternite-lions/sitemap.xml
