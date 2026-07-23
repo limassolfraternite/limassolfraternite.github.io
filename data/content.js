@@ -50,11 +50,11 @@ const CONTENT = {
                el: "Το δίκτυο πίσω από το κλαμπ μας",
                fr: "Le réseau derrière notre club" } },
 
-    { value: 5, suffix: "",
+    { value: 5, suffix: "+",
       label: { en: "Nationalities", el: "Εθνικότητες", fr: "Nationalités" },
-      note:  { en: "Belgian, Canadian, Cypriot, French, Italian",
-               el: "Βελγική, Καναδική, Κυπριακή, Γαλλική, Ιταλική",
-               fr: "Belge, canadienne, chypriote, française, italienne" } },
+      note:  { en: "Belgian, Canadian, Cypriot, French, Italian — and more always welcome",
+               el: "Βελγική, Καναδική, Κυπριακή, Γαλλική, Ιταλική — κι άλλες πάντα ευπρόσδεκτες",
+               fr: "Belge, canadienne, chypriote, française, italienne — et d’autres toujours bienvenues" } },
 
     { value: 3, suffix: "",
       label: { en: "Working languages", el: "Γλώσσες εργασίας", fr: "Langues de travail" },

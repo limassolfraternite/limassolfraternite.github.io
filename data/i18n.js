@@ -54,9 +54,9 @@ const I18N = {
   "hero.strike": { en: "give",          el: "δίνουμε",     fr: "donnons" },
   "hero.gold":   { en: "build.",        el: "χτίζουμε.",   fr: "bâtissons." },
   "hero.p": {
-    en: "Limassol Fraternité is a Lions Club run by people who got tired of waiting for someone else to fix things. Five nationalities, one city, and a very short distance between having an idea and putting it in front of real people.",
-    el: "Η Limassol Fraternité είναι ένα Lions Club που το τρέχουν άνθρωποι οι οποίοι κουράστηκαν να περιμένουν κάποιον άλλο να διορθώσει τα πράγματα. Πέντε εθνικότητες, μία πόλη, και πολύ μικρή απόσταση ανάμεσα στο να έχεις μια ιδέα και στο να τη βάλεις μπροστά σε πραγματικούς ανθρώπους.",
-    fr: "Limassol Fraternité est un Lions Club animé par des personnes lassées d’attendre que quelqu’un d’autre règle les problèmes. Cinq nationalités, une ville, et très peu de distance entre avoir une idée et la mettre entre les mains de vraies personnes."
+    en: "Limassol Fraternité is a Lions Club run by people who got tired of waiting for someone else to fix things. A growing mix of nationalities, one city, and a very short distance between having an idea and putting it in front of real people.",
+    el: "Η Limassol Fraternité είναι ένα Lions Club που το τρέχουν άνθρωποι οι οποίοι κουράστηκαν να περιμένουν κάποιον άλλο να διορθώσει τα πράγματα. Ένα διαρκώς αυξανόμενο μείγμα εθνικοτήτων, μία πόλη, και πολύ μικρή απόσταση ανάμεσα στο να έχεις μια ιδέα και στο να τη βάλεις μπροστά σε πραγματικούς ανθρώπους.",
+    fr: "Limassol Fraternité est un Lions Club animé par des personnes lassées d’attendre que quelqu’un d’autre règle les problèmes. Un mélange grandissant de nationalités, une ville, et très peu de distance entre avoir une idée et la mettre entre les mains de vraies personnes."
   },
   "hero.cta1":   { en: "Join the club",      el: "Έλα στο κλαμπ",       fr: "Rejoindre le club" },
   "hero.cta2":   { en: "See what we’ve done",el: "Δες τι έχουμε κάνει", fr: "Voir nos actions" },
@@ -121,9 +121,9 @@ const I18N = {
     fr: "Tout a commencé lorsqu’un homme d’affaires de Chicago, Melvin Jones, a dit à son club qu’il devait dépasser ses propres intérêts et prendre ses responsabilités envers la communauté. C’était en 1917. La devise est venue plus tard, choisie par un vote mondial des membres en 1954, et elle tient toujours en deux mots : Nous Servons."
   },
   "about.p3": {
-    en: "Our members come from Belgian, Canadian, Cypriot, French and Italian backgrounds. Meetings run in English, and drift into Greek and French when the argument gets interesting. We sit in District 117-B, covering Northern Greece and Cyprus.",
-    el: "Τα μέλη μας έχουν βελγική, καναδική, κυπριακή, γαλλική και ιταλική καταγωγή. Οι συναντήσεις γίνονται στα Αγγλικά και γλιστρούν στα Ελληνικά και τα Γαλλικά όταν η συζήτηση ανάβει. Ανήκουμε στην Περιφέρεια 117-B, που καλύπτει τη Βόρεια Ελλάδα και την Κύπρο.",
-    fr: "Nos membres sont d’origine belge, canadienne, chypriote, française et italienne. Les réunions se tiennent en anglais et glissent vers le grec et le français quand le débat s’anime. Nous relevons du District 117-B, qui couvre la Grèce du Nord et Chypre."
+    en: "Our members come from Belgian, Canadian, Cypriot, French and Italian backgrounds — and more join as the club grows. Meetings run in English, and drift into Greek and French when the argument gets interesting. We sit in District 117-B, covering Northern Greece and Cyprus.",
+    el: "Τα μέλη μας έχουν βελγική, καναδική, κυπριακή, γαλλική και ιταλική καταγωγή — και όλο και περισσότεροι έρχονται καθώς το κλαμπ μεγαλώνει. Οι συναντήσεις γίνονται στα Αγγλικά και γλιστρούν στα Ελληνικά και τα Γαλλικά όταν η συζήτηση ανάβει. Ανήκουμε στην Περιφέρεια 117-B, που καλύπτει τη Βόρεια Ελλάδα και την Κύπρο.",
+    fr: "Nos membres sont d’origine belge, canadienne, chypriote, française et italienne — et d’autres nous rejoignent à mesure que le club grandit. Les réunions se tiennent en anglais et glissent vers le grec et le français quand le débat s’anime. Nous relevons du District 117-B, qui couvre la Grèce du Nord et Chypre."
   },
   "about.p4": {
     en: "What we are not is a dinner club that writes cheques. Every project we run has a named owner, a number attached to it, and a date it has to be finished by.",
@@ -131,7 +131,7 @@ const I18N = {
     fr: "Ce que nous ne sommes pas : un club de dîners qui signe des chèques. Chaque projet a un responsable nommé, un chiffre associé et une date à laquelle il doit être terminé."
   },
   "about.c1": { en: "Founded on “We Serve”", el: "Θεμελιωμένο στο «Υπηρετούμε»", fr: "Fondé sur « Nous Servons »" },
-  "about.c2": { en: "5 nationalities",   el: "5 εθνικότητες",     fr: "5 nationalités" },
+  "about.c2": { en: "5+ nationalities",  el: "5+ εθνικότητες",    fr: "5+ nationalités" },
   "about.c3": { en: "3 working languages",el: "3 γλώσσες εργασίας",fr: "3 langues de travail" },
   "about.c4": { en: "100% volunteer",    el: "100% εθελοντικό",   fr: "100% bénévole" },
 
