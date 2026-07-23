@@ -24,6 +24,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Regenerate sitemap from content.js (auto-lists every photo)
+        # Reads the gallery in data/content.js and rewrites sitemap.xml so any
+        # photo the club adds automatically appears in Google Images. The club
+        # never edits the sitemap by hand.
+        run: node tools/build-sitemap.js
+
       - name: Stamp asset URLs with the commit hash (cache busting)
         run: |
           set -euo pipefail

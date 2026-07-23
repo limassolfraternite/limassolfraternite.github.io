@@ -147,10 +147,19 @@ Find the `projects:` section. Copy an existing block and change the words:
 3. Add a line in the `gallery:` section:
 
 ```js
-{ src: "assets/img/gallery/beach-cleanup.jpg", alt: "Volunteers on the beach", caption: "Coastline Reset — March 2026" },
+{ src: "assets/img/gallery/beach-cleanup.jpg",
+  alt:     { en: "Volunteers on the beach", el: "Εθελοντές στην παραλία", fr: "Bénévoles sur la plage" },
+  caption: { en: "Beach cleanup, Limassol — March 2026", el: "Καθαρισμός παραλίας, Λεμεσός — Μάρτιος 2026", fr: "Nettoyage de plage, Limassol — mars 2026" } },
 ```
 
-`alt` describes the photo for blind visitors and for search engines. Always fill it in.
+`alt` describes the photo for blind visitors and search engines — always fill it in.
+
+**Your photos are added to Google Images automatically.** Every time you push,
+the site rebuilds `sitemap.xml` from your gallery, so each new photo is submitted
+to Google Images on its own. You never edit the sitemap by hand — just add the
+photo here. **Tip:** put the place and what's happening in the `caption` (e.g.
+"blood donation, Limassol"), because that caption becomes the image's title in
+Google Images and is what local searches match.
 
 ---
 
