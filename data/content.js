@@ -69,65 +69,95 @@ const CONTENT = {
      category  must be one of:  environment | health | youth | hunger | tech | community
      status    must be one of:  live | complete | upcoming
 
-     The three below describe the club's genuine, publicly stated focus areas
-     and deliberately make NO numerical claims. As each real project finishes,
-     add it here with its actual title, date and measured result — that is what
-     builds a track record worth showing.
+     Real, completed service projects with genuine dates, shown in chronological
+     order (oldest first) so the page reads as a timeline of the club's work.
+     `date` (YYYY-MM-DD) is used for ordering and for SEO structured data.
      ========================================================================== */
   projects: [
     {
-      title: { en: "Supporting those in need",
-               el: "Στήριξη όσων έχουν ανάγκη",
-               fr: "Soutenir ceux qui en ont besoin" },
-      category: "community",
-      status: "live",
-      year: { en: "Ongoing", el: "Σε εξέλιξη", fr: "En cours" },
-      summary: {
-        en: "Direct practical help for families and individuals in Limassol facing hardship, identified with local partners so that support reaches the people who are hardest to see.",
-        el: "Άμεση πρακτική βοήθεια σε οικογένειες και άτομα στη Λεμεσό που αντιμετωπίζουν δυσκολίες, με εντοπισμό μέσω τοπικών συνεργατών ώστε η στήριξη να φτάνει σε όσους δύσκολα φαίνονται.",
-        fr: "Une aide concrète aux familles et aux personnes en difficulté à Limassol, identifiées avec des partenaires locaux afin que le soutien atteigne ceux que l’on voit le moins."
-      },
-      impact: { en: "Core focus area", el: "Βασικός τομέας δράσης", fr: "Axe prioritaire" },
-      image: "",
-      alt: { en: "Club members preparing support packages",
-             el: "Μέλη του κλαμπ ετοιμάζουν πακέτα βοήθειας",
-             fr: "Des membres préparent des colis d’aide" }
-    },
-    {
-      title: { en: "Promoting healthcare initiatives",
-               el: "Προώθηση πρωτοβουλιών υγείας",
-               fr: "Promouvoir des initiatives de santé" },
+      date: "2024-10-16",
+      title: { en: "Blood donation drive", el: "Εθελοντική αιμοδοσία", fr: "Collecte de sang" },
       category: "health",
-      status: "live",
-      year: { en: "Ongoing", el: "Σε εξέλιξη", fr: "En cours" },
+      status: "complete",
+      year: { en: "Oct 2024", el: "Οκτ 2024", fr: "oct. 2024" },
       summary: {
-        en: "Awareness, screening and access work aligned with the Lions global causes — vision, diabetes and childhood cancer — brought down to the scale of one city.",
-        el: "Ενημέρωση, προληπτικοί έλεγχοι και πρόσβαση, ευθυγραμμισμένα με τους παγκόσμιους σκοπούς των Lions — όραση, διαβήτης και παιδικός καρκίνος — στην κλίμακα μιας πόλης.",
-        fr: "Sensibilisation, dépistage et accès aux soins, alignés sur les causes mondiales du Lions — vue, diabète et cancer infantile — à l’échelle d’une seule ville."
+        en: "Our club took part in the blood donation drive organised by the Lions Region of Limassol — much-needed service, and a fitting way to honour the Lions who came before us.",
+        el: "Το κλαμπ μας συμμετείχε στην εθελοντική αιμοδοσία που διοργάνωσε η Λιονιστική Περιφέρεια Λεμεσού — μια πολύτιμη προσφορά και ένας τρόπος να τιμήσουμε τους Λέοντες που προηγήθηκαν.",
+        fr: "Notre club a participé à la collecte de sang organisée par la Région Lions de Limassol — un service précieux et une belle manière d’honorer les Lions qui nous ont précédés."
       },
-      impact: { en: "Core focus area", el: "Βασικός τομέας δράσης", fr: "Axe prioritaire" },
-      image: "",
-      alt: { en: "A community health awareness session",
-             el: "Συνάντηση ενημέρωσης για την υγεία",
-             fr: "Une séance de sensibilisation à la santé" }
+      impact: { en: "Region-wide drive", el: "Περιφερειακή δράση", fr: "Action régionale" },
+      image: "assets/img/gallery/01-blood-2024-10-2.webp",
+      alt: { en: "Lions members at the Limassol blood donation drive",
+             el: "Μέλη των Lions στην αιμοδοσία της Λεμεσού",
+             fr: "Membres Lions à la collecte de sang de Limassol" }
     },
     {
-      title: { en: "Environmental sustainability",
-               el: "Περιβαλλοντική βιωσιμότητα",
-               fr: "Durabilité environnementale" },
-      category: "environment",
-      status: "live",
-      year: { en: "Ongoing", el: "Σε εξέλιξη", fr: "En cours" },
+      date: "2025-05-04",
+      title: { en: "Health screening in Foini", el: "Εξετάσεις υγείας στα Φοινί", fr: "Dépistages de santé à Foini" },
+      category: "health",
+      status: "complete",
+      year: { en: "May 2025", el: "Μάι 2025", fr: "mai 2025" },
       summary: {
-        en: "Protecting the coastline and green spaces that make Limassol worth living in, and measuring what we remove so the work can be judged honestly rather than assumed.",
-        el: "Προστασία της ακτογραμμής και των χώρων πρασίνου που κάνουν τη Λεμεσό αξιοβίωτη, μετρώντας ό,τι απομακρύνουμε ώστε το έργο να κρίνεται με στοιχεία και όχι με εικασίες.",
-        fr: "Protéger le littoral et les espaces verts qui rendent Limassol agréable à vivre, en mesurant ce que nous retirons afin que le travail soit jugé sur des faits."
+        en: "A community health screening day in the mountain village of Foini, with a strong turnout of residents coming forward for checks.",
+        el: "Μια ημέρα προληπτικών εξετάσεων υγείας στο ορεινό χωριό Φοινί, με μεγάλη συμμετοχή κατοίκων που ήρθαν για έλεγχο.",
+        fr: "Une journée de dépistage de santé dans le village de montagne de Foini, avec une forte participation des habitants venus se faire examiner."
       },
-      impact: { en: "Core focus area", el: "Βασικός τομέας δράσης", fr: "Axe prioritaire" },
-      image: "",
-      alt: { en: "Volunteers working on an environmental project",
-             el: "Εθελοντές σε περιβαλλοντικό έργο",
-             fr: "Des bénévoles sur un projet environnemental" }
+      impact: { en: "Strong village turnout", el: "Μεγάλη συμμετοχή", fr: "Forte participation" },
+      image: "assets/img/gallery/02-foini-2025-05-1.webp",
+      alt: { en: "Community health screening in Foini village",
+             el: "Προληπτικές εξετάσεις υγείας στο χωριό Φοινί",
+             fr: "Dépistage de santé communautaire au village de Foini" }
+    },
+    {
+      date: "2025-10-24",
+      title: { en: "MedicAlert & Diabetic Village", el: "MedicAlert & Χωριό Διαβήτη", fr: "MedicAlert & Village du Diabète" },
+      category: "health",
+      status: "complete",
+      year: { en: "Oct 2025", el: "Οκτ 2025", fr: "oct. 2025" },
+      summary: {
+        en: "Over two days, the club supported both the MedicAlert Foundation Cyprus and the Diabetic Village events — practical backing for two causes that keep vulnerable people safer.",
+        el: "Σε δύο ημέρες, το κλαμπ στήριξε τόσο το Ίδρυμα MedicAlert Κύπρου όσο και τις εκδηλώσεις του Χωριού Διαβήτη — έμπρακτη υποστήριξη σε δύο σκοπούς που κρατούν πιο ασφαλείς τους ευάλωτους.",
+        fr: "Sur deux jours, le club a soutenu la Fondation MedicAlert Chypre et les événements du Village du Diabète — un appui concret à deux causes qui protègent les plus vulnérables."
+      },
+      impact: { en: "Two events supported", el: "Στήριξη δύο εκδηλώσεων", fr: "Deux événements soutenus" },
+      image: "assets/img/gallery/03-medicalert-2025-10-4.webp",
+      alt: { en: "Club members supporting the MedicAlert and Diabetic Village events",
+             el: "Μέλη του κλαμπ στηρίζουν το MedicAlert και το Χωριό Διαβήτη",
+             fr: "Des membres soutiennent MedicAlert et le Village du Diabète" }
+    },
+    {
+      date: "2025-11-09",
+      title: { en: "Eye & diabetes screenings, Limnati", el: "Εξετάσεις όρασης & διαβήτη, Λιμνάτι", fr: "Dépistages vue & diabète, Limnati" },
+      category: "health",
+      status: "complete",
+      year: { en: "Nov 2025", el: "Νοε 2025", fr: "nov. 2025" },
+      summary: {
+        en: "With the Phoenicians Lions Club and the Cyprus Association for people with Diabetes, we ran eye and diabetes screenings in Limnati, using the Lions Ophthalmology Unit all day. The event brought the club two new members.",
+        el: "Μαζί με το Lions Club Phoenicians και τον Παγκύπριο Σύνδεσμο Διαβητικών, πραγματοποιήσαμε εξετάσεις όρασης και διαβήτη στο Λιμνάτι, με τη Λιονιστική Οφθαλμολογική Μονάδα σε χρήση όλη μέρα. Η εκδήλωση έφερε στο κλαμπ δύο νέα μέλη.",
+        fr: "Avec le Lions Club Phoenicians et l’Association chypriote des personnes diabétiques, nous avons mené des dépistages de la vue et du diabète à Limnati, l’Unité d’ophtalmologie Lions étant utilisée toute la journée. L’événement a apporté deux nouveaux membres au club."
+      },
+      impact: { en: "2 new members joined", el: "2 νέα μέλη", fr: "2 nouveaux membres" },
+      image: "assets/img/gallery/04-limnati-2025-11-4.webp",
+      alt: { en: "Eye and diabetes screening day in Limnati village",
+             el: "Ημέρα εξετάσεων όρασης και διαβήτη στο Λιμνάτι",
+             fr: "Journée de dépistage vue et diabète à Limnati" }
+    },
+    {
+      date: "2026-02-25",
+      title: { en: "Tree planting in Mallia", el: "Δενδροφύτευση στα Μαλιά", fr: "Plantation d’arbres à Mallia" },
+      category: "environment",
+      status: "complete",
+      year: { en: "Feb 2026", el: "Φεβ 2026", fr: "févr. 2026" },
+      summary: {
+        en: "In Mallia we didn’t just plant trees — we planted a promise of cleaner air and stronger roots for the next generation. Done alongside fellow Lions, with more planting to come.",
+        el: "Στα Μαλιά δεν φυτέψαμε απλώς δέντρα — φυτέψαμε μια υπόσχεση για καθαρότερο αέρα και γερές ρίζες για την επόμενη γενιά. Μαζί με άλλους Λέοντες, με περισσότερες δενδροφυτεύσεις να ακολουθούν.",
+        fr: "À Mallia, nous n’avons pas seulement planté des arbres — nous avons planté une promesse d’air plus pur et de racines plus solides pour la prochaine génération. Aux côtés d’autres Lions, et ce n’est qu’un début."
+      },
+      impact: { en: "A greener tomorrow", el: "Πιο πράσινο αύριο", fr: "Un avenir plus vert" },
+      image: "assets/img/gallery/05-tree-2026-02-1.webp",
+      alt: { en: "Lions members planting trees in Mallia",
+             el: "Μέλη των Lions φυτεύουν δέντρα στα Μαλιά",
+             fr: "Des membres Lions plantant des arbres à Mallia" }
     }
   ],
 
@@ -173,41 +203,82 @@ const CONTENT = {
      Put image files in  assets/img/gallery/  then reference them here.
      Example:  src: "assets/img/gallery/beach-cleanup-01.jpg"
 
-     These eight are empty placeholders. Replace the captions with what the
-     photograph actually shows — never with a project that did not happen.
+     Real club photos, in chronological order (oldest first). To add more,
+     drop the file in assets/img/gallery/ and copy an entry below.
      ========================================================================== */
   gallery: [
-    { src: "", alt: { en: "Club service activity", el: "Δράση προσφοράς του κλαμπ", fr: "Action de service du club" },
-               caption: { en: "Add your photo caption here", el: "Πρόσθεσε εδώ τη λεζάντα σου", fr: "Ajoutez votre légende ici" } },
-    { src: "", alt: { en: "Club service activity", el: "Δράση προσφοράς του κλαμπ", fr: "Action de service du club" },
-               caption: { en: "Add your photo caption here", el: "Πρόσθεσε εδώ τη λεζάντα σου", fr: "Ajoutez votre légende ici" } },
-    { src: "", alt: { en: "Club service activity", el: "Δράση προσφοράς του κλαμπ", fr: "Action de service du club" },
-               caption: { en: "Add your photo caption here", el: "Πρόσθεσε εδώ τη λεζάντα σου", fr: "Ajoutez votre légende ici" } },
-    { src: "", alt: { en: "Club service activity", el: "Δράση προσφοράς του κλαμπ", fr: "Action de service du club" },
-               caption: { en: "Add your photo caption here", el: "Πρόσθεσε εδώ τη λεζάντα σου", fr: "Ajoutez votre légende ici" } },
-    { src: "", alt: { en: "Club members at a meeting", el: "Μέλη του κλαμπ σε συνάντηση", fr: "Membres du club en réunion" },
-               caption: { en: "Add your photo caption here", el: "Πρόσθεσε εδώ τη λεζάντα σου", fr: "Ajoutez votre légende ici" } },
-    { src: "", alt: { en: "Club service activity", el: "Δράση προσφοράς του κλαμπ", fr: "Action de service du club" },
-               caption: { en: "Add your photo caption here", el: "Πρόσθεσε εδώ τη λεζάντα σου", fr: "Ajoutez votre légende ici" } }
+    { src: "assets/img/gallery/01-blood-2024-10-1.webp",
+      alt: { en: "Lions members at the Limassol blood donation drive", el: "Μέλη των Lions στην αιμοδοσία της Λεμεσού", fr: "Membres Lions à la collecte de sang de Limassol" },
+      caption: { en: "Blood donation drive — October 2024", el: "Εθελοντική αιμοδοσία — Οκτώβριος 2024", fr: "Collecte de sang — octobre 2024" } },
+    { src: "assets/img/gallery/01-blood-2024-10-2.webp",
+      alt: { en: "Lions members at the Limassol blood donation drive", el: "Μέλη των Lions στην αιμοδοσία της Λεμεσού", fr: "Membres Lions à la collecte de sang de Limassol" },
+      caption: { en: "Blood donation drive — October 2024", el: "Εθελοντική αιμοδοσία — Οκτώβριος 2024", fr: "Collecte de sang — octobre 2024" } },
+    { src: "assets/img/gallery/01-blood-2024-10-3.webp",
+      alt: { en: "Lions members at the Limassol blood donation drive", el: "Μέλη των Lions στην αιμοδοσία της Λεμεσού", fr: "Membres Lions à la collecte de sang de Limassol" },
+      caption: { en: "Blood donation drive — October 2024", el: "Εθελοντική αιμοδοσία — Οκτώβριος 2024", fr: "Collecte de sang — octobre 2024" } },
+    { src: "assets/img/gallery/01-blood-2024-10-4.webp",
+      alt: { en: "Lions members at the Limassol blood donation drive", el: "Μέλη των Lions στην αιμοδοσία της Λεμεσού", fr: "Membres Lions à la collecte de sang de Limassol" },
+      caption: { en: "Blood donation drive — October 2024", el: "Εθελοντική αιμοδοσία — Οκτώβριος 2024", fr: "Collecte de sang — octobre 2024" } },
+    { src: "assets/img/gallery/02-foini-2025-05-1.webp",
+      alt: { en: "Community health screening in Foini village", el: "Προληπτικές εξετάσεις υγείας στο χωριό Φοινί", fr: "Dépistage de santé au village de Foini" },
+      caption: { en: "Health screening, Foini — May 2025", el: "Εξετάσεις υγείας, Φοινί — Μάιος 2025", fr: "Dépistages de santé, Foini — mai 2025" } },
+    { src: "assets/img/gallery/02-foini-2025-05-2.webp",
+      alt: { en: "Community health screening in Foini village", el: "Προληπτικές εξετάσεις υγείας στο χωριό Φοινί", fr: "Dépistage de santé au village de Foini" },
+      caption: { en: "Health screening, Foini — May 2025", el: "Εξετάσεις υγείας, Φοινί — Μάιος 2025", fr: "Dépistages de santé, Foini — mai 2025" } },
+    { src: "assets/img/gallery/02-foini-2025-05-3.webp",
+      alt: { en: "Community health screening in Foini village", el: "Προληπτικές εξετάσεις υγείας στο χωριό Φοινί", fr: "Dépistage de santé au village de Foini" },
+      caption: { en: "Health screening, Foini — May 2025", el: "Εξετάσεις υγείας, Φοινί — Μάιος 2025", fr: "Dépistages de santé, Foini — mai 2025" } },
+    { src: "assets/img/gallery/03-medicalert-2025-10-1.webp",
+      alt: { en: "Supporting the MedicAlert and Diabetic Village events", el: "Στήριξη του MedicAlert και του Χωριού Διαβήτη", fr: "Soutien à MedicAlert et au Village du Diabète" },
+      caption: { en: "MedicAlert & Diabetic Village — October 2025", el: "MedicAlert & Χωριό Διαβήτη — Οκτώβριος 2025", fr: "MedicAlert & Village du Diabète — octobre 2025" } },
+    { src: "assets/img/gallery/03-medicalert-2025-10-2.webp",
+      alt: { en: "Supporting the MedicAlert and Diabetic Village events", el: "Στήριξη του MedicAlert και του Χωριού Διαβήτη", fr: "Soutien à MedicAlert et au Village du Diabète" },
+      caption: { en: "MedicAlert & Diabetic Village — October 2025", el: "MedicAlert & Χωριό Διαβήτη — Οκτώβριος 2025", fr: "MedicAlert & Village du Diabète — octobre 2025" } },
+    { src: "assets/img/gallery/03-medicalert-2025-10-3.webp",
+      alt: { en: "Supporting the MedicAlert and Diabetic Village events", el: "Στήριξη του MedicAlert και του Χωριού Διαβήτη", fr: "Soutien à MedicAlert et au Village du Diabète" },
+      caption: { en: "MedicAlert & Diabetic Village — October 2025", el: "MedicAlert & Χωριό Διαβήτη — Οκτώβριος 2025", fr: "MedicAlert & Village du Diabète — octobre 2025" } },
+    { src: "assets/img/gallery/03-medicalert-2025-10-4.webp",
+      alt: { en: "Supporting the MedicAlert and Diabetic Village events", el: "Στήριξη του MedicAlert και του Χωριού Διαβήτη", fr: "Soutien à MedicAlert et au Village du Diabète" },
+      caption: { en: "MedicAlert & Diabetic Village — October 2025", el: "MedicAlert & Χωριό Διαβήτη — Οκτώβριος 2025", fr: "MedicAlert & Village du Diabète — octobre 2025" } },
+    { src: "assets/img/gallery/04-limnati-2025-11-1.webp",
+      alt: { en: "Eye and diabetes screening day in Limnati", el: "Ημέρα εξετάσεων όρασης και διαβήτη στο Λιμνάτι", fr: "Journée de dépistage vue et diabète à Limnati" },
+      caption: { en: "Eye & diabetes screenings, Limnati — November 2025", el: "Εξετάσεις όρασης & διαβήτη, Λιμνάτι — Νοέμβριος 2025", fr: "Dépistages vue & diabète, Limnati — novembre 2025" } },
+    { src: "assets/img/gallery/04-limnati-2025-11-2.webp",
+      alt: { en: "Eye and diabetes screening day in Limnati", el: "Ημέρα εξετάσεων όρασης και διαβήτη στο Λιμνάτι", fr: "Journée de dépistage vue et diabète à Limnati" },
+      caption: { en: "Eye & diabetes screenings, Limnati — November 2025", el: "Εξετάσεις όρασης & διαβήτη, Λιμνάτι — Νοέμβριος 2025", fr: "Dépistages vue & diabète, Limnati — novembre 2025" } },
+    { src: "assets/img/gallery/04-limnati-2025-11-3.webp",
+      alt: { en: "Eye and diabetes screening day in Limnati", el: "Ημέρα εξετάσεων όρασης και διαβήτη στο Λιμνάτι", fr: "Journée de dépistage vue et diabète à Limnati" },
+      caption: { en: "Eye & diabetes screenings, Limnati — November 2025", el: "Εξετάσεις όρασης & διαβήτη, Λιμνάτι — Νοέμβριος 2025", fr: "Dépistages vue & diabète, Limnati — novembre 2025" } },
+    { src: "assets/img/gallery/04-limnati-2025-11-4.webp",
+      alt: { en: "Eye and diabetes screening day in Limnati", el: "Ημέρα εξετάσεων όρασης και διαβήτη στο Λιμνάτι", fr: "Journée de dépistage vue et diabète à Limnati" },
+      caption: { en: "Eye & diabetes screenings, Limnati — November 2025", el: "Εξετάσεις όρασης & διαβήτη, Λιμνάτι — Νοέμβριος 2025", fr: "Dépistages vue & diabète, Limnati — novembre 2025" } },
+    { src: "assets/img/gallery/04-limnati-2025-11-5.webp",
+      alt: { en: "Eye and diabetes screening day in Limnati", el: "Ημέρα εξετάσεων όρασης και διαβήτη στο Λιμνάτι", fr: "Journée de dépistage vue et diabète à Limnati" },
+      caption: { en: "Eye & diabetes screenings, Limnati — November 2025", el: "Εξετάσεις όρασης & διαβήτη, Λιμνάτι — Νοέμβριος 2025", fr: "Dépistages vue & diabète, Limnati — novembre 2025" } },
+    { src: "assets/img/gallery/05-tree-2026-02-1.webp",
+      alt: { en: "Lions members planting trees in Mallia", el: "Μέλη των Lions φυτεύουν δέντρα στα Μαλιά", fr: "Des membres Lions plantant des arbres à Mallia" },
+      caption: { en: "Tree planting, Mallia — February 2026", el: "Δενδροφύτευση, Μαλιά — Φεβρουάριος 2026", fr: "Plantation d’arbres, Mallia — février 2026" } },
+    { src: "assets/img/gallery/05-tree-2026-02-2.webp",
+      alt: { en: "Lions members planting trees in Mallia", el: "Μέλη των Lions φυτεύουν δέντρα στα Μαλιά", fr: "Des membres Lions plantant des arbres à Mallia" },
+      caption: { en: "Tree planting, Mallia — February 2026", el: "Δενδροφύτευση, Μαλιά — Φεβρουάριος 2026", fr: "Plantation d’arbres, Mallia — février 2026" } },
+    { src: "assets/img/gallery/05-tree-2026-02-3.webp",
+      alt: { en: "Lions members planting trees in Mallia", el: "Μέλη των Lions φυτεύουν δέντρα στα Μαλιά", fr: "Des membres Lions plantant des arbres à Mallia" },
+      caption: { en: "Tree planting, Mallia — February 2026", el: "Δενδροφύτευση, Μαλιά — Φεβρουάριος 2026", fr: "Plantation d’arbres, Mallia — février 2026" } },
   ],
 
   /* ==========================================================================
      5. VIDEOS
-     Use the YouTube VIDEO ID only, not the whole link:
-       https://www.youtube.com/watch?v=dQw4w9WgXcQ   ->   id: "dQw4w9WgXcQ"
-     Leaving id empty shows a tidy "video coming soon" card.
-     Videos only load when someone presses play, so they never slow the page.
+     Two ways to add a video:
+       a) YouTube:  id: "dQw4w9WgXcQ"    (the code after watch?v= in the link)
+       b) A file:   file: "assets/video/lions.mp4"
+     Either way the video only downloads when someone presses play, so it never
+     slows the initial page load. Leave both empty for a "coming soon" card.
      ========================================================================== */
   videos: [
-    { id: "", title: { en: "Add your first video here",
-                       el: "Πρόσθεσε εδώ το πρώτο σου βίντεο",
-                       fr: "Ajoutez votre première vidéo ici" }, duration: "" },
-    { id: "", title: { en: "Add your first video here",
-                       el: "Πρόσθεσε εδώ το πρώτο σου βίντεο",
-                       fr: "Ajoutez votre première vidéo ici" }, duration: "" },
-    { id: "", title: { en: "Add your first video here",
-                       el: "Πρόσθεσε εδώ το πρώτο σου βίντεο",
-                       fr: "Ajoutez votre première vidéo ici" }, duration: "" }
+    { file: "assets/video/lions.mp4",
+      title: { en: "Limassol Fraternité in the community",
+               el: "Η Limassol Fraternité στην κοινότητα",
+               fr: "Limassol Fraternité dans la communauté" }, duration: "" }
   ],
 
   /* ==========================================================================
@@ -342,16 +413,17 @@ const CONTENT = {
                  fr: "Avenue Arch. Makarios III 132, Limassol, Chypre" },
     mapQuery:  "Gloria Jeans Cafe, Archbishop Makarios III Avenue 132, Limassol, Cyprus",
 
-    /* VERIFY THIS ADDRESS — it is a best guess and enquiries depend on it. */
-    email:     "limassolfraternite@gmail.com",
+    /* Confirmed by the club. */
+    email:     "d117b.fraternite@gmail.com",
     languages: { en: "English · Greek · French",
                  el: "Αγγλικά · Ελληνικά · Γαλλικά",
                  fr: "Anglais · Grec · Français" },
 
     /* Set any link to "" to hide that icon in the footer. */
     social: {
+      instagram: "https://www.instagram.com/limassol.fraternite",
       facebook:  "https://www.facebook.com/FraterniteLionsClub/",
-      instagram: "https://www.instagram.com/",
+      tiktok:    "https://www.tiktok.com/@limassolfraternitelccy",
       eclubhouse:"https://e-clubhouse.org/sites/limassolfraternite/",
       lci:       "https://www.lionsclubs.org/en"
     },

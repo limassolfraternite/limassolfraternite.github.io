@@ -141,18 +141,19 @@ Edit it, save, push. The site updates within a minute. No rebuild, no deploy ste
 ## 4. Before you go live — the checklist
 
 This site was published with **no invented claims**. Everything currently on it is
-either verifiable fact or a statement of intent. These are the gaps to fill in:
+either verifiable fact or a statement of intent.
+
+**Done:** club email, official logo, Instagram/Facebook/TikTok links, five real
+projects with photos, 19-photo gallery, one club video, and the social share image.
+
+Remaining, optional:
 
 | Task | Where | Priority |
 |---|---|---|
-| **Confirm the club email** | `data/content.js` → `club.email` | **High — currently a best guess, verify it** |
-| Add your Instagram URL | `data/content.js` → `club.social` | High — currently a generic placeholder link |
-| Add real photos | `assets/img/gallery/` + `data/content.js` | High — blue placeholder tiles show until you do |
-| Add real completed projects | `data/content.js` → `projects` | High — this is your track record |
-| Publish real impact figures | `data/content.js` → `stats` | Medium — only numbers you can evidence |
+| Native-speaker check of the Greek & French | `data/i18n.js`, `data/content.js` | Medium — translations are a careful first pass |
 | Add member quotes | `data/content.js` → `voices` + un-hide the section in `index.html` | Medium |
-| Add YouTube video IDs | `data/content.js` → `videos` | Medium |
-| Add a social share image | `assets/img/og-cover.jpg` (1200×630) | Low — controls WhatsApp/Facebook link previews |
+| Add more projects/photos over time | `data/content.js` | Ongoing — keeps the track record fresh |
+| Submit to search engines (see §9) | Google Search Console / Bing | High for visibility |
 
 > ### Publish only what you can evidence
 >
@@ -231,6 +232,45 @@ Share `…/?lang=el` or `…/?lang=fr` to open the site directly in that languag
 Translations live in `data/i18n.js`; per-item content can be translated inline in
 `data/content.js`. **Missing translations fall back to English**, so the site is
 never broken by a partial translation. See `EDITING.md` for how to add a language.
+
+---
+
+## 9. Search engine visibility (SEO)
+
+**The honest version first.** No developer can *guarantee* a "top 10 global" ranking —
+Google decides that, and for broad terms you compete with the whole internet. What is
+realistic and achievable: rank at or near **#1 for your own name and local terms**
+("Limassol Fraternité Lions Club", "Lions Club Limassol", "λέσχη Lions Λεμεσός")
+once Google has indexed and trusted the site. That is the search that actually brings
+you members and partners.
+
+**What is already built in** (you don't need to touch any of this):
+
+- A unique, keyword-aware page title and meta description
+- `hreflang` tags for English, Greek and French so each shows in the right market
+- Open Graph + Twitter cards with a branded 1200×630 share image (nice link previews
+  on WhatsApp, Facebook, etc.)
+- Two blocks of structured data (schema.org): the club as an organisation with its real
+  social links, plus your five service projects as an event list
+- `sitemap.xml`, `robots.txt`, canonical URL, geo tags, semantic headings, image alt
+  text in three languages, and a fast, mobile-first page (all ranking signals)
+
+**What only you can do — and must, or the site stays invisible:**
+
+1. **Google Search Console** — go to <https://search.google.com/search-console>, add the
+   site, verify it, and click *Request indexing* on the homepage. This is the single
+   most important step. Submit `…/sitemap.xml` there too.
+2. **Bing Webmaster Tools** — <https://www.bing.com/webmasters> — same idea (also feeds
+   DuckDuckGo, ChatGPT search and others).
+3. **Backlinks = trust.** Put the site URL in the **bio of your Instagram, Facebook and
+   TikTok**, and ask to be listed with a link on `lionsclubs.org` / your district page.
+   A few links from real, related sites do more than anything on the page itself.
+4. **Keep posting.** A site that adds a project or news item every month is read by
+   Google as active and ranks better than one that never changes. You already have the
+   tools to do this in `data/content.js`.
+
+Do those four things and the club will own its name in search within a few weeks.
+Everything technical that supports that is already done.
 
 ---
 

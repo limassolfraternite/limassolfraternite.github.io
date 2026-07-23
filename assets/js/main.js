@@ -231,6 +231,12 @@
     var list = C.projects.filter(function (p) {
       return activeFilter === 'all' || p.category === activeFilter;
     });
+    /* Keep the timeline chronological (oldest first) even if entries are added
+       to content.js out of order. Undated items keep their written position. */
+    list = list.slice().sort(function (a, b) {
+      if (!a.date || !b.date) return 0;
+      return a.date < b.date ? -1 : a.date > b.date ? 1 : 0;
+    });
     empty.hidden = list.length > 0;
 
     list.forEach(function (p) {
@@ -289,12 +295,24 @@
       var title = tr(v.title);
       var frame;
       if (v.id) {
-        /* Facade: load only a thumbnail until clicked. Keeps the page fast and
-           avoids YouTube setting cookies on visitors who never press play. */
+        /* YouTube facade: load only a thumbnail until clicked. Keeps the page
+           fast and avoids YouTube cookies for visitors who never press play. */
         frame =
           '<button class="vid__lite" type="button" data-yt="' + esc(v.id) +
             '" aria-label="' + esc(t('gal.play') + ': ' + title) + '">' +
             '<img src="https://i.ytimg.com/vi/' + esc(v.id) + '/hqdefault.jpg" alt="" loading="lazy" decoding="async">' +
+            '<span class="vid__play"><span>▶</span></span>' +
+          '</button>';
+      } else if (v.file) {
+        /* Local file facade: nothing downloads until play is pressed, so a
+           large video never affects the initial page load. */
+        frame =
+          '<button class="vid__lite vid__local" type="button" data-file="' + esc(v.file) +
+            (v.poster ? '" data-poster="' + esc(v.poster) : '') +
+            '" aria-label="' + esc(t('gal.play') + ': ' + title) + '">' +
+            (v.poster
+              ? '<img src="' + esc(v.poster) + '" alt="" loading="lazy" decoding="async">'
+              : '<span class="vid__ph"></span>') +
             '<span class="vid__play"><span>▶</span></span>' +
           '</button>';
       } else {
@@ -414,9 +432,9 @@
     var soc = $('#social');
     if (soc && c.social) {
       soc.innerHTML = '';
-      var LABEL = { facebook: 'FB', instagram: 'IG', eclubhouse: 'CLUB', lci: 'LCI' };
+      var LABEL = { instagram: 'IG', facebook: 'FB', tiktok: 'TT', eclubhouse: 'CLUB', lci: 'LCI' };
       var TITLE = {
-        facebook: 'Facebook', instagram: 'Instagram',
+        instagram: 'Instagram', facebook: 'Facebook', tiktok: 'TikTok',
         eclubhouse: 'Lions e-Clubhouse', lci: 'Lions Clubs International'
       };
       Object.keys(c.social).forEach(function (k) {
@@ -613,7 +631,21 @@
     host.addEventListener('click', function (e) {
       var b = e.target.closest('.vid__lite');
       if (!b) return;
-      var f = document.createElement('iframe');
+
+      if (b.dataset.file) {                                   /* local video file */
+        var v = document.createElement('video');
+        v.src = b.dataset.file;
+        v.controls = true;
+        v.autoplay = true;
+        v.setAttribute('playsinline', '');                    /* no forced fullscreen on iOS */
+        v.preload = 'auto';
+        if (b.dataset.poster) v.poster = b.dataset.poster;
+        b.replaceWith(v);
+        v.play().catch(function () {});
+        return;
+      }
+
+      var f = document.createElement('iframe');               /* YouTube */
       f.src = 'https://www.youtube-nocookie.com/embed/' + b.dataset.yt + '?autoplay=1&rel=0';
       f.title = 'Video player';
       f.allow = 'accelerometer; autoplay; encrypted-media; picture-in-picture';
