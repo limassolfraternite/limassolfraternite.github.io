@@ -549,11 +549,11 @@ ul,ol{margin:0;padding:0;list-style:none}
   transition:transform .08s linear;pointer-events:none;
 }
 .hero__h .word,.hero__h .strike,.hero__h .gold{display:inline-block}
-.rise{
-  opacity:0;transform:translateY(.5em) rotate(1.5deg);
-  animation:rise .85s var(--ease) forwards;
-}
-@keyframes rise{to{opacity:1;transform:none}}
+/* Transform-only (no opacity): the headline is the LCP element and is already
+   painted at first paint, so we must NOT fade it from 0 — that would delay LCP
+   and cause a flash. A small upward slide keeps the entrance without the cost. */
+.rise{transform:translateY(.42em);animation:rise .5s var(--ease) forwards}
+@keyframes rise{from{transform:translateY(.42em)}to{transform:none}}
 .hero__bg i{transition:translate .5s var(--ease)}
 
 /* keyword highlight sweep */

@@ -750,9 +750,12 @@
       });
       node.replaceWith(frag);
     });
-    var words = h.querySelectorAll('.word, .strike, .gold');
+    /* Keep the entrance quick: the headline is the LCP element, so a long
+       stagger would delay Largest Contentful Paint and hurt Core Web Vitals.
+       Small delays, capped, so all words are painted within ~0.5s. */
+    var words = h.querySelectorAll('.word, .hw, .strike, .gold');
     [].forEach.call(words, function (w, i) {
-      w.style.animationDelay = (120 + i * 85) + 'ms';
+      w.style.animationDelay = Math.min(30 + i * 40, 260) + 'ms';
       w.classList.add('rise');
     });
   }
