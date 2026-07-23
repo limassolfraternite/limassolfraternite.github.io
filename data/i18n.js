@@ -201,9 +201,9 @@ const I18N = {
     fr: "Ce que nous avons réellement fait."
   },
   "work.lead": {
-    en: "Live, completed and upcoming. No rounding up, no vanity metrics.",
-    el: "Σε εξέλιξη, ολοκληρωμένα και επερχόμενα. Χωρίς στρογγυλοποιήσεις, χωρίς μετρήσεις για εντυπωσιασμό.",
-    fr: "En cours, terminés et à venir. Sans arrondis ni chiffres de vitrine."
+    en: "Real community service across Limassol and its villages in Cyprus — eye and diabetes screenings, blood donation and tree planting. No rounding up, no vanity metrics.",
+    el: "Πραγματική κοινοτική προσφορά σε όλη τη Λεμεσό και τα χωριά της στην Κύπρο — εξετάσεις όρασης και διαβήτη, αιμοδοσία και δενδροφυτεύσεις. Χωρίς στρογγυλοποιήσεις, χωρίς μετρήσεις για εντυπωσιασμό.",
+    fr: "Un vrai service communautaire à Limassol et dans ses villages, à Chypre — dépistages de la vue et du diabète, dons de sang et plantations d’arbres. Sans arrondis ni chiffres de vitrine."
   },
   "work.filterAll": { en: "All projects", el: "Όλα τα έργα", fr: "Tous les projets" },
   "work.empty":     { en: "No projects in this category yet.", el: "Δεν υπάρχουν ακόμη έργα σε αυτή την κατηγορία.", fr: "Aucun projet dans cette catégorie pour l’instant." },

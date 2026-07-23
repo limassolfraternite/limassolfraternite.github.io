@@ -407,6 +407,28 @@
 
       d.appendChild(q); d.appendChild(a); host.appendChild(d);
     });
+
+    /* Inject FAQ structured data (schema.org FAQPage) so Google can show the
+       questions as rich results. Built from the same content, in the current
+       language, so it never drifts out of sync with what's on the page. */
+    var faqLd = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: C.faq.map(function (f) {
+        return {
+          '@type': 'Question',
+          name: tr(f.q),
+          acceptedAnswer: { '@type': 'Answer', text: tr(f.a) }
+        };
+      })
+    };
+    var old = document.getElementById('faq-schema');
+    if (old) old.remove();
+    var sc = document.createElement('script');
+    sc.type = 'application/ld+json';
+    sc.id = 'faq-schema';
+    sc.textContent = JSON.stringify(faqLd);
+    document.head.appendChild(sc);
   }
 
   /* --------------------------------------------------------------- CLUB ---- */

@@ -10,7 +10,27 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://limassolfraternite.github.io/"/>
     <image:image>
       <image:loc>https://limassolfraternite.github.io/assets/img/og-cover.jpg</image:loc>
-      <image:title>Limassol Fraternité Lions Club</image:title>
+      <image:title>Limassol Fraternité Lions Club, Cyprus</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://limassolfraternite.github.io/assets/img/gallery/01-blood-2024-10-2.webp</image:loc>
+      <image:title>Lions Club blood donation drive in Limassol, Cyprus</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://limassolfraternite.github.io/assets/img/gallery/02-foini-2025-05-1.webp</image:loc>
+      <image:title>Community health screening in Foini, Cyprus</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://limassolfraternite.github.io/assets/img/gallery/03-medicalert-2025-10-4.webp</image:loc>
+      <image:title>MedicAlert and Diabetic Village support, Cyprus</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://limassolfraternite.github.io/assets/img/gallery/04-limnati-2025-11-4.webp</image:loc>
+      <image:title>Eye and diabetes screenings in Limnati, Limassol, Cyprus</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://limassolfraternite.github.io/assets/img/gallery/05-tree-2026-02-1.webp</image:loc>
+      <image:title>Lions Club tree planting in Mallia, Cyprus</image:title>
     </image:image>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
