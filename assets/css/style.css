@@ -127,6 +127,14 @@ ul,ol{margin:0;padding:0;list-style:none}
 .brand__txt b{font-size:.98rem;font-weight:800;letter-spacing:-.02em;white-space:nowrap}
 .brand__txt i{font-style:normal;font-size:.68rem;opacity:.68;letter-spacing:.05em;
   text-transform:uppercase;white-space:nowrap}
+/* small phones: the district line would run under the language switcher */
+@media(max-width:430px){
+  .brand__txt i{display:none}
+  .brand{gap:.5rem}
+  .brand__mark{width:34px;height:34px}
+  .brand__txt b{font-size:.84rem}
+}
+@media(max-width:345px){.brand__txt{display:none}}
 
 .nav__links{display:none;align-items:center;gap:1.9rem}
 .nav__links a{
@@ -176,6 +184,11 @@ ul,ol{margin:0;padding:0;list-style:none}
 @media(min-width:1180px){.langs{margin-left:1.25rem}}
 @media(max-width:1179px){
   .langs{margin-left:auto;margin-right:.5rem}
+}
+@media(max-width:430px){
+  .langs{margin-right:.25rem}
+  .lang{padding:.3rem .45rem;min-width:30px}
+  .burger{padding:.5rem .25rem .5rem .5rem}
   .nav--open .langs{background:var(--tint);border-color:var(--line)}
   .nav--open .lang{color:var(--mut)}
   .nav--open .lang[aria-pressed="true"]{color:var(--ink)}
@@ -227,15 +240,24 @@ ul,ol{margin:0;padding:0;list-style:none}
     linear-gradient(180deg,rgba(11,15,28,.35),transparent 30%,rgba(11,15,28,.55)),
     repeating-linear-gradient(0deg,transparent 0 3px,rgba(255,255,255,.018) 3px 4px);
 }
+/* Real members photo. Desktop: fills the right of the banner and fades into
+   the dark behind the headline. Phones: sits behind the text, dimmed. */
+.hero__photo{position:absolute;inset:0;pointer-events:none}
+.hero__photo img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;display:block}
+.hero__photo::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(11,15,28,.72) 0%,rgba(11,15,28,.58) 40%,rgba(11,15,28,.9) 85%,rgba(11,15,28,.97) 100%)}
+@media(min-width:900px){
+  .hero__photo{left:auto;width:62%;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 38%);
+            mask-image:linear-gradient(90deg,transparent 0%,#000 38%)}
+  .hero__photo::after{background:
+    linear-gradient(90deg,rgba(11,15,28,.55) 0%,rgba(11,15,28,.05) 60%),
+    linear-gradient(180deg,rgba(11,15,28,.45) 0%,transparent 25%,transparent 70%,rgba(11,15,28,.7) 100%)}
+}
 .hero__in{position:relative;z-index:1}
 .hero__h{
-  font-size:clamp(3rem,1.2rem + 9.5vw,7.5rem);font-weight:850;letter-spacing:-.045em;
-  margin:0 0 1.75rem;
-}
-.strike{position:relative;color:rgba(255,255,255,.42);font-weight:400}
-.strike::after{
-  content:"";position:absolute;left:-3%;right:-3%;top:52%;height:.07em;
-  background:var(--gold);transform:rotate(-4deg);border-radius:2px;
+  font-size:clamp(2.6rem,1.1rem + 6.2vw,5.6rem);font-weight:850;letter-spacing:-.04em;
+  margin:0 0 1.75rem;max-width:12.5em;text-shadow:0 2px 24px rgba(11,15,28,.45);
 }
 .hero__p{max-width:56ch;font-size:clamp(1.05rem,1rem + .5vw,1.3rem);color:var(--mut-l);margin-bottom:2.25rem}
 .hero__cta{display:flex;flex-wrap:wrap;gap:.9rem;margin-bottom:3.5rem}
@@ -362,9 +384,8 @@ ul,ol{margin:0;padding:0;list-style:none}
 .subhead__rule{flex:1;height:1px;background:var(--line)}
 .videos + .subhead{margin-top:clamp(3rem,6vw,4.5rem)}
 
-/* An even, orderly grid: every tile has the same 4:3 shape. The first photo is
-   a feature tile sized so each row always closes cleanly (13 photos fill
-   4 columns, 3 columns or 2 columns with no gaps). */
+/* An even, orderly grid: every tile has the same 4:3 shape. Twelve photos
+   close every row cleanly at 4, 3 and 2 columns. */
 .gallery{display:grid;gap:clamp(.5rem,1.2vw,.9rem);grid-template-columns:repeat(2,1fr)}
 @media(min-width:640px){.gallery{grid-template-columns:repeat(3,1fr)}}
 @media(min-width:1000px){.gallery{grid-template-columns:repeat(4,1fr)}}
@@ -373,8 +394,6 @@ ul,ol{margin:0;padding:0;list-style:none}
   cursor:zoom-in;position:relative;display:block;aspect-ratio:4/3;
   box-shadow:0 1px 2px rgba(11,15,28,.06);isolation:isolate;
 }
-.gcell:first-child{grid-column:1/-1;aspect-ratio:16/8}
-@media(min-width:1000px){.gcell:first-child{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}}
 .gcell img,.gcell .ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   transition:transform .7s var(--ease),filter .4s}
 .gcell:hover img{transform:scale(1.045)}
@@ -385,7 +404,6 @@ ul,ol{margin:0;padding:0;list-style:none}
   line-height:1.35;background:linear-gradient(transparent,rgba(11,15,28,.86));text-align:left;
   opacity:0;transform:translateY(6px);transition:.35s var(--ease);z-index:1;
 }
-.gcell:first-child figcaption,
 .gcell:hover figcaption,.gcell:focus-visible figcaption{opacity:1;transform:none}
 @media(hover:none){.gcell figcaption{opacity:1;transform:none;font-size:.72rem;padding:2rem .7rem .6rem}}
 
@@ -416,6 +434,16 @@ ul,ol{margin:0;padding:0;list-style:none}
 .vid__ph::before{content:"";position:absolute;inset:0;
   background:repeating-linear-gradient(45deg,rgba(255,255,255,.05) 0 12px,transparent 12px 24px)}
 .vid__frame video{width:100%;height:100%;object-fit:contain;display:block;background:#000}
+
+/* ---------- 14b. Leadership ---------------------------------------------- */
+.leaders{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(1.25rem,3vw,2.5rem)}
+.leader{margin:0;text-align:center;width:min(200px,42%)}
+.leader__face{aspect-ratio:1;border-radius:50%;overflow:hidden;background:var(--blue);
+  width:min(180px,100%);margin:0 auto 1rem;box-shadow:0 0 0 4px var(--paper),0 0 0 6px var(--gold)}
+.leader__face img{width:100%;height:100%;object-fit:cover}
+.leader__init{display:grid;place-items:center;height:100%;color:#fff;font-size:2.2rem;font-weight:800;letter-spacing:.02em}
+.leader figcaption b{display:block;font-size:1.02rem;font-weight:750;letter-spacing:-.01em}
+.leader figcaption span{display:block;font-size:.85rem;color:var(--mut);margin-top:.15rem}
 
 /* ---------- 15. Voices ----------------------------------------------------- */
 .voices{display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr))}
@@ -554,8 +582,9 @@ ul,ol{margin:0;padding:0;list-style:none}
 .soc{
   width:42px;height:42px;border-radius:50%;border:1px solid var(--line-l);
   display:grid;place-items:center;font-size:.72rem;font-weight:800;letter-spacing:.02em;
-  transition:.25s var(--ease);color:var(--mut-l);
+  transition:.25s var(--ease);color:#fff;
 }
+.soc svg{display:block}
 .soc:hover{background:var(--gold);color:var(--ink);border-color:var(--gold);transform:translateY(-3px)}
 .foot__legal{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;
   padding-top:1.5rem;font-size:.75rem;color:var(--mut-l)}
@@ -586,7 +615,7 @@ ul,ol{margin:0;padding:0;list-style:none}
   transform:scaleX(0);transform-origin:0 50%;will-change:transform;
   transition:transform .08s linear;pointer-events:none;
 }
-.hero__h .word,.hero__h .strike,.hero__h .gold{display:inline-block}
+.hero__h .word,.hero__h .gold{display:inline-block}
 /* Transform-only (no opacity): the headline is the LCP element and is already
    painted at first paint, so we must NOT fade it from 0 — that would delay LCP
    and cause a flash. A small upward slide keeps the entrance without the cost. */
@@ -604,9 +633,12 @@ ul,ol{margin:0;padding:0;list-style:none}
 .nav__links a.is-here::after{width:100%}
 
 .totop{
-  position:fixed;right:clamp(1rem,3vw,2rem);bottom:clamp(1rem,3vw,2rem);z-index:120;
-  width:48px;height:48px;border-radius:50%;border:0;cursor:pointer;
-  background:var(--ink);color:var(--gold);font-size:1.15rem;line-height:1;
+  /* Sits in the empty margin beside the 1200px content column on wide
+     screens, so it never covers cards; tucks into the corner on smaller ones */
+  position:fixed;right:max(.75rem,calc((100vw - 1200px) / 2 - 68px));bottom:clamp(.9rem,3vw,2rem);z-index:120;
+  width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.14);cursor:pointer;
+  background:rgba(11,15,28,.82);color:var(--gold);font-size:1.05rem;line-height:1;
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
   box-shadow:var(--shadow-h);display:grid;place-items:center;
   opacity:0;visibility:hidden;transform:translateY(14px) scale(.9);
   transition:opacity .3s var(--ease),transform .3s var(--ease),visibility .3s,background .25s;

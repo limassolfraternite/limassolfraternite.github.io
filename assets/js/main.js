@@ -346,6 +346,27 @@
     watch(host);
   }
 
+  /* ---------------------------------------------------------- LEADERS ---- */
+  /* Hidden until real, permission-granted entries exist in content.js */
+  function renderLeaders() {
+    var sec = $('#leaders'), host = $('#leaders-list');
+    if (!sec || !host) return;
+    var list = C.leaders || [];
+    sec.hidden = !list.length;
+    host.innerHTML = '';
+    list.forEach(function (p) {
+      var initials = String(p.name || '').split(/\s+/).map(function (w) { return w.charAt(0); })
+        .join('').slice(0, 2).toUpperCase();
+      var face = p.photo
+        ? '<img src="' + esc(p.photo) + '" alt="' + esc(p.name) + '" loading="lazy" decoding="async" width="320" height="320">'
+        : '<span class="leader__init" aria-hidden="true">' + esc(initials) + '</span>';
+      host.appendChild(el('figure', 'leader reveal',
+        '<div class="leader__face">' + face + '</div>' +
+        '<figcaption><b>' + esc(p.name) + '</b><span>' + esc(tr(p.role)) + '</span></figcaption>'));
+    });
+    watch(host);
+  }
+
   /* --------------------------------------------------------------- NEWS ---- */
   function renderNews() {
     var host = $('#news-list');
@@ -477,14 +498,30 @@
     var soc = $('#social');
     if (soc && c.social) {
       soc.innerHTML = '';
-      var LABEL = { instagram: 'IG', facebook: 'FB', tiktok: 'TT', eclubhouse: 'CLUB', lci: 'LCI' };
+      /* Simple line/solid icons drawn inline — no icon font or external request */
+      var svg = function (body, solid) {
+        return '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" ' +
+          (solid ? 'fill="currentColor"' : 'fill="none" stroke="currentColor" stroke-width="1.8" ' +
+          'stroke-linecap="round" stroke-linejoin="round"') + '>' + body + '</svg>';
+      };
+      var ICON = {
+        instagram: svg('<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/>' +
+          '<circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/>'),
+        facebook: svg('<path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.6-1.5h1.6V4.4' +
+          'A21 21 0 0 0 14.4 4.3c-2.3 0-3.9 1.4-3.9 4v2.2H8v3h2.5V21z"/>', true),
+        tiktok: svg('<path d="M16.6 3h-3.1v12.2a2.7 2.7 0 1 1-2.7-2.7c.3 0 .5 0 .8.1V9.4' +
+          'a5.9 5.9 0 1 0 5 5.8V9a7.4 7.4 0 0 0 4.3 1.4V7.3A4.3 4.3 0 0 1 16.6 3z"/>', true),
+        eclubhouse: svg('<path d="M3 10.5 12 3l9 7.5"/><path d="M5 9v12h14V9"/><path d="M10 21v-6h4v6"/>'),
+        lci: svg('<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/>' +
+          '<path d="M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>')
+      };
       var TITLE = {
         instagram: 'Instagram', facebook: 'Facebook', tiktok: 'TikTok',
         eclubhouse: 'Lions e-Clubhouse', lci: 'Lions Clubs International'
       };
       Object.keys(c.social).forEach(function (k) {
         if (!c.social[k]) return;
-        var a = el('a', 'soc', LABEL[k] || k.slice(0, 2).toUpperCase());
+        var a = el('a', 'soc', ICON[k] || esc(k.slice(0, 2).toUpperCase()));
         a.href = c.social[k];
         a.target = '_blank';
         a.rel = 'noopener';
@@ -501,6 +538,7 @@
     renderGallery();
     renderVideos();
     renderVoices();
+    renderLeaders();
     renderNews();
     renderFaq();
     renderClub();
@@ -798,7 +836,7 @@
     /* Keep the entrance quick: the headline is the LCP element, so a long
        stagger would delay Largest Contentful Paint and hurt Core Web Vitals.
        Small delays, capped, so all words are painted within ~0.5s. */
-    var words = h.querySelectorAll('.word, .hw, .strike, .gold');
+    var words = h.querySelectorAll('.word, .hw, .gold');
     [].forEach.call(words, function (w, i) {
       w.style.animationDelay = Math.min(30 + i * 40, 260) + 'ms';
       w.classList.add('rise');

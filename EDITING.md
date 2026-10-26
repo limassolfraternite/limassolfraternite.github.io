@@ -248,3 +248,32 @@ Nothing else changes. Still no monthly charge.
   signed consent form before a minor's photo goes online.
 - **Do not commit personal data** — home addresses, phone numbers of members, or
   anything about the people you serve. A public repo is genuinely public.
+
+---
+
+## Showing the club's leadership
+
+The **"Our leadership"** section is hidden until people are added. To show it:
+
+1. Get each person's permission to appear on the website.
+2. Put a head-and-shoulders photo in `assets/img/team/` (for example `maria-georgiou.webp`).
+3. In `data/content.js`, find `leaders: []` and fill it in:
+
+```js
+leaders: [
+  { name: "Full Name",
+    role: { en: "President", el: "Πρόεδρος", fr: "Président(e)" },
+    photo: "assets/img/team/full-name.webp" },
+  { name: "Second Person",
+    role: { en: "Secretary", el: "Γραμματέας", fr: "Secrétaire" },
+    photo: "" }                    // no photo yet → initials are shown
+],
+```
+
+The section appears automatically as soon as the list has at least one person.
+
+## Photos: use each one once
+
+A photo should appear in **one place only** on the site. The photo used on a
+project card is not repeated in the gallery, and the members photo at the top
+of the page is not repeated anywhere else.

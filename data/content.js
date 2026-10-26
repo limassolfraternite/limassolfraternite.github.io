@@ -36,21 +36,23 @@ const CONTENT = {
   /* ==========================================================================
      1. THE BIG NUMBERS  —  the counters near the top of the page
      --------------------------------------------------------------------------
-     These four are VERIFIABLE FACTS about Lions International and this club,
-     not performance claims. When you have audited figures of your own
-     (people reached, meals served, volunteer hours), replace them here.
+     These are the CLUB'S OWN figures, each one evidenced by the projects,
+     photos and videos on this website. When you have audited figures
+     (members, people screened, meals delivered), replace them here.
      ========================================================================== */
   stats: [
     /* plain: true = show as 1917, not 1,917 (use it for years) */
-    { value: 1917, suffix: "", plain: true,
-      label: { en: "Serving since", el: "Προσφέρουμε υπηρεσίες από", fr: "Au service depuis" },
-      note:  "Lions Clubs International" },
+    { value: 6, suffix: "+",
+      label: { en: "Service actions on record", el: "Καταγεγραμμένες δράσεις προσφοράς", fr: "Actions de service réalisées" },
+      note:  { en: "Screenings, blood donation, tree planting, food parcels and more",
+               el: "Προληπτικοί έλεγχοι, αιμοδοσία, δενδροφύτευση, δέματα τροφίμων και άλλα",
+               fr: "Dépistages, don de sang, plantation d’arbres, colis alimentaires et plus" } },
 
-    { value: 200, suffix: "+",
-      label: { en: "Countries served", el: "Χώρες που εξυπηρετούνται", fr: "Pays desservis" },
-      note:  { en: "The network behind our club",
-               el: "Το παγκόσμιο δίκτυο στο οποίο ανήκει η λέσχη μας",
-               fr: "Le réseau mondial auquel notre club appartient" } },
+    { value: 4, suffix: "",
+      label: { en: "Communities reached", el: "Κοινότητες που επισκεφθήκαμε", fr: "Communautés desservies" },
+      note:  { en: "Limassol, Foini, Limnati and Mallia",
+               el: "Λεμεσός, Φοινί, Λιμνάτι και Μαλλιά",
+               fr: "Limassol, Foini, Limnati et Mallia" } },
 
     { value: 5, suffix: "+",
       label: { en: "Nationalities", el: "Εθνικότητες", fr: "Nationalités" },
@@ -236,9 +238,6 @@ const CONTENT = {
     { src: "assets/img/gallery/03-medicalert-2025-10-1.webp",
       alt: { en: "Supporting the MedicAlert and Diabetic Village events", el: "Συμμετοχή στις εκδηλώσεις MedicAlert και Χωριό Διαβήτη", fr: "Participation aux événements MedicAlert et Village du Diabète" },
       caption: { en: "MedicAlert & Diabetic Village — October 2025", el: "MedicAlert & Χωριό Διαβήτη — Οκτώβριος 2025", fr: "MedicAlert & Village du Diabète — octobre 2025" } },
-    { src: "assets/img/gallery/03-medicalert-2025-10-2.webp",
-      alt: { en: "Supporting the MedicAlert and Diabetic Village events", el: "Συμμετοχή στις εκδηλώσεις MedicAlert και Χωριό Διαβήτη", fr: "Participation aux événements MedicAlert et Village du Diabète" },
-      caption: { en: "MedicAlert & Diabetic Village — October 2025", el: "MedicAlert & Χωριό Διαβήτη — Οκτώβριος 2025", fr: "MedicAlert & Village du Diabète — octobre 2025" } },
     { src: "assets/img/gallery/03-medicalert-2025-10-3.webp",
       alt: { en: "Supporting the MedicAlert and Diabetic Village events", el: "Συμμετοχή στις εκδηλώσεις MedicAlert και Χωριό Διαβήτη", fr: "Participation aux événements MedicAlert et Village du Diabète" },
       caption: { en: "MedicAlert & Diabetic Village — October 2025", el: "MedicAlert & Χωριό Διαβήτη — Οκτώβριος 2025", fr: "MedicAlert & Village du Diabète — octobre 2025" } },
@@ -312,6 +311,22 @@ const CONTENT = {
   voices: [],
 
   /* ==========================================================================
+     6b. CLUB LEADERSHIP  —  President and board, with photos
+     --------------------------------------------------------------------------
+     EMPTY UNTIL REAL DETAILS ARE SUPPLIED. The "Our leadership" section stays
+     hidden while this list is empty, and appears automatically once you add
+     people. Only add someone who has agreed to be shown on the website.
+
+     Put a square-ish head-and-shoulders photo in  assets/img/team/
+     (leave photo: "" and their initials are shown instead).
+
+     { name: "Full Name",
+       role: { en: "President", el: "Πρόεδρος", fr: "Président(e)" },
+       photo: "assets/img/team/full-name.webp" },
+     ========================================================================== */
+  leaders: [],
+
+  /* ==========================================================================
      7. FREQUENTLY ASKED QUESTIONS
      ========================================================================== */
   faq: [
@@ -320,7 +335,7 @@ const CONTENT = {
            el: "Δεν είναι αυτή η οργάνωση μόνο για μεγαλύτερες ηλικίες;",
            fr: "Cette organisation n’est-elle pas réservée aux personnes plus âgées ?" },
       a: {
-        en: "That is the reputation, and we are deliberately dismantling it. There is no age limit to join our club, Lions International runs Leo clubs specifically for ages 12 to 30, and we are actively welcoming younger members. Younger members are not junior members here — they lead projects.",
+        en: "It is a common impression, and one we are glad to change. There is no age limit to join our club, Lions International runs Leo clubs specifically for ages 12 to 30, and we are actively welcoming younger members. Younger members are not junior members here — they lead projects.",
         el: "Αυτή είναι ακριβώς η εικόνα που προσπαθούμε να αλλάξουμε. Δεν υπάρχει όριο ηλικίας για να γίνετε μέλος της λέσχης μας, οι Διεθνείς Lions προσφέρουν τις λέσχες Leo σε νέους ηλικίας 12 έως 30 ετών και η λέσχη μας καλωσορίζει ενεργά νεότερα μέλη. Εδώ οι νέοι δεν είναι «junior» μέλη: διευθύνουν έργα.",
         fr: "C’est une réputation que nous nous attachons justement à faire évoluer. Il n’y a pas de limite d’âge pour rejoindre notre club, le Lions Clubs International propose les Leo Clubs aux jeunes de 12 à 30 ans, et notre club accueille activement de jeunes membres. Ici, les jeunes ne sont pas des membres « juniors » : ils dirigent des projets."
       }
@@ -380,7 +395,7 @@ const CONTENT = {
            el: "Πρόκειται για πολιτική ή θρησκευτική οργάνωση;",
            fr: "S’agit-il d’une organisation politique ou religieuse ?" },
       a: {
-        en: "No, and that is written into the rules rather than left to good manners. The Lions International Purposes explicitly state that partisan politics and sectarian religion shall not be debated by club members. People of every background and belief work side by side here.",
+        en: "No. This principle is written into the Lions rules: the Lions International Purposes explicitly state that partisan politics and sectarian religion shall not be debated by club members. People of every background and belief work side by side here.",
         el: "Όχι. Αυτή η αρχή περιλαμβάνεται στους κανόνες των Διεθνών Lions. Οι κομματικές πολιτικές συζητήσεις και οι θρησκευτικές αντιπαραθέσεις δεν έχουν θέση στις λέσχες. Άνθρωποι κάθε καταγωγής και κάθε πεποίθησης εργάζονται μαζί με πνεύμα προσφοράς.",
         fr: "Non. Ce principe figure dans les règles du Lions Clubs International. Les discussions politiques partisanes et les débats religieux confessionnels n’ont pas leur place au sein des clubs. Des personnes de toutes origines et de toutes convictions travaillent ensemble dans un esprit de service."
       }

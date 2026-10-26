@@ -33,7 +33,7 @@ const I18N = {
 
   /* ---------------------------------------------------------------- NAV --- */
   "nav.work":       { en: "Our work",       el: "Οι δράσεις μας",     fr: "Nos actions" },
-  "nav.beyond":     { en: "Beyond charity", el: "Πέρα από τη φιλανθρωπία",     fr: "Au-delà de la solidarité" },
+  "nav.beyond": { en: "Our approach", el: "Η προσέγγισή μας", fr: "Notre approche" },
   "nav.youth":      { en: "Youth",          el: "Νεολαία",            fr: "Jeunesse" },
   "nav.gallery":    { en: "Gallery",        el: "Γκαλερί",         fr: "Galerie" },
   "nav.news":       { en: "News",           el: "Νέα",             fr: "Actualités" },
@@ -50,14 +50,9 @@ const I18N = {
     el: "Λεμεσός · Κύπρος · Από το 1917 σε όλο τον κόσμο",
     fr: "Limassol · Chypre · Depuis 1917 dans le monde"
   },
-  "hero.pre":    { en: "We don’t just", el: "Δεν κάνουμε μόνο",   fr: "Nous ne faisons pas que" },
-  "hero.strike": { en: "give",          el: "δίνουμε",     fr: "donner" },
-  "hero.gold":   { en: "build.",        el: "χτίζουμε.",   fr: "bâtir." },
-  "hero.p": {
-    en: "Limassol Fraternité is a Lions Club run by people who got tired of waiting for someone else to fix things. A growing mix of nationalities, one city, and a very short distance between having an idea and putting it in front of real people.",
-    el: "Η Λέσχη Lions Λεμεσού Fraternité αποτελείται από ανθρώπους που κουράστηκαν να περιμένουν κάποιον άλλο να λύσει τα προβλήματα. Μια αναπτυσσόμενη κοινότητα ανθρώπων διαφορετικών εθνικοτήτων, ενωμένη στην ίδια πόλη, όπου η απόσταση από μια ιδέα μέχρι την υλοποίησή της για την υπηρεσία της κοινότητας είναι μόνο ένα βήμα.",
-    fr: "Le Limassol Fraternité Lions Club est animé par des personnes qui en avaient assez d’attendre que quelqu’un d’autre résolve les problèmes. Une communauté en pleine croissance, composée de nationalités diverses, réunie dans une même ville, où il n’y a qu’un pas entre une idée et sa concrétisation au service de la communauté."
-  },
+  "hero.pre": { en: "Serving Limassol,", el: "Υπηρετούμε τη Λεμεσό,", fr: "Au service de Limassol," },
+  "hero.gold": { en: "building what lasts.", el: "χτίζουμε για το αύριο.", fr: "pour des actions qui durent." },
+  "hero.p": { en: "Limassol Fraternité is a Lions Club of people who would rather act than wait. A growing mix of nationalities in one city, turning good ideas into real help for the community.", el: "Η Λέσχη Lions Λεμεσού Fraternité αποτελείται από ανθρώπους που προτιμούν να δρουν παρά να περιμένουν. Μια αναπτυσσόμενη κοινότητα διαφορετικών εθνικοτήτων στην ίδια πόλη, που μετατρέπει τις καλές ιδέες σε πραγματική βοήθεια για την κοινότητα.", fr: "Le Limassol Fraternité Lions Club réunit des personnes qui préfèrent agir plutôt qu’attendre. Une communauté en pleine croissance, aux nationalités diverses, réunie dans une même ville pour transformer les bonnes idées en aide concrète pour la communauté." },
   "hero.cta1":   { en: "Join the club",      el: "Γίνετε μέλος του club",       fr: "Rejoignez le club" },
   "hero.cta2":   { en: "See what we’ve done",el: "Γνωρίστε τις δράσεις μας", fr: "Découvrez nos actions" },
   "hero.m1b":    { en: "No age limit.", el: "Χωρίς όριο ηλικίας.", fr: "Sans limite d’âge." },
@@ -92,16 +87,8 @@ const I18N = {
   "cause.mental":    { en: "Mental wellbeing", el: "Ψυχική ευεξία",          fr: "Bien-être mental" },
 
   /* -------------------------------------------------------------- STATS --- */
-  "stats.aria": {
-    en: "The club and the network behind it",
-    el: "Το club και το δίκτυο που το στηρίζει",
-    fr: "Le club et le réseau qui le soutient"
-  },
-  "stats.foot": {
-    en: "Our own project results will be published here as each one is completed and measured.",
-    el: "Τα αποτελέσματα των δικών μας έργων θα δημοσιεύονται εδώ καθώς υλοποιούνται και αξιολογούνται.",
-    fr: "Les résultats de nos propres projets seront publiés ici au fur et à mesure de leur réalisation et de leur évaluation."
-  },
+  "stats.aria": { en: "The club in numbers", el: "Η λέσχη σε αριθμούς", fr: "Le club en chiffres" },
+  "stats.foot": { en: "Our own figures, drawn from the projects on this page — backed by Lions Clubs International, serving in 200+ countries since 1917.", el: "Τα δικά μας στοιχεία, από τα έργα που παρουσιάζονται σε αυτή τη σελίδα — με τη στήριξη των Διεθνών Lions, που προσφέρουν σε περισσότερες από 200 χώρες από το 1917.", fr: "Nos propres chiffres, issus des projets présentés sur cette page — avec le soutien du Lions Clubs International, présent dans plus de 200 pays depuis 1917." },
 
   /* -------------------------------------------------------------- ABOUT --- */
   "about.eyebrow": { en: "Who we are", el: "Ποιοι είμαστε;", fr: "Qui sommes-nous ?" },
@@ -125,33 +112,17 @@ const I18N = {
     el: "Τα μέλη μας είναι βελγικής, καναδικής, κυπριακής, γαλλικής, ιταλικής και πολλών άλλων καταβολών. Οι συναντήσεις μας πραγματοποιούνται στα αγγλικά και συνεχίζονται φυσικά στα ελληνικά ή στα γαλλικά όταν οι συζητήσεις γίνονται πιο συναρπαστικές. Ανήκουμε στο District 117B, που καλύπτει τη Βόρεια Ελλάδα και την Κύπρο.",
     fr: "Nos membres viennent d’origine belge, canadien, chypriote, français, italien et bien d’autres encore. Nos réunions se déroulent en anglais et se poursuivent naturellement en grec ou en français lorsque les échanges deviennent passionnants. Nous faisons partie du District 117B, qui couvre la Grèce du Nord et Chypre."
   },
-  "about.p4": {
-    en: "What we are not is a dinner club that writes cheques. Every project we run has a named owner, a number attached to it, and a date it has to be finished by.",
-    el: "Δεν είμαστε μια λέσχη που περιορίζεται στη διοργάνωση δείπνων ή στην υπογραφή επιταγών. Κάθε έργο έχει συγκεκριμένο υπεύθυνο, μετρήσιμους στόχους και σαφή προθεσμία.",
-    fr: "Nous ne sommes pas un club qui se contente d’organiser des dîners ou de signer des chèques. Chaque projet possède un responsable identifié, des objectifs mesurables et une échéance précise."
-  },
+  "about.p4": { en: "Every project we run has a named lead, a clear goal and a date by which it will be completed.", el: "Κάθε έργο μας έχει συγκεκριμένο υπεύθυνο, σαφή στόχο και ημερομηνία ολοκλήρωσης.", fr: "Chaque projet que nous menons a un responsable identifié, un objectif clair et une date d’achèvement." },
   "about.c1": { en: "Founded on “We Serve”", el: "Βασισμένοι στο «Υπηρετούμε»", fr: "Fondé sur « Nous servons »" },
   "about.c2": { en: "5+ nationalities",  el: "Περισσότερες από 5 εθνικότητες",    fr: "Plus de 5 nationalités" },
   "about.c3": { en: "3 working languages",el: "3 γλώσσες εργασίας",fr: "3 langues de travail" },
   "about.c4": { en: "100% volunteer",    el: "100% εθελοντές",   fr: "100 % bénévoles" },
 
   /* --------------------------------------------------------- INNOVATION --- */
-  "inn.eyebrow": { en: "The difference", el: "Η διαφορά μας", fr: "Notre différence" },
-  "inn.h2a": {
-    en: "Charity hands out. Development builds capacity.",
-    el: "Η φιλανθρωπία βοηθά. Η ανάπτυξη δίνει τη δυνατότητα για δράση.",
-    fr: "La charité aide. Le développement donne les moyens d’agir."
-  },
-  "inn.h2b": {
-    en: "We are moving to the second thing.",
-    el: "Αυτόν τον δεύτερο δρόμο επιλέξαμε.",
-    fr: "C’est cette deuxième voie que nous avons choisie."
-  },
-  "inn.lead": {
-    en: "Handing someone a meal solves tonight. Handing them a system solves the year. Every project we take on is judged against four questions.",
-    el: "Το να προσφέρεις ένα γεύμα καλύπτει την ανάγκη της ημέρας. Η δημιουργία ενός συστήματος καλύπτει τις ανάγκες μιας ολόκληρης χρονιάς. Κάθε έργο μας αξιολογείται με βάση τέσσερα βασικά ερωτήματα.",
-    fr: "Offrir un repas répond au besoin d’aujourd’hui. Mettre en place un système répond aux besoins de toute une année. Chacun de nos projets est évalué selon quatre questions essentielles."
-  },
+  "inn.eyebrow": { en: "Our approach", el: "Η προσέγγισή μας", fr: "Notre approche" },
+  "inn.h2a": { en: "Every act of service matters.", el: "Κάθε πράξη προσφοράς μετράει.", fr: "Chaque geste de service compte." },
+  "inn.h2b": { en: "We aim to make it last.", el: "Στόχος μας είναι να διαρκεί.", fr: "Nous voulons qu’il dure." },
+  "inn.lead": { en: "A meal helps tonight. A lasting solution helps all year. That is why every project we take on is guided by four questions.", el: "Ένα γεύμα βοηθά απόψε. Μια μόνιμη λύση βοηθά όλο τον χρόνο. Γι’ αυτό κάθε έργο που αναλαμβάνουμε καθοδηγείται από τέσσερα βασικά ερωτήματα.", fr: "Un repas aide ce soir. Une solution durable aide toute l’année. C’est pourquoi chacun de nos projets est guidé par quatre questions essentielles." },
   "inn.1h": { en: "Does it measure?", el: "Μπορεί να μετρηθεί;", fr: "Peut-on le mesurer ?" },
   "inn.1p": {
     en: "If we cannot count it, we cannot improve it. Kilograms of waste, screenings delivered, meals routed — every project produces a number we publish, including the disappointing ones.",
@@ -255,18 +226,10 @@ const I18N = {
 
   /* --------------------------------------------------------------- JOIN --- */
   "join.eyebrow": { en: "Get involved", el: "Συμμετέχετε", fr: "Impliquez-vous" },
-  "join.h2": {
-    en: "Three ways in. None of them require you to be impressive yet.",
-    el: "Τρεις τρόποι να συμμετάσχετε. Κανένας δεν απαιτεί να είστε ήδη ξεχωριστοί.",
-    fr: "Trois façons de nous rejoindre. Aucune ne demande d’être déjà extraordinaire."
-  },
+  "join.h2": { en: "Three ways to get involved. Everyone is welcome.", el: "Τρεις τρόποι να συμμετάσχετε. Όλοι είναι ευπρόσδεκτοι.", fr: "Trois façons de vous impliquer. Tout le monde est le bienvenu." },
   "join.1h":   { en: "Come once", el: "Ελάτε για πρώτη φορά", fr: "Venez une première fois" },
   "join.1age": { en: "Any age", el: "Όλες οι ηλικίες", fr: "Tout âge" },
-  "join.1p": {
-    en: "Turn up to one project or one open night. Zero commitment, zero cost, no one will follow you home. Most members started exactly here.",
-    el: "Συμμετέχετε σε ένα έργο ή σε μια βραδιά γνωριμίας. Καμία δέσμευση, κανένα κόστος και καμία πίεση. Οι περισσότεροι από τους/τις Lions μας ξεκίνησαν έτσι.",
-    fr: "Participez à un projet ou à une soirée découverte. Aucun engagement, aucun coût et aucune pression. La plupart de nos membres ont commencé ainsi."
-  },
+  "join.1p": { en: "Join us for one project or one meeting. No commitment and no cost — most of our members started exactly this way.", el: "Ελάτε σε ένα έργο ή σε μία συνάντηση. Χωρίς δέσμευση και χωρίς κόστος — τα περισσότερα μέλη μας ξεκίνησαν ακριβώς έτσι.", fr: "Rejoignez-nous pour un projet ou une réunion. Sans engagement et sans frais — la plupart de nos membres ont commencé exactement ainsi." },
   "join.1cta": { en: "Tell us you’re coming", el: "Ενημερώστε μας ότι θα έρθετε", fr: "Prévenez-nous de votre venue" },
   "join.2tag": { en: "Most popular", el: "Το πιο δημοφιλές", fr: "Le plus populaire" },
   "join.2h":   { en: "Leo programme", el: "Πρόγραμμα Leo", fr: "Programme Leo" },
@@ -347,13 +310,13 @@ const I18N = {
     fr: "Le Lions Clubs International s’est fixé pour objectif d’atteindre 1,5 million de membres dans le monde d’ici juillet 2027 afin de servir encore davantage de personnes. C’est la raison pour laquelle nous recrutons activement : chaque nouveau membre compte."
   },
 
+  /* --------------------------------------------------------- LEADERSHIP --- */
+  "lead.eyebrow": { en: "Our leadership", el: "Η ηγεσία μας", fr: "Notre équipe dirigeante" },
+  "lead.h2": { en: "The people who lead the club.", el: "Οι άνθρωποι που καθοδηγούν τη λέσχη.", fr: "Les personnes qui dirigent le club." },
+
   /* ---------------------------------------------------------------- FAQ --- */
   "faq.eyebrow": { en: "Straight answers", el: "Σαφείς απαντήσεις", fr: "Des réponses claires" },
-  "faq.h2": {
-    en: "The questions people are too polite to ask.",
-    el: "Οι ερωτήσεις που δεν τολμάμε πάντα να κάνουμε.",
-    fr: "Les questions que l’on n’ose pas toujours poser."
-  },
+  "faq.h2": { en: "Questions we are often asked.", el: "Ερωτήσεις που μας κάνουν συχνά.", fr: "Les questions que l’on nous pose souvent." },
 
   /* ------------------------------------------------------------ CONTACT --- */
   "con.eyebrow": { en: "Find us", el: "Βρείτε μας", fr: "Nous trouver" },
@@ -405,7 +368,6 @@ const I18N = {
   "foot.contact": { en: "Contact", el: "Επικοινωνία", fr: "Contact" },
   "foot.motto":   { en: "“We Serve” — since 1917, worldwide.", el: "«Υπηρετούμε» — από το 1917, σε όλο τον κόσμο.", fr: "« Nous servons » — depuis 1917, dans le monde entier." },
   "foot.legal":   { en: "Limassol Fraternité Lions Club. Autonomous club of Lions Clubs International.", el: "Limassol Fraternité Lions Club. Αυτόνομη λέσχη, μέλος των Διεθνών Lions.", fr: "Limassol Fraternité Lions Club. Club autonome membre du Lions Clubs International." },
-  "foot.built":   { en: "Built static. Hosted free. No trackers, no cookies.", el: "Στατική ιστοσελίδα. Δωρεάν φιλοξενία. Χωρίς trackers, χωρίς cookies.", fr: "Site statique. Hébergement gratuit. Aucun traceur, Aucun cookie." },
   "toTop":        { en: "Back to top", el: "Επιστροφή στην κορυφή", fr: "Retour en haut" },
 
   /* --------------------------------------------------------- NO SCRIPT ---- */

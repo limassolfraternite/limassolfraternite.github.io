@@ -24,24 +24,28 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Limassol Fraternité Lions Club">
 <meta property="og:title" content="Limassol Fraternité Lions Club — Community Service in Cyprus">
-<meta property="og:description" content="Not just charity. Real, measurable community development in Limassol, Cyprus. No age limit — everyone welcome. We Serve.">
+<meta property="og:description" content="Community service in Limassol, Cyprus — health screenings, blood donation, tree planting and more. No age limit — everyone welcome. We Serve.">
 <meta property="og:image" content="https://limassolfraternite.github.io/assets/img/og-cover.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Limassol Fraternité Lions Club — community development, not just charity. We Serve.">
+<meta property="og:image:alt" content="Limassol Fraternité Lions Club — community service in Limassol, Cyprus. We Serve.">
 <meta property="og:url" content="https://limassolfraternite.github.io/">
 <meta property="og:locale" content="en_GB">
 <meta property="og:locale:alternate" content="el_GR">
 <meta property="og:locale:alternate" content="fr_FR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Limassol Fraternité Lions Club — Community Service in Cyprus">
-<meta name="twitter:description" content="Not just charity. Real, measurable community development in Limassol, Cyprus. No age limit — everyone welcome.">
+<meta name="twitter:description" content="Community service in Limassol, Cyprus — health screenings, blood donation, tree planting and more. No age limit — everyone welcome.">
 <meta name="twitter:image" content="https://limassolfraternite.github.io/assets/img/og-cover.jpg">
 
 <link rel="icon" type="image/png" sizes="64x64" href="assets/img/favicon.png?v=__V__">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png?v=__V__">
 <link rel="apple-touch-icon" href="assets/img/logo-180.png?v=__V__">
 <link rel="stylesheet" href="assets/css/style.css?v=__V__">
+<!-- The hero photo is the first thing seen: fetch it straight away -->
+<link rel="preload" as="image" href="assets/img/hero/members-1400.webp"
+      imagesrcset="assets/img/hero/members-800.webp 800w, assets/img/hero/members-1400.webp 1400w"
+      imagesizes="(min-width:900px) 62vw, 100vw" fetchpriority="high">
 
 <!-- Without JS the scroll-reveal never runs, so force every section visible.
      Guarantees the page is fully readable even if scripts fail to load. -->
@@ -84,19 +88,26 @@
 <!-- ══════════════════════════════════ HERO ════════════════════════════════ -->
 <section class="hero" id="top">
   <div class="hero__bg" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="hero__photo">
+    <img src="assets/img/hero/members-1400.webp"
+         srcset="assets/img/hero/members-800.webp 800w, assets/img/hero/members-1400.webp 1400w"
+         sizes="(min-width:900px) 62vw, 100vw" width="1400" height="1050"
+         alt="Members of Limassol Fraternité Lions Club in their yellow Lions vests"
+         fetchpriority="high" decoding="async">
+  </div>
   <div class="wrap hero__in">
 
     <p class="eyebrow" data-i18n="hero.eyebrow">Limassol · Cyprus · Since 1917 worldwide</p>
 
     <h1 class="hero__h">
-      <span class="hw" data-i18n="hero.pre">We don’t just</span><br>
-      <span class="strike" data-i18n="hero.strike">give</span> <span class="gold" data-i18n="hero.gold">build.</span>
+      <span class="hw" data-i18n="hero.pre">Serving Limassol,</span><br>
+      <span class="gold" data-i18n="hero.gold">building what lasts.</span>
     </h1>
 
     <p class="hero__p" data-i18n="hero.p">
-      Limassol Fraternité is a Lions Club run by people who got tired of waiting for
-      someone else to fix things. A growing mix of nationalities, one city, and a very
-      short distance between having an idea and putting it in front of real people.
+      Limassol Fraternité is a Lions Club of people who would rather act than wait.
+      A growing mix of nationalities in one city, turning good ideas into real help
+      for the community.
     </p>
 
     <div class="hero__cta">
@@ -130,7 +141,7 @@
 <section class="stats" data-i18n-attr="aria-label:stats.aria">
   <div class="wrap">
     <div class="stats__grid" id="statsGrid"><!-- rendered from data/content.js --></div>
-    <p class="stats__foot" data-i18n="stats.foot">Our own project results will be published here as each one is completed and measured.</p>
+    <p class="stats__foot" data-i18n="stats.foot">Our own figures, drawn from the projects on this page — backed by Lions Clubs International, serving in 200+ countries since 1917.</p>
   </div>
 </section>
 
@@ -169,6 +180,20 @@
         <span class="chip" data-i18n="about.c4">100% volunteer</span>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ LEADERSHIP ═════════════════════════════
+     Filled from `leaders` in data/content.js. Stays hidden while that list is
+     empty, so no placeholder faces or invented names are ever shown.
+========================================================================= -->
+<section class="sec sec--tint" id="leaders" hidden>
+  <div class="wrap">
+    <div class="sechead reveal">
+      <p class="eyebrow eyebrow--dark" data-i18n="lead.eyebrow">Our leadership</p>
+      <h2 class="h2" data-i18n="lead.h2">The people who lead the club.</h2>
+    </div>
+    <div class="leaders" id="leaders-list"></div>
   </div>
 </section>
 
@@ -493,7 +518,6 @@ AND REMOVE THIS LINE TOO -->
   </div>
   <div class="wrap foot__legal">
     <span>© <span id="yr">2026</span> <span data-i18n="foot.legal">Limassol Fraternité Lions Club. Autonomous club of Lions Clubs International.</span></span>
-    <span data-i18n="foot.built">Built static. Hosted free. No trackers, no cookies.</span>
   </div>
 </footer>
 
