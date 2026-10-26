@@ -32,143 +32,143 @@ const LANGS = [
 const I18N = {
 
   /* ---------------------------------------------------------------- NAV --- */
-  "nav.work":       { en: "Our work",       el: "Το έργο μας",     fr: "Nos actions" },
-  "nav.beyond":     { en: "Beyond charity", el: "Πέρα από δωρεές",     fr: "Au-delà du don" },
-  "nav.youth":      { en: "Youth",          el: "Νέοι",            fr: "Jeunesse" },
+  "nav.work":       { en: "Our work",       el: "Οι δράσεις μας",     fr: "Nos actions" },
+  "nav.beyond":     { en: "Beyond charity", el: "Πέρα από τη φιλανθρωπία",     fr: "Au-delà de la solidarité" },
+  "nav.youth":      { en: "Youth",          el: "Νεολαία",            fr: "Jeunesse" },
   "nav.gallery":    { en: "Gallery",        el: "Γκαλερί",         fr: "Galerie" },
   "nav.news":       { en: "News",           el: "Νέα",             fr: "Actualités" },
-  "nav.faq":        { en: "FAQ",            el: "Ερωτήσεις",       fr: "FAQ" },
-  "nav.join":       { en: "Join us",        el: "Γίνε μέλος",      fr: "Adhérer" },
+  "nav.faq":        { en: "FAQ",            el: "Συχνές ερωτήσεις",       fr: "FAQ" },
+  "nav.join":       { en: "Join us",        el: "Γίνετε μέλος",      fr: "Rejoignez-nous" },
   "nav.open":       { en: "Open menu",      el: "Άνοιγμα μενού",   fr: "Ouvrir le menu" },
   "nav.close":      { en: "Close menu",     el: "Κλείσιμο μενού",  fr: "Fermer le menu" },
-  "nav.lang":       { en: "Choose language",el: "Επιλογή γλώσσας", fr: "Choisir la langue" },
+  "nav.lang":       { en: "Choose language",el: "Επιλογή γλώσσας", fr: "Choisir une langue" },
   "skip":           { en: "Skip to content",el: "Μετάβαση στο περιεχόμενο", fr: "Aller au contenu" },
 
   /* --------------------------------------------------------------- HERO --- */
   "hero.eyebrow": {
     en: "Limassol · Cyprus · Since 1917 worldwide",
-    el: "Λεμεσός · Κύπρος · Από το 1917 παγκοσμίως",
+    el: "Λεμεσός · Κύπρος · Από το 1917 σε όλο τον κόσμο",
     fr: "Limassol · Chypre · Depuis 1917 dans le monde"
   },
-  "hero.pre":    { en: "We don’t just", el: "Εμείς δεν",   fr: "Nous ne" },
-  "hero.strike": { en: "give",          el: "δίνουμε",     fr: "donnons" },
-  "hero.gold":   { en: "build.",        el: "χτίζουμε.",   fr: "bâtissons." },
+  "hero.pre":    { en: "We don’t just", el: "Δεν κάνουμε μόνο",   fr: "Nous ne faisons pas que" },
+  "hero.strike": { en: "give",          el: "δίνουμε",     fr: "donner" },
+  "hero.gold":   { en: "build.",        el: "χτίζουμε.",   fr: "bâtir." },
   "hero.p": {
     en: "Limassol Fraternité is a Lions Club run by people who got tired of waiting for someone else to fix things. A growing mix of nationalities, one city, and a very short distance between having an idea and putting it in front of real people.",
-    el: "Η Limassol Fraternité είναι ένα Lions Club που το τρέχουν άνθρωποι οι οποίοι κουράστηκαν να περιμένουν κάποιον άλλο να διορθώσει τα πράγματα. Ένα διαρκώς αυξανόμενο μείγμα εθνικοτήτων, μία πόλη, και πολύ μικρή απόσταση ανάμεσα στο να έχεις μια ιδέα και στο να τη βάλεις μπροστά σε πραγματικούς ανθρώπους.",
-    fr: "Limassol Fraternité est un Lions Club animé par des personnes lassées d’attendre que quelqu’un d’autre règle les problèmes. Un mélange grandissant de nationalités, une ville, et très peu de distance entre avoir une idée et la mettre entre les mains de vraies personnes."
+    el: "Η Λέσχη Lions Λεμεσού Fraternité αποτελείται από ανθρώπους που κουράστηκαν να περιμένουν κάποιον άλλο να λύσει τα προβλήματα. Μια αναπτυσσόμενη κοινότητα ανθρώπων διαφορετικών εθνικοτήτων, ενωμένη στην ίδια πόλη, όπου η απόσταση από μια ιδέα μέχρι την υλοποίησή της για την υπηρεσία της κοινότητας είναι μόνο ένα βήμα.",
+    fr: "Le Limassol Fraternité Lions Club est animé par des personnes qui en avaient assez d’attendre que quelqu’un d’autre résolve les problèmes. Une communauté en pleine croissance, composée de nationalités diverses, réunie dans une même ville, où il n’y a qu’un pas entre une idée et sa concrétisation au service de la communauté."
   },
-  "hero.cta1":   { en: "Join the club",      el: "Έλα στο κλαμπ",       fr: "Rejoindre le club" },
-  "hero.cta2":   { en: "See what we’ve done",el: "Δες τι έχουμε κάνει", fr: "Voir nos actions" },
-  "hero.m1b":    { en: "18–30?", el: "18–30;", fr: "18–30 ans ?" },
+  "hero.cta1":   { en: "Join the club",      el: "Γίνετε μέλος του club",       fr: "Rejoignez le club" },
+  "hero.cta2":   { en: "See what we’ve done",el: "Γνωρίστε τις δράσεις μας", fr: "Découvrez nos actions" },
+  "hero.m1b":    { en: "No age limit.", el: "Χωρίς όριο ηλικίας.", fr: "Sans limite d’âge." },
   "hero.m1": {
     en: "You are exactly who we are looking for.",
-    el: "Εσένα ακριβώς ψάχνουμε.",
-    fr: "C’est exactement vous que nous cherchons."
+    el: "Είστε ακριβώς το άτομο που αναζητούμε.",
+    fr: "Vous êtes exactement la personne que nous recherchons."
   },
-  "hero.m2b":    { en: "English spoken.", el: "Μιλάμε Αγγλικά.", fr: "Nous parlons anglais." },
+  "hero.m2b":    { en: "English spoken.", el: "Μιλάμε αγγλικά.", fr: "L’anglais est parlé." },
   "hero.m2": {
     en: "Greek and French too.",
-    el: "Επίσης Ελληνικά και Γαλλικά.",
-    fr: "Et aussi grec et français."
+    el: "Επίσης ελληνικά και γαλλικά.",
+    fr: "Le grec et le français aussi."
   },
-  "hero.m3b":    { en: "Last Friday", el: "Τελευταία Παρασκευή", fr: "Dernier vendredi" },
+  "hero.m3b":    { en: "4th Monday", el: "4η Δευτέρα", fr: "4e lundi" },
   "hero.m3": {
     en: "of every month, 19:30.",
-    el: "κάθε μήνα, 19:30.",
-    fr: "de chaque mois, 19h30."
+    el: "κάθε μήνα στις 19:30.",
+    fr: "de chaque mois à 19 h 30."
   },
 
   /* ------------------------------------------------------------- TICKER --- */
-  "cause.serve":     { en: "We Serve",         el: "Υπηρετούμε",            fr: "Nous Servons" },
+  "cause.serve":     { en: "We Serve",         el: "Υπηρετούμε",            fr: "Nous servons" },
   "cause.env":       { en: "Environment",      el: "Περιβάλλον",            fr: "Environnement" },
-  "cause.hunger":    { en: "Hunger",           el: "Πείνα",                 fr: "Faim" },
+  "cause.hunger":    { en: "Hunger",           el: "Καταπολέμηση της πείνας",                 fr: "Lutte contre la faim" },
   "cause.vision":    { en: "Vision",           el: "Όραση",                 fr: "Vue" },
   "cause.diabetes":  { en: "Diabetes",         el: "Διαβήτης",              fr: "Diabète" },
-  "cause.cancer":    { en: "Childhood Cancer", el: "Παιδικός Καρκίνος",     fr: "Cancer Infantile" },
-  "cause.disaster":  { en: "Disaster Relief",  el: "Ανακούφιση Καταστροφών",fr: "Secours d’Urgence" },
-  "cause.humanit":   { en: "Humanitarian",     el: "Ανθρωπιστική Δράση",    fr: "Humanitaire" },
+  "cause.cancer":    { en: "Childhood Cancer", el: "Παιδικός καρκίνος",     fr: "Cancer infantile" },
+  "cause.disaster":  { en: "Disaster Relief",  el: "Φυσικές καταστροφές",fr: "Aide en cas de catastrophe" },
+  "cause.humanit":   { en: "Humanitarian",     el: "Ανθρωπιστική δράση",    fr: "Action humanitaire" },
   "cause.youth":     { en: "Youth",            el: "Νεολαία",               fr: "Jeunesse" },
-  "cause.mental":    { en: "Mental wellbeing", el: "Ψυχική υγεία",          fr: "Santé mentale" },
+  "cause.mental":    { en: "Mental wellbeing", el: "Ψυχική ευεξία",          fr: "Bien-être mental" },
 
   /* -------------------------------------------------------------- STATS --- */
   "stats.aria": {
     en: "The club and the network behind it",
-    el: "Το κλαμπ και το δίκτυο πίσω από αυτό",
-    fr: "Le club et le réseau derrière lui"
+    el: "Το club και το δίκτυο που το στηρίζει",
+    fr: "Le club et le réseau qui le soutient"
   },
   "stats.foot": {
     en: "Our own project results will be published here as each one is completed and measured.",
-    el: "Τα αποτελέσματα των δικών μας έργων θα δημοσιεύονται εδώ καθώς το καθένα ολοκληρώνεται και μετριέται.",
-    fr: "Les résultats de nos propres projets seront publiés ici à mesure que chacun sera achevé et mesuré."
+    el: "Τα αποτελέσματα των δικών μας έργων θα δημοσιεύονται εδώ καθώς υλοποιούνται και αξιολογούνται.",
+    fr: "Les résultats de nos propres projets seront publiés ici au fur et à mesure de leur réalisation et de leur évaluation."
   },
 
   /* -------------------------------------------------------------- ABOUT --- */
-  "about.eyebrow": { en: "Who we are", el: "Ποιοι είμαστε", fr: "Qui nous sommes" },
+  "about.eyebrow": { en: "Who we are", el: "Ποιοι είμαστε;", fr: "Qui sommes-nous ?" },
   "about.h2": {
     en: "A small club in Limassol, plugged into 1.4 million people.",
-    el: "Ένα μικρό κλαμπ στη Λεμεσό, συνδεδεμένο με 1,4 εκατομμύρια ανθρώπους.",
-    fr: "Un petit club à Limassol, relié à 1,4 million de personnes."
+    el: "Μια μικρή Λέσχη στη Λεμεσό, συνδεδεμένη με 1,4 εκατομμύρια μέλη σε όλο τον κόσμο.",
+    fr: "Un petit club à Limassol, connecté à 1,4 million de membres dans le monde."
   },
   "about.p1": {
     en: "Limassol Fraternité is part of Lions Clubs International — the largest service organisation on earth, active in over 200 countries since 1917. That gives a club of our size something unusual: local hands, global backing.",
-    el: "Η Limassol Fraternité ανήκει στη Lions Clubs International — τη μεγαλύτερη οργάνωση προσφοράς στον κόσμο, με δράση σε πάνω από 200 χώρες από το 1917. Αυτό δίνει σε ένα κλαμπ του μεγέθους μας κάτι ασυνήθιστο: τοπικά χέρια, παγκόσμια στήριξη.",
-    fr: "Limassol Fraternité fait partie du Lions Clubs International — la plus grande organisation de service au monde, active dans plus de 200 pays depuis 1917. Cela donne à un club de notre taille quelque chose de rare : des mains locales, un appui mondial."
+    el: "Η Λέσχη Lions Λεμεσού Fraternité αποτελεί μέρος των Διεθνών Lions (Lions Clubs International), της μεγαλύτερης Οργάνωσης υπηρεσιών στον κόσμο, με παρουσία σε περισσότερες από 200 χώρες από το 1917. Αυτό προσφέρει σε μια λέσχη του μεγέθους μας ένα εξαιρετικό πλεονέκτημα: τοπική δράση, υποστηριζόμενη από ένα παγκόσμιο δίκτυο.",
+    fr: "Le Limassol Fraternité Lions Club fait partie du Lions Clubs International, la plus grande organisation de service au monde, présente dans plus de 200 pays depuis 1917. Cela donne à un club de notre taille un atout exceptionnel : une action locale soutenue par un réseau mondial."
   },
   "about.p2": {
     en: "It started when a Chicago businessman named Melvin Jones told his business club that it should reach beyond its own interests and take responsibility for the community around it. That was 1917. The motto came later, chosen by a worldwide vote of members in 1954, and it is still only two words long: We Serve.",
-    el: "Ξεκίνησε όταν ένας επιχειρηματίας από το Σικάγο, ο Melvin Jones, είπε στη λέσχη του ότι έπρεπε να δει πέρα από τα δικά της συμφέροντα και να αναλάβει ευθύνη για την κοινότητα γύρω της. Ήταν το 1917. Το σύνθημα ήρθε αργότερα, με παγκόσμια ψηφοφορία των μελών το 1954, και παραμένει μόλις δύο λέξεις: Υπηρετούμε.",
-    fr: "Tout a commencé lorsqu’un homme d’affaires de Chicago, Melvin Jones, a dit à son club qu’il devait dépasser ses propres intérêts et prendre ses responsabilités envers la communauté. C’était en 1917. La devise est venue plus tard, choisie par un vote mondial des membres en 1954, et elle tient toujours en deux mots : Nous Servons."
+    el: "Όλα ξεκίνησαν όταν ο επιχειρηματίας από το Σικάγο, Melvin Jones, πρότεινε στην επιχειρηματική του λέσχη του να ξεπεράσει τα δικά της συμφέροντα και να υπηρετήσει την κοινότητα. Ήταν το 1917. Το σύνθημα ήρθε αργότερα, όταν υιοθετήθηκε με παγκόσμια ψηφοφορία των μελών το 1954. Παραμένει ακόμη μια μόνο λέξη: «Υπηρετούμε».",
+    fr: "Tout a commencé lorsqu’un homme d’affaires de Chicago, Melvin Jones, a proposé à son club de dépasser ses propres intérêts pour se mettre au service de la communauté. C’était en 1917. Le slogan est venu plus tard, adopté par un vote mondial des membres en 1954. Il tient toujours en deux mots : « Nous servons »."
   },
   "about.p3": {
     en: "Our members come from Belgian, Canadian, Cypriot, French and Italian backgrounds — and more join as the club grows. Meetings run in English, and drift into Greek and French when the argument gets interesting. We sit in District 117-B, covering Northern Greece and Cyprus.",
-    el: "Τα μέλη μας έχουν βελγική, καναδική, κυπριακή, γαλλική και ιταλική καταγωγή — και όλο και περισσότεροι έρχονται καθώς το κλαμπ μεγαλώνει. Οι συναντήσεις γίνονται στα Αγγλικά και γλιστρούν στα Ελληνικά και τα Γαλλικά όταν η συζήτηση ανάβει. Ανήκουμε στην Περιφέρεια 117-B, που καλύπτει τη Βόρεια Ελλάδα και την Κύπρο.",
-    fr: "Nos membres sont d’origine belge, canadienne, chypriote, française et italienne — et d’autres nous rejoignent à mesure que le club grandit. Les réunions se tiennent en anglais et glissent vers le grec et le français quand le débat s’anime. Nous relevons du District 117-B, qui couvre la Grèce du Nord et Chypre."
+    el: "Τα μέλη μας είναι βελγικής, καναδικής, κυπριακής, γαλλικής, ιταλικής και πολλών άλλων καταβολών. Οι συναντήσεις μας πραγματοποιούνται στα αγγλικά και συνεχίζονται φυσικά στα ελληνικά ή στα γαλλικά όταν οι συζητήσεις γίνονται πιο συναρπαστικές. Ανήκουμε στο District 117B, που καλύπτει τη Βόρεια Ελλάδα και την Κύπρο.",
+    fr: "Nos membres viennent d’origine belge, canadien, chypriote, français, italien et bien d’autres encore. Nos réunions se déroulent en anglais et se poursuivent naturellement en grec ou en français lorsque les échanges deviennent passionnants. Nous faisons partie du District 117B, qui couvre la Grèce du Nord et Chypre."
   },
   "about.p4": {
     en: "What we are not is a dinner club that writes cheques. Every project we run has a named owner, a number attached to it, and a date it has to be finished by.",
-    el: "Αυτό που δεν είμαστε είναι μια λέσχη δείπνων που υπογράφει επιταγές. Κάθε έργο μας έχει έναν υπεύθυνο με όνομα, έναν αριθμό δίπλα του και μια ημερομηνία που πρέπει να ολοκληρωθεί.",
-    fr: "Ce que nous ne sommes pas : un club de dîners qui signe des chèques. Chaque projet a un responsable nommé, un chiffre associé et une date à laquelle il doit être terminé."
+    el: "Δεν είμαστε μια λέσχη που περιορίζεται στη διοργάνωση δείπνων ή στην υπογραφή επιταγών. Κάθε έργο έχει συγκεκριμένο υπεύθυνο, μετρήσιμους στόχους και σαφή προθεσμία.",
+    fr: "Nous ne sommes pas un club qui se contente d’organiser des dîners ou de signer des chèques. Chaque projet possède un responsable identifié, des objectifs mesurables et une échéance précise."
   },
-  "about.c1": { en: "Founded on “We Serve”", el: "Θεμελιωμένο στο «Υπηρετούμε»", fr: "Fondé sur « Nous Servons »" },
-  "about.c2": { en: "5+ nationalities",  el: "5+ εθνικότητες",    fr: "5+ nationalités" },
+  "about.c1": { en: "Founded on “We Serve”", el: "Βασισμένοι στο «Υπηρετούμε»", fr: "Fondé sur « Nous servons »" },
+  "about.c2": { en: "5+ nationalities",  el: "Περισσότερες από 5 εθνικότητες",    fr: "Plus de 5 nationalités" },
   "about.c3": { en: "3 working languages",el: "3 γλώσσες εργασίας",fr: "3 langues de travail" },
-  "about.c4": { en: "100% volunteer",    el: "100% εθελοντικό",   fr: "100% bénévole" },
+  "about.c4": { en: "100% volunteer",    el: "100% εθελοντές",   fr: "100 % bénévoles" },
 
   /* --------------------------------------------------------- INNOVATION --- */
-  "inn.eyebrow": { en: "The difference", el: "Η διαφορά", fr: "La différence" },
+  "inn.eyebrow": { en: "The difference", el: "Η διαφορά μας", fr: "Notre différence" },
   "inn.h2a": {
     en: "Charity hands out. Development builds capacity.",
-    el: "Η φιλανθρωπία μοιράζει. Η ανάπτυξη χτίζει δυνατότητες.",
-    fr: "La charité distribue. Le développement bâtit des capacités."
+    el: "Η φιλανθρωπία βοηθά. Η ανάπτυξη δίνει τη δυνατότητα για δράση.",
+    fr: "La charité aide. Le développement donne les moyens d’agir."
   },
   "inn.h2b": {
     en: "We are moving to the second thing.",
-    el: "Εμείς πάμε στο δεύτερο.",
-    fr: "Nous allons vers la seconde."
+    el: "Αυτόν τον δεύτερο δρόμο επιλέξαμε.",
+    fr: "C’est cette deuxième voie que nous avons choisie."
   },
   "inn.lead": {
     en: "Handing someone a meal solves tonight. Handing them a system solves the year. Every project we take on is judged against four questions.",
-    el: "Το να δώσεις σε κάποιον ένα γεύμα λύνει το απόψε. Το να του δώσεις ένα σύστημα λύνει τη χρονιά. Κάθε έργο που αναλαμβάνουμε κρίνεται με βάση τέσσερα ερωτήματα.",
-    fr: "Donner un repas règle la soirée. Donner un système règle l’année. Chaque projet que nous menons est jugé sur quatre questions."
+    el: "Το να προσφέρεις ένα γεύμα καλύπτει την ανάγκη της ημέρας. Η δημιουργία ενός συστήματος καλύπτει τις ανάγκες μιας ολόκληρης χρονιάς. Κάθε έργο μας αξιολογείται με βάση τέσσερα βασικά ερωτήματα.",
+    fr: "Offrir un repas répond au besoin d’aujourd’hui. Mettre en place un système répond aux besoins de toute une année. Chacun de nos projets est évalué selon quatre questions essentielles."
   },
-  "inn.1h": { en: "Does it measure?", el: "Μετριέται;", fr: "Est-ce mesurable ?" },
+  "inn.1h": { en: "Does it measure?", el: "Μπορεί να μετρηθεί;", fr: "Peut-on le mesurer ?" },
   "inn.1p": {
     en: "If we cannot count it, we cannot improve it. Kilograms of waste, screenings delivered, meals routed — every project produces a number we publish, including the disappointing ones.",
-    el: "Αν δεν μπορούμε να το μετρήσουμε, δεν μπορούμε να το βελτιώσουμε. Κιλά απορριμμάτων, εξετάσεις που έγιναν, γεύματα που διανεμήθηκαν — κάθε έργο βγάζει έναν αριθμό που δημοσιεύουμε, ακόμη και τους απογοητευτικούς.",
-    fr: "Si nous ne pouvons pas le compter, nous ne pouvons pas l’améliorer. Kilos de déchets, dépistages réalisés, repas distribués — chaque projet produit un chiffre que nous publions, y compris les décevants."
+    el: "Αν δεν μπορούμε να το μετρήσουμε, δεν μπορούμε να το βελτιώσουμε. Κιλά απορριμμάτων που συλλέχθηκαν, προληπτικοί έλεγχοι που πραγματοποιήθηκαν, γεύματα που διανεμήθηκαν: κάθε έργο παράγει αποτελέσματα που δημοσιεύουμε, ακόμη και όταν είναι χαμηλότερα από τις προσδοκίες μας.",
+    fr: "Si nous ne pouvons pas le mesurer, nous ne pouvons pas l’améliorer. Kilogrammes de déchets collectés, dépistages réalisés, repas distribués : chaque projet produit des résultats que nous publions, même lorsqu’ils sont en dessous de nos attentes."
   },
-  "inn.2h": { en: "Does it outlast us?", el: "Θα μας επιβιώσει;", fr: "Nous survivra-t-il ?" },
+  "inn.2h": { en: "Does it outlast us?", el: "Θα έχει διαρκή αντίκτυπο;", fr: "Aura-t-il un impact durable ?" },
   "inn.2p": {
     en: "We prefer building a process a community can run without us over an event they need us to repeat. Success looks like being made unnecessary.",
-    el: "Προτιμούμε να χτίζουμε μια διαδικασία που μια κοινότητα μπορεί να τρέξει χωρίς εμάς, παρά μια εκδήλωση που μας χρειάζεται για να επαναληφθεί. Επιτυχία σημαίνει να γίνουμε περιττοί.",
-    fr: "Nous préférons bâtir un processus qu’une communauté peut mener sans nous plutôt qu’un événement qu’elle a besoin de nous voir répéter. Réussir, c’est devenir inutile."
+    el: "Προτιμούμε να δημιουργούμε μια διαδικασία που η κοινότητα θα μπορεί να συνεχίσει μόνη της, παρά να οργανώνουμε μια εκδήλωση που θα πρέπει να μας ζητά να επαναλάβουμε. Η πραγματική επιτυχία είναι να καταστήσουμε τον εαυτό μας περιττό.",
+    fr: "Nous préférons mettre en place un processus que la communauté pourra poursuivre seule plutôt que d’organiser un événement qu’elle devra nous demander de répéter. Le véritable succès, c’est devenir inutile."
   },
   "inn.3h": { en: "Does it use the tools of now?", el: "Χρησιμοποιεί τα εργαλεία του σήμερα;", fr: "Utilise-t-il les outils d’aujourd’hui ?" },
   "inn.3p": {
     en: "Shared logistics boards, open datasets, digital literacy programmes. Technology is not a gimmick bolted on the end — it is often the cheapest way to multiply a small team.",
-    el: "Κοινοί πίνακες συντονισμού, ανοιχτά δεδομένα, προγράμματα ψηφιακού γραμματισμού. Η τεχνολογία δεν είναι διακοσμητικό στο τέλος — συχνά είναι ο φθηνότερος τρόπος να πολλαπλασιάσεις μια μικρή ομάδα.",
-    fr: "Tableaux logistiques partagés, données ouvertes, programmes de littératie numérique. La technologie n’est pas un gadget ajouté à la fin — c’est souvent le moyen le moins cher de démultiplier une petite équipe."
+    el: "Συνεργατικά εργαλεία, ανοικτά δεδομένα, προγράμματα ψηφιακής εκπαίδευσης: η τεχνολογία δεν είναι ένα πρόσθετο στοιχείο στο τέλος ενός έργου. Συχνά είναι ο πιο αποτελεσματικός τρόπος για να πολλαπλασιαστεί ο αντίκτυπος μιας μικρής ομάδας.",
+    fr: "Outils collaboratifs, données ouvertes, programmes d’éducation numérique : la technologie n’est pas un gadget ajouté à la fin d’un projet. C’est souvent le moyen le plus efficace de multiplier l’impact d’une petite équipe."
   },
   "inn.4h": { en: "Does it grow a leader?", el: "Δημιουργεί έναν ηγέτη;", fr: "Fait-il grandir un leader ?" },
   "inn.4p": {
@@ -178,231 +178,240 @@ const I18N = {
   },
 
   /* ------------------------------------------------------------- CAUSES --- */
-  "causes.eyebrow": { en: "Global causes", el: "Παγκόσμιοι σκοποί", fr: "Causes mondiales" },
+  "causes.eyebrow": { en: "Global causes", el: "Οι παγκόσμιοι πυλώνες", fr: "Nos causes mondiales" },
   "causes.h2": {
     en: "Eight fronts, worldwide. We pick the ones Limassol needs most.",
-    el: "Οκτώ μέτωπα παγκοσμίως. Επιλέγουμε αυτά που χρειάζεται περισσότερο η Λεμεσός.",
-    fr: "Huit fronts, dans le monde entier. Nous choisissons ceux dont Limassol a le plus besoin."
+    el: "Οκτώ βασικοί τομείς δράσης σε όλο τον κόσμο. Επιλέγουμε εκείνους που χρειάζεται περισσότερο η Λεμεσός.",
+    fr: "Huit grands domaines d’action à travers le monde. Nous choisissons ceux dont Limassol a le plus besoin."
   },
-  "causes.env.d":      { en: "Cleanups, planting, waste data",  el: "Καθαρισμοί, δενδροφυτεύσεις, δεδομένα απορριμμάτων", fr: "Nettoyages, plantations, données déchets" },
-  "causes.hunger.d":   { en: "Food recovery and distribution",  el: "Διάσωση και διανομή τροφίμων",     fr: "Récupération et distribution alimentaire" },
-  "causes.vision.d":   { en: "Screening and eyewear access",    el: "Εξετάσεις και πρόσβαση σε γυαλιά", fr: "Dépistage et accès aux lunettes" },
-  "causes.diabetes.d": { en: "Awareness and early detection",   el: "Ενημέρωση και έγκαιρη διάγνωση",   fr: "Sensibilisation et dépistage précoce" },
-  "causes.cancer.d":   { en: "Family and treatment support",    el: "Στήριξη οικογένειας και θεραπείας",fr: "Soutien aux familles et aux soins" },
-  "causes.mental.d":   { en: "Reducing stigma locally",         el: "Μείωση του στίγματος τοπικά",      fr: "Réduire la stigmatisation localement" },
-  "causes.disaster.d": { en: "Rapid response and rebuild",      el: "Άμεση ανταπόκριση και ανοικοδόμηση",fr: "Réaction rapide et reconstruction" },
-  "causes.humanit.d":  { en: "Wherever the need is sharpest",   el: "Όπου η ανάγκη είναι πιο έντονη",   fr: "Là où le besoin est le plus vif" },
+  "causes.env.d":      { en: "Cleanups, planting, waste data",  el: "Καθαρισμοί, δενδροφυτεύσεις και συλλογή δεδομένων για τα απορρίμματα", fr: "Nettoyages, plantations et collecte de données sur les déchets" },
+  "causes.hunger.d":   { en: "Food recovery and distribution",  el: "Συλλογή και διανομή τροφίμων",     fr: "Récupération et distribution de denrées alimentaires" },
+  "causes.vision.d":   { en: "Screening and eyewear access",    el: "Έλεγχος όρασης και πρόσβαση σε γυαλιά", fr: "Dépistage visuel et accès aux lunettes" },
+  "causes.diabetes.d": { en: "Awareness and early detection",   el: "Ενημέρωση και έγκαιρος έλεγχος",   fr: "Sensibilisation et dépistage précoce" },
+  "causes.cancer.d":   { en: "Family and treatment support",    el: "Στήριξη οικογενειών και θεραπειών",fr: "Soutien aux familles et aux traitements" },
+  "causes.mental.d":   { en: "Reducing stigma locally",         el: "Μείωση του στίγματος σε τοπικό επίπεδο",      fr: "Réduire la stigmatisation au niveau local" },
+  "causes.disaster.d": { en: "Rapid response and rebuild",      el: "Άμεση παρέμβαση και αποκατάσταση",fr: "Intervention rapide et reconstruction" },
+  "causes.humanit.d":  { en: "Wherever the need is sharpest",   el: "Εκεί όπου οι ανάγκες είναι πιο επείγουσες",   fr: "Là où les besoins sont les plus urgents" },
 
   /* ------------------------------------------------------------- PROJECTS - */
-  "work.eyebrow": { en: "Track record", el: "Το ιστορικό μας", fr: "Notre bilan" },
+  "work.eyebrow": { en: "Track record", el: "Τα επιτεύγματά μας", fr: "Nos réalisations" },
   "work.h2": {
     en: "What we have actually done.",
-    el: "Τι έχουμε πραγματικά κάνει.",
-    fr: "Ce que nous avons réellement fait."
+    el: "Αυτά που πραγματικά έχουμε πετύχει.",
+    fr: "Ce que nous avons réellement accompli."
   },
   "work.lead": {
     en: "Real community service across Limassol and its villages in Cyprus — eye and diabetes screenings, blood donation and tree planting. No rounding up, no vanity metrics.",
-    el: "Πραγματική κοινοτική προσφορά σε όλη τη Λεμεσό και τα χωριά της στην Κύπρο — εξετάσεις όρασης και διαβήτη, αιμοδοσία και δενδροφυτεύσεις. Χωρίς στρογγυλοποιήσεις, χωρίς μετρήσεις για εντυπωσιασμό.",
-    fr: "Un vrai service communautaire à Limassol et dans ses villages, à Chypre — dépistages de la vue et du diabète, dons de sang et plantations d’arbres. Sans arrondis ni chiffres de vitrine."
+    el: "Συγκεκριμένες δράσεις για την κοινότητα στη Λεμεσό και στα χωριά της: έλεγχοι όρασης και διαβήτη, αιμοδοσίες και δενδροφυτεύσεις. Όχι διογκωμένοι αριθμοί, μόνο πραγματικά αποτελέσματα.",
+    fr: "Des actions concrètes au service de la communauté à Limassol et dans ses villages : dépistages de la vue et du diabète, dons de sang et plantations d’arbres. Pas de chiffres gonflés, uniquement des résultats réels."
   },
   "work.filterAll": { en: "All projects", el: "Όλα τα έργα", fr: "Tous les projets" },
-  "work.empty":     { en: "No projects in this category yet.", el: "Δεν υπάρχουν ακόμη έργα σε αυτή την κατηγορία.", fr: "Aucun projet dans cette catégorie pour l’instant." },
+  "work.empty":     { en: "No projects in this category yet.", el: "Δεν υπάρχουν προς το παρόν έργα σε αυτή την κατηγορία.", fr: "Aucun projet dans cette catégorie pour le moment." },
   "work.filterAria":{ en: "Filter projects by category", el: "Φιλτράρισμα έργων ανά κατηγορία", fr: "Filtrer les projets par catégorie" },
 
   "cat.environment": { en: "Environment", el: "Περιβάλλον", fr: "Environnement" },
   "cat.health":      { en: "Health",      el: "Υγεία",      fr: "Santé" },
-  "cat.youth":       { en: "Youth",       el: "Νέοι",       fr: "Jeunesse" },
-  "cat.hunger":      { en: "Hunger",      el: "Πείνα",      fr: "Faim" },
+  "cat.youth":       { en: "Youth",       el: "Νεολαία",       fr: "Jeunesse" },
+  "cat.hunger":      { en: "Hunger",      el: "Καταπολέμηση της πείνας",      fr: "Lutte contre la faim" },
   "cat.tech":        { en: "Technology",  el: "Τεχνολογία", fr: "Technologie" },
   "cat.community":   { en: "Community",   el: "Κοινότητα",  fr: "Communauté" },
 
   "status.live":     { en: "Live now",   el: "Σε εξέλιξη",   fr: "En cours" },
   "status.complete": { en: "Completed",  el: "Ολοκληρώθηκε", fr: "Terminé" },
-  "status.upcoming": { en: "Upcoming",   el: "Επερχόμενο",   fr: "À venir" },
+  "status.upcoming": { en: "Upcoming",   el: "Προσεχώς",   fr: "À venir" },
 
   /* ------------------------------------------------------------ GALLERY --- */
   "gal.eyebrow": { en: "In the field", el: "Στο πεδίο", fr: "Sur le terrain" },
-  "gal.h2":      { en: "Photos & video.", el: "Φωτογραφίες & βίντεο.", fr: "Photos et vidéos." },
+  "gal.h2":      { en: "Photos & video.", el: "Φωτογραφίες και βίντεο.", fr: "Photos et vidéos." },
   "gal.lead": {
     en: "Service is not an abstraction. This is what it looks like on a Saturday morning.",
-    el: "Η προσφορά δεν είναι αφηρημένη έννοια. Έτσι μοιάζει ένα πρωινό Σαββάτου.",
-    fr: "Le service n’est pas une abstraction. Voilà à quoi cela ressemble un samedi matin."
+    el: "Η προσφορά δεν είναι μια αφηρημένη ιδέα. Έτσι μοιάζει ένα Σάββατο πρωί.",
+    fr: "Le service n’est pas une idée abstraite. Voilà à quoi il ressemble un samedi matin."
   },
-  "gal.watch":   { en: "Watch", el: "Δες", fr: "Regarder" },
-  "gal.soonPhoto":{ en: "Photo coming soon", el: "Φωτογραφία σύντομα", fr: "Photo à venir" },
-  "gal.soonVideo":{ en: "Video coming soon", el: "Βίντεο σύντομα",     fr: "Vidéo à venir" },
+  "gal.photosH": { en: "Photographs", el: "Φωτογραφίες", fr: "Photographies" },
+  "gal.videosH": { en: "On film", el: "Σε βίντεο", fr: "En vidéo" },
+  "gal.watch":   { en: "Watch", el: "Παρακολούθηση", fr: "Regarder" },
+  "gal.soonPhoto":{ en: "Photo coming soon", el: "Φωτογραφία σύντομα διαθέσιμη", fr: "Photo bientôt disponible" },
+  "gal.soonVideo":{ en: "Video coming soon", el: "Βίντεο σύντομα διαθέσιμο",     fr: "Vidéo bientôt disponible" },
   "gal.view":    { en: "View", el: "Προβολή", fr: "Voir" },
   "gal.play":    { en: "Play", el: "Αναπαραγωγή", fr: "Lire" },
   "gal.of":      { en: "of",   el: "από", fr: "sur" },
   "gal.viewer":  { en: "Photo viewer", el: "Προβολή φωτογραφιών", fr: "Visionneuse de photos" },
-  "gal.prev":    { en: "Previous", el: "Προηγούμενο", fr: "Précédent" },
-  "gal.next":    { en: "Next", el: "Επόμενο", fr: "Suivant" },
+  "gal.prev":    { en: "Previous", el: "Προηγούμενη", fr: "Précédente" },
+  "gal.next":    { en: "Next", el: "Επόμενη", fr: "Suivante" },
   "gal.closeLb": { en: "Close", el: "Κλείσιμο", fr: "Fermer" },
 
   /* --------------------------------------------------------------- NEWS --- */
-  "news.eyebrow": { en: "Announcements", el: "Ανακοινώσεις", fr: "Annonces" },
-  "news.h2":      { en: "What’s next.", el: "Τι ακολουθεί.", fr: "Et maintenant." },
+  "news.eyebrow": { en: "Announcements", el: "Νέα", fr: "Actualités" },
+  "news.h2":      { en: "What’s next.", el: "Οι επόμενες συναντήσεις και δράσεις.", fr: "Les prochains rendez-vous." },
   "news.lead": {
     en: "Events, calls for volunteers and club news. Nothing here requires membership to attend.",
-    el: "Εκδηλώσεις, καλέσματα για εθελοντές και νέα του κλαμπ. Τίποτε εδώ δεν απαιτεί να είσαι μέλος.",
-    fr: "Événements, appels aux bénévoles et actualités du club. Rien ici n’exige d’être membre."
+    el: "Εκδηλώσεις, προσκλήσεις προς εθελοντές και νέα της λέσχης. Όλες οι δραστηριότητές μας είναι ανοικτές στο κοινό, χωρίς υποχρέωση εγγραφής.",
+    fr: "Événements, appels aux bénévoles et actualités du club. Toutes nos activités sont ouvertes au public, sans obligation d’adhésion."
   },
   "kind.event": { en: "Event",             el: "Εκδήλωση",         fr: "Événement" },
-  "kind.news":  { en: "Club news",         el: "Νέα του κλαμπ",    fr: "Actualité du club" },
-  "kind.call":  { en: "Volunteers needed", el: "Ζητούνται εθελοντές", fr: "Bénévoles recherchés" },
+  "kind.news":  { en: "Club news",         el: "Νέα της λέσχης",    fr: "Actualités du club" },
+  "kind.call":  { en: "Volunteers needed", el: "Αναζητούνται εθελοντές", fr: "Bénévoles recherchés" },
 
   /* --------------------------------------------------------------- JOIN --- */
-  "join.eyebrow": { en: "Get involved", el: "Πάρε μέρος", fr: "Participer" },
+  "join.eyebrow": { en: "Get involved", el: "Συμμετέχετε", fr: "Impliquez-vous" },
   "join.h2": {
     en: "Three ways in. None of them require you to be impressive yet.",
-    el: "Τρεις τρόποι να μπεις. Κανένας δεν απαιτεί να είσαι ήδη εντυπωσιακός.",
-    fr: "Trois façons d’entrer. Aucune n’exige d’être déjà impressionnant."
+    el: "Τρεις τρόποι να συμμετάσχετε. Κανένας δεν απαιτεί να είστε ήδη ξεχωριστοί.",
+    fr: "Trois façons de nous rejoindre. Aucune ne demande d’être déjà extraordinaire."
   },
-  "join.1h":   { en: "Come once", el: "Έλα μία φορά", fr: "Venez une fois" },
-  "join.1age": { en: "Any age", el: "Κάθε ηλικία", fr: "Tout âge" },
+  "join.1h":   { en: "Come once", el: "Ελάτε για πρώτη φορά", fr: "Venez une première fois" },
+  "join.1age": { en: "Any age", el: "Όλες οι ηλικίες", fr: "Tout âge" },
   "join.1p": {
     en: "Turn up to one project or one open night. Zero commitment, zero cost, no one will follow you home. Most members started exactly here.",
-    el: "Έλα σε ένα έργο ή σε μία ανοιχτή βραδιά. Καμία δέσμευση, κανένα κόστος, κανείς δεν θα σε κυνηγήσει. Τα περισσότερα μέλη ξεκίνησαν ακριβώς από εδώ.",
-    fr: "Venez à un projet ou à une soirée portes ouvertes. Aucun engagement, aucun coût, personne ne vous relancera. La plupart des membres ont commencé exactement ainsi."
+    el: "Συμμετέχετε σε ένα έργο ή σε μια βραδιά γνωριμίας. Καμία δέσμευση, κανένα κόστος και καμία πίεση. Οι περισσότεροι από τους/τις Lions μας ξεκίνησαν έτσι.",
+    fr: "Participez à un projet ou à une soirée découverte. Aucun engagement, aucun coût et aucune pression. La plupart de nos membres ont commencé ainsi."
   },
-  "join.1cta": { en: "Tell us you’re coming", el: "Πες μας ότι θα έρθεις", fr: "Dites-nous que vous venez" },
-  "join.2tag": { en: "Most popular", el: "Πιο δημοφιλές", fr: "Le plus choisi" },
+  "join.1cta": { en: "Tell us you’re coming", el: "Ενημερώστε μας ότι θα έρθετε", fr: "Prévenez-nous de votre venue" },
+  "join.2tag": { en: "Most popular", el: "Το πιο δημοφιλές", fr: "Le plus populaire" },
   "join.2h":   { en: "Leo programme", el: "Πρόγραμμα Leo", fr: "Programme Leo" },
-  "join.2age": { en: "Ages 12–30", el: "Ηλικίες 12–30", fr: "12 à 30 ans" },
+  "join.2age": { en: "Ages 12–30", el: "12 έως 30 ετών", fr: "12 à 30 ans" },
   "join.2p": {
     en: "The youth arm of Lions International. Alpha Leos are 12–18, Omega Leos 18–30. You get a project, a budget, a mentor and the authority to actually decide things.",
-    el: "Το τμήμα νέων της Lions International. Οι Alpha Leos είναι 12–18, οι Omega Leos 18–30. Παίρνεις ένα έργο, έναν προϋπολογισμό, έναν μέντορα και την εξουσία να αποφασίζεις πραγματικά.",
-    fr: "La branche jeunesse du Lions International. Les Alpha Leos ont 12 à 18 ans, les Omega Leos 18 à 30. Vous recevez un projet, un budget, un mentor et le pouvoir de décider réellement."
+    el: "Ο νεανικός κλάδος των Διεθνών Lions (Lions Clubs International). Οι Alpha Leos είναι 12–18 ετών και οι Omega Leos 18–30 ετών. Αναλαμβάνετε ένα έργο, έχετε προϋπολογισμό, μέντορα και πραγματική δυνατότητα λήψης αποφάσεων.",
+    fr: "La branche jeunesse du Lions Clubs International. Les Alpha Leos ont entre 12 et 18 ans, les Omega Leos entre 18 et 30 ans. Vous prenez en charge un projet, disposez d’un budget, bénéficiez d’un mentor et avez un véritable pouvoir de décision."
   },
-  "join.2cta": { en: "Apply to Leo", el: "Κάνε αίτηση για Leo", fr: "Postuler chez Leo" },
-  "join.3h":   { en: "Full membership", el: "Πλήρες μέλος", fr: "Adhésion complète" },
-  "join.3age": { en: "18+", el: "18+", fr: "18 ans et plus" },
+  "join.2cta": { en: "Apply to Leo", el: "Υποβάλετε αίτηση για το πρόγραμμα Leo", fr: "Postuler au programme Leo" },
+  "join.3h":   { en: "Full membership", el: "Γίνετε μέλος", fr: "Devenir membre" },
+  "join.3age": { en: "No age limit", el: "Χωρίς όριο ηλικίας", fr: "Sans limite d’âge" },
   "join.3p": {
     en: "Become a Lion. Vote on what the club funds, lead your own projects, and plug into a network across 200+ countries. Modest annual dues apply.",
-    el: "Γίνε Lion. Ψήφισε τι χρηματοδοτεί το κλαμπ, ηγήσου των δικών σου έργων και συνδέσου με ένα δίκτυο σε 200+ χώρες. Ισχύει μια μέτρια ετήσια συνδρομή.",
-    fr: "Devenez Lion. Votez sur ce que le club finance, menez vos propres projets et intégrez un réseau de plus de 200 pays. Une cotisation annuelle modeste s’applique."
+    el: "Γίνετε Lion. Ψηφίστε για τα έργα που υποστηρίζει το club, διευθύνετε τις δικές σας δράσεις και ενταχθείτε σε ένα δίκτυο που υπάρχει σε περισσότερες από 200 χώρες. Απαιτείται μια μικρή ετήσια συνδρομή.",
+    fr: "Devenez Lion. Votez pour les projets soutenus par le club, dirigez vos propres actions et rejoignez un réseau présent dans plus de 200 pays. Une cotisation annuelle modeste est demandée."
   },
-  "join.3cta": { en: "Ask about joining", el: "Ρώτησε για εγγραφή", fr: "Se renseigner" },
-  "join.s1": { en: "Send a message — one line is enough", el: "Στείλε μήνυμα — μία γραμμή αρκεί", fr: "Envoyez un message — une ligne suffit" },
-  "join.s2": { en: "We reply within a few days and invite you to the next meeting", el: "Απαντάμε μέσα σε λίγες μέρες και σε καλούμε στην επόμενη συνάντηση", fr: "Nous répondons sous quelques jours et vous invitons à la prochaine réunion" },
-  "join.s3": { en: "You come, you look around, you decide nothing", el: "Έρχεσαι, κοιτάς γύρω σου, δεν αποφασίζεις τίποτα", fr: "Vous venez, vous observez, vous ne décidez rien" },
-  "join.s4": { en: "If it fits, you pick a project and start", el: "Αν σου ταιριάζει, διαλέγεις ένα έργο και ξεκινάς", fr: "Si cela vous convient, vous choisissez un projet et vous commencez" },
+  "join.3cta": { en: "Ask about joining", el: "Ζητήστε πληροφορίες", fr: "Demander des informations" },
+  "join.s1": { en: "Send a message — one line is enough", el: "Στείλτε μας ένα μήνυμα — μία μόνο γραμμή αρκεί.", fr: "Envoyez-nous un message — une seule ligne suffit." },
+  "join.s2": { en: "We reply within a few days and invite you to the next meeting", el: "Θα σας απαντήσουμε μέσα σε λίγες ημέρες και θα σας προσκαλέσουμε στην επόμενη συνάντησή μας.", fr: "Nous vous répondrons sous quelques jours et vous inviterons à notre prochaine réunion." },
+  "join.s3": { en: "You come, you look around, you decide nothing", el: "Έρχεστε, γνωρίζετε τη λέσχη, χωρίς καμία υποχρέωση.", fr: "Vous venez, vous découvrez le club, sans aucune obligation." },
+  "join.s4": { en: "If it fits, you pick a project and start", el: "Αν σας ταιριάζει, επιλέγετε ένα έργο και ξεκινάτε.", fr: "Si cela vous convient, vous choisissez un projet et vous commencez." },
 
   /* -------------------------------------------------------------- YOUTH --- */
-  "youth.eyebrow": { en: "What you plug into", el: "Σε τι συνδέεσαι", fr: "Ce à quoi vous accédez" },
+  "youth.eyebrow": { en: "What you plug into", el: "Τι σας περιμένει", fr: "Ce qui vous attend" },
   "youth.h2": {
     en: "Joining a club this small opens doors this big.",
-    el: "Το να μπεις σε ένα τόσο μικρό κλαμπ ανοίγει τόσο μεγάλες πόρτες.",
-    fr: "Rejoindre un club aussi petit ouvre des portes aussi grandes."
+    el: "Η συμμετοχή σε μια λέσχη αυτού του μεγέθους ανοίγει τεράστιες ευκαιρίες.",
+    fr: "Rejoindre un club de cette taille ouvre des opportunités immenses."
   },
   "youth.lead": {
     en: "These are real Lions International programmes, open to members of any club — including ours. Ask us about any of them.",
-    el: "Αυτά είναι πραγματικά προγράμματα της Lions International, ανοιχτά σε μέλη κάθε κλαμπ — και του δικού μας. Ρώτησέ μας για οποιοδήποτε.",
-    fr: "Ce sont de véritables programmes du Lions International, ouverts aux membres de tout club — y compris le nôtre. Demandez-nous."
+    el: "Πρόκειται για πραγματικά προγράμματα του Lions Clubs International, διαθέσιμα στα μέλη όλων των λεσχών, συμπεριλαμβανομένου του δικού μας. Μη διστάσετε να μας ρωτήσετε για οποιοδήποτε από αυτά.",
+    fr: "Il s’agit de véritables programmes du Lions Clubs International, accessibles aux membres de tous les clubs, y compris le nôtre. N’ hésitez pas à nous interroger sur chacun d’eux."
   },
-  "youth.1age": { en: "Ages 12–30", el: "Ηλικίες 12–30", fr: "12 à 30 ans" },
-  "youth.1h":   { en: "Leo clubs", el: "Leo clubs", fr: "Clubs Leo" },
+  "youth.1age": { en: "Ages 12–30", el: "12 έως 30 ετών", fr: "12 à 30 ans" },
+  "youth.1h":   { en: "Leo clubs", el: "Clubs Leo", fr: "Clubs Leo" },
   "youth.1p": {
     en: "The youth arm of Lions International. Alpha Leos are 12–18, Omega Leos 18–30. Leos run their own service projects and build leadership experience that transfers straight onto a CV.",
-    el: "Το τμήμα νέων της Lions International. Οι Alpha Leos είναι 12–18, οι Omega Leos 18–30. Οι Leos τρέχουν τα δικά τους έργα και αποκτούν ηγετική εμπειρία που περνά κατευθείαν στο βιογραφικό.",
-    fr: "La branche jeunesse du Lions International. Alpha Leos de 12 à 18 ans, Omega Leos de 18 à 30. Les Leos mènent leurs propres projets et acquièrent une expérience de direction qui se transpose directement sur un CV."
+    el: "Ο νεανικός κλάδος του Lions Clubs International. Οι Alpha Leos είναι 12–18 ετών και οι Omega Leos 18–30 ετών. Τα Leo διευθύνουν τα δικά τους έργα υπηρεσίας και αναπτύσσουν δεξιότητες ηγεσίας που είναι χρήσιμες στην επαγγελματική τους πορεία.",
+    fr: "La branche jeunesse du Lions Clubs International. Les Alpha Leos ont entre 12 et 18 ans, les Omega Leos entre 18 et 30 ans. Les Leos dirigent leurs propres projets de service et développent des compétences en leadership valorisables dans leur parcours professionnel."
   },
-  "youth.2age": { en: "Ages 15–22", el: "Ηλικίες 15–22", fr: "15 à 22 ans" },
-  "youth.2h":   { en: "Youth Camps & Exchange", el: "Κατασκηνώσεις & Ανταλλαγές Νέων", fr: "Camps et échanges de jeunes" },
+  "youth.2age": { en: "Ages 15–22", el: "15 έως 22 ετών", fr: "15 à 22 ans" },
+  "youth.2h":   { en: "Youth Camps & Exchange", el: "Διεθνείς κατασκηνώσεις και ανταλλαγές", fr: "Camps et échanges internationaux" },
   "youth.2p": {
     en: "Live abroad with a host Lions family, join their service projects and meet young people from dozens of countries. No academic requirement and no tuition fee — this is cultural exchange, not a study programme.",
-    el: "Ζήσε στο εξωτερικό με μια φιλοξενούσα οικογένεια Lions, πάρε μέρος στα έργα της και γνώρισε νέους από δεκάδες χώρες. Χωρίς ακαδημαϊκές απαιτήσεις και χωρίς δίδακτρα — είναι πολιτιστική ανταλλαγή, όχι πρόγραμμα σπουδών.",
-    fr: "Vivez à l’étranger dans une famille Lions d’accueil, participez à ses projets et rencontrez des jeunes de dizaines de pays. Aucune condition académique ni frais de scolarité — c’est un échange culturel, pas un cursus."
+    el: "Ζήστε στο εξωτερικό με μια οικογένεια φιλοξενίας Lions, συμμετέχετε στις δράσεις προσφοράς της και γνωρίστε νέους από δεκάδες χώρες. Δεν απαιτούνται ακαδημαϊκά προσόντα ούτε δίδακτρα: πρόκειται για μια πραγματική πολιτιστική ανταλλαγή.",
+    fr: "Vivez à l’étranger au sein d’une famille d’accueil Lions, participez à ses actions de service et rencontrez des jeunes venus de dizaines de pays. Aucun prérequis académique ni frais de scolarité : il s’agit d’un véritable échange culturel."
   },
-  "youth.3age": { en: "Ages 11–13", el: "Ηλικίες 11–13", fr: "11 à 13 ans" },
-  "youth.3h":   { en: "Peace Poster Contest", el: "Διαγωνισμός Αφίσας Ειρήνης", fr: "Concours d’affiches pour la paix" },
+  "youth.3age": { en: "Ages 11–13", el: "11 έως 13 ετών", fr: "11 à 13 ans" },
+  "youth.3h":   { en: "Peace Poster Contest", el: "Διαγωνισμός Αφίσας Ειρήνης", fr: "Concours d’affiches de la paix" },
   "youth.3p": {
     en: "Run for nearly four decades. Clubs sponsor it in local schools and youth groups; entrants express what peace means to them through art. The international grand prize is US$5,000, with 23 merit awards of US$500.",
-    el: "Διεξάγεται εδώ και σχεδόν τέσσερις δεκαετίες. Τα κλαμπ τον στηρίζουν σε τοπικά σχολεία και ομάδες νέων· οι συμμετέχοντες εκφράζουν μέσα από την τέχνη τι σημαίνει για αυτούς η ειρήνη. Το διεθνές μεγάλο βραβείο είναι 5.000 δολάρια ΗΠΑ, με 23 βραβεία των 500 δολαρίων.",
-    fr: "Organisé depuis près de quarante ans. Les clubs le parrainent dans les écoles et groupes de jeunes ; les participants expriment par l’art ce que la paix signifie pour eux. Le grand prix international est de 5 000 USD, avec 23 prix de mérite de 500 USD."
+    el: "Διοργανώνεται εδώ και σχεδόν σαράντα χρόνια σε σχολεία και ομάδες νέων. Οι συμμετέχοντες εκφράζουν μέσα από την τέχνη το όραμά τους για την ειρήνη. Το πρώτο διεθνές βραβείο είναι 5.000 δολάρια ΗΠΑ, ενώ απονέμονται και 23 βραβεία αξιοκρατίας των 500 δολαρίων ΗΠΑ.",
+    fr: "Organisé depuis près de quarante ans, ce concours est proposé dans les écoles et les groupes de jeunes. Les participants expriment par l’art leur vision de la paix. Le premier prix international est de 5 000 dollars US, auxquels s’ajoutent 23 prix de mérite de 500 dollars US."
   },
   "youth.4age": { en: "Schools", el: "Σχολεία", fr: "Écoles" },
   "youth.4h":   { en: "Lions Quest", el: "Lions Quest", fr: "Lions Quest" },
   "youth.4p": {
     en: "A social-emotional learning programme delivered in schools worldwide and funded through LCIF grants — covering resilience, decision-making and drug-prevention education for young people.",
-    el: "Ένα πρόγραμμα κοινωνικο-συναισθηματικής μάθησης που εφαρμόζεται σε σχολεία παγκοσμίως και χρηματοδοτείται από επιχορηγήσεις LCIF — καλύπτει την ανθεκτικότητα, τη λήψη αποφάσεων και την πρόληψη των ναρκωτικών για νέους.",
-    fr: "Un programme d’apprentissage socio-émotionnel dispensé dans des écoles du monde entier et financé par des subventions LCIF — résilience, prise de décision et prévention des addictions chez les jeunes."
+    el: "Παγκόσμιο πρόγραμμα ανάπτυξης κοινωνικών και συναισθηματικών δεξιοτήτων, που εφαρμόζεται στα σχολεία μέσω επιχορηγήσεων του LCIF. Αναπτύσσει την ανθεκτικότητα, τη λήψη αποφάσεων και την πρόληψη των εξαρτήσεων στους νέους.",
+    fr: "Programme mondial d’apprentissage des compétences psychosociales, mis en œuvre dans les écoles grâce aux subventions du LCIF. Il développe la résilience, la prise de décision et la prévention des addictions chez les jeunes."
   },
   "youth.5age": { en: "Funding", el: "Χρηματοδότηση", fr: "Financement" },
-  "youth.5h":   { en: "LCIF grants", el: "Επιχορηγήσεις LCIF", fr: "Subventions LCIF" },
-  "youth.5p1":  { en: "Lions Clubs International Foundation has awarded more than", el: "Το Ίδρυμα Lions Clubs International έχει χορηγήσει πάνω από", fr: "La Fondation du Lions Clubs International a accordé plus de" },
-  "youth.5b":   { en: "US$1.3 billion", el: "1,3 δισ. δολάρια ΗΠΑ", fr: "1,3 milliard USD" },
+  "youth.5h":   { en: "LCIF grants", el: "Επιχορηγήσεις LCIF", fr: "Subventions du LCIF" },
+  "youth.5p1":  { en: "Lions Clubs International Foundation has awarded more than", el: "Το Ίδρυμα Lions Clubs International έχει χορηγήσει περισσότερα από", fr: "La Fondation du Lions Clubs International a accordé plus de" },
+  "youth.5b":   { en: "US$1.3 billion", el: "1,3 δισεκατομμύρια δολάρια ΗΠΑ", fr: "1,3 milliard de dollars US" },
   "youth.5p2": {
     en: "in grants across 200 countries. Club and district community grants exist precisely so a small club can fund a good idea. If you bring us one, there is a route to paying for it.",
-    el: "σε επιχορηγήσεις σε 200 χώρες. Οι επιχορηγήσεις κλαμπ και περιφέρειας υπάρχουν ακριβώς για να μπορεί ένα μικρό κλαμπ να χρηματοδοτήσει μια καλή ιδέα. Αν μας φέρεις μία, υπάρχει δρόμος να πληρωθεί.",
-    fr: "de subventions dans 200 pays. Les subventions de club et de district existent précisément pour qu’un petit club puisse financer une bonne idée. Si vous nous en apportez une, il existe un moyen de la financer."
+    el: "σε επιχορηγήσεις σε περισσότερες από 200 χώρες. Υπάρχει βοήθεια για λέσχες και θέματα, ώστε ακόμη και μια μικρή λέσχη να μπορεί να χρηματοδοτήσει μια καλή ιδέα. Αν μας φέρετε ένα έργο, υπάρχει πραγματικός τρόπος να το υλοποιήσουμε.",
+    fr: "de subventions dans plus de 200 pays. Des aides existent pour les clubs et les districts afin qu’un petit club puisse financer une bonne idée. Si vous nous apportez un projet, il existe un véritable moyen de le concrétiser."
   },
-  "youth.6age": { en: "By 1 July 2027", el: "Έως 1 Ιουλίου 2027", fr: "D’ici le 1er juillet 2027" },
-  "youth.6h":   { en: "Mission 1.5", el: "Αποστολή 1.5", fr: "Mission 1.5" },
+  "youth.6age": { en: "By 1 July 2027", el: "Έως την 1η Ιουλίου 2027", fr: "D’ici le 1er juillet 2027" },
+  "youth.6h":   { en: "Mission 1.5", el: "Mission 1.5", fr: "Mission 1.5" },
   "youth.6p": {
     en: "Lions International is working to reach 1.5 million members worldwide by July 2027, so that clubs can serve more people than ever. That is the honest reason we are recruiting — and why a new member matters here.",
-    el: "Η Lions International εργάζεται για να φτάσει τα 1,5 εκατομμύρια μέλη παγκοσμίως έως τον Ιούλιο του 2027, ώστε τα κλαμπ να υπηρετούν περισσότερους ανθρώπους από ποτέ. Αυτός είναι ο ειλικρινής λόγος που ψάχνουμε μέλη — και γιατί ένα νέο μέλος μετράει εδώ.",
-    fr: "Le Lions International vise 1,5 million de membres dans le monde d’ici juillet 2027, afin que les clubs servent plus de personnes que jamais. C’est la raison honnête de notre recrutement — et pourquoi un nouveau membre compte ici."
+    el: "Το Lions Clubs International έχει θέσει ως στόχο να φτάσει τα 1,5 εκατομμύρια μέλη παγκοσμίως έως τον Ιούλιο του 2027, ώστε να προσφέρει υπηρεσίες σε ακόμη περισσότερους ανθρώπους. Γι’ αυτό προσλαμβάνουμε ενεργά νέα μέλη: κάθε νέο μέλος μετράει.",
+    fr: "Le Lions Clubs International s’est fixé pour objectif d’atteindre 1,5 million de membres dans le monde d’ici juillet 2027 afin de servir encore davantage de personnes. C’est la raison pour laquelle nous recrutons activement : chaque nouveau membre compte."
   },
 
   /* ---------------------------------------------------------------- FAQ --- */
-  "faq.eyebrow": { en: "Straight answers", el: "Ξεκάθαρες απαντήσεις", fr: "Réponses directes" },
+  "faq.eyebrow": { en: "Straight answers", el: "Σαφείς απαντήσεις", fr: "Des réponses claires" },
   "faq.h2": {
     en: "The questions people are too polite to ask.",
-    el: "Οι ερωτήσεις που οι άνθρωποι είναι πολύ ευγενικοί για να κάνουν.",
-    fr: "Les questions que l’on est trop poli pour poser."
+    el: "Οι ερωτήσεις που δεν τολμάμε πάντα να κάνουμε.",
+    fr: "Les questions que l’on n’ose pas toujours poser."
   },
 
   /* ------------------------------------------------------------ CONTACT --- */
-  "con.eyebrow": { en: "Find us", el: "Βρες μας", fr: "Nous trouver" },
-  "con.h2a": { en: "Last Friday of the month.", el: "Τελευταία Παρασκευή του μήνα.", fr: "Dernier vendredi du mois." },
-  "con.h2b": { en: "You are welcome at the next one.", el: "Είσαι ευπρόσδεκτος στην επόμενη.", fr: "Vous êtes bienvenu à la prochaine." },
+  "con.eyebrow": { en: "Find us", el: "Βρείτε μας", fr: "Nous trouver" },
+  "con.h2a": { en: "The 4th Monday of every month.", el: "Την 4η Δευτέρα κάθε μήνα.", fr: "Le 4e lundi de chaque mois." },
+  "con.h2b": { en: "You are welcome at the next one.", el: "Είστε ευπρόσδεκτοι στην επόμενη συνάντηση.", fr: "Vous êtes le bienvenu à la prochaine réunion." },
   "con.when":    { en: "When", el: "Πότε", fr: "Quand" },
-  "con.where":   { en: "Where", el: "Πού", fr: "Où" },
+  "con.where":   { en: "Where", el: "Τοποθεσία", fr: "Lieu" },
   "con.address": { en: "Address", el: "Διεύθυνση", fr: "Adresse" },
-  "con.lang":    { en: "Languages", el: "Γλώσσες", fr: "Langues" },
-  "con.district":{ en: "District", el: "Περιφέρεια", fr: "District" },
-  "con.email":   { en: "Email", el: "Email", fr: "E-mail" },
   "con.map":     { en: "Open in Maps ↗", el: "Άνοιγμα στους Χάρτες ↗", fr: "Ouvrir dans Maps ↗" },
+  "con.lang":    { en: "Languages", el: "Γλώσσες", fr: "Langues" },
+  "con.district":{ en: "District", el: "District", fr: "District" },
+  "con.email":   { en: "Email", el: "e-mail", fr: "e-mail" },
+  "con.venueNote":{
+    en: "Our meeting place is not fixed. We confirm the venue by email a few days before each meeting — write to us and we will make sure you have it.",
+    el: "Ο χώρος των συναντήσεών μας δεν είναι σταθερός. Επιβεβαιώνουμε τον χώρο με e-mail λίγες ημέρες πριν από κάθε συνάντηση — γράψτε μας και θα φροντίσουμε να τον γνωρίζετε.",
+    fr: "Notre lieu de réunion n’est pas fixe. Nous confirmons le lieu par e-mail quelques jours avant chaque réunion — écrivez-nous et nous vous le communiquerons."
+  },
+  "con.ask":     { en: "Ask for the next venue", el: "Ζητήστε τον επόμενο χώρο", fr: "Demander le prochain lieu" },
+  "con.askSubject": { en: "Next meeting venue", el: "Χώρος επόμενης συνάντησης", fr: "Lieu de la prochaine réunion" },
   "con.cal":     { en: "Add to calendar", el: "Προσθήκη στο ημερολόγιο", fr: "Ajouter au calendrier" },
   "con.copy":    { en: "Copy", el: "Αντιγραφή", fr: "Copier" },
   "con.copied":  { en: "Copied", el: "Αντιγράφηκε", fr: "Copié" },
-  "con.copyAria":{ en: "Copy email address", el: "Αντιγραφή διεύθυνσης email", fr: "Copier l’adresse e-mail" },
+  "con.copyAria":{ en: "Copy email address", el: "Αντιγραφή διεύθυνσης e-mail", fr: "Copier l’adresse e-mail" },
 
-  "form.h3":   { en: "Say hello", el: "Πες ένα γεια", fr: "Dites bonjour" },
-  "form.sub":  { en: "Tell us what you would like to do. We read everything.", el: "Πες μας τι θα ήθελες να κάνεις. Τα διαβάζουμε όλα.", fr: "Dites-nous ce que vous aimeriez faire. Nous lisons tout." },
-  "form.name": { en: "Your name", el: "Το όνομά σου", fr: "Votre nom" },
-  "form.email":{ en: "Email", el: "Email", fr: "E-mail" },
-  "form.int":  { en: "I am interested in", el: "Με ενδιαφέρει", fr: "Je suis intéressé par" },
+  "form.h3":   { en: "Say hello", el: "Πείτε μας ένα γεια", fr: "Dites-nous bonjour" },
+  "form.sub":  { en: "Tell us what you would like to do. We read everything.", el: "Πείτε μας τι θα θέλατε να κάνετε. Διαβάζουμε κάθε μήνυμα.", fr: "Dites-nous ce que vous souhaitez faire. Nous lisons chaque message." },
+  "form.name": { en: "Your name", el: "Το όνομά σας", fr: "Votre nom" },
+  "form.email":{ en: "Email", el: "Διεύθυνση e-mail", fr: "Adresse e-mail" },
+  "form.int":  { en: "I am interested in", el: "Ενδιαφέρομαι για", fr: "Je suis intéressé(e) par" },
   "form.msg":  { en: "Message", el: "Μήνυμα", fr: "Message" },
-  "form.msgPh":{ en: "One line is genuinely enough.", el: "Μία γραμμή αρκεί πραγματικά.", fr: "Une ligne suffit vraiment." },
+  "form.msgPh":{ en: "One line is genuinely enough.", el: "Πραγματικά αρκεί μία γραμμή.", fr: "Une seule ligne suffit vraiment." },
   "form.send": { en: "Send message", el: "Αποστολή μηνύματος", fr: "Envoyer le message" },
-  "form.o1":   { en: "Coming to an open night", el: "Να έρθω σε ανοιχτή βραδιά", fr: "Venir à une soirée portes ouvertes" },
-  "form.o2":   { en: "The Leo programme (12–30)", el: "Το πρόγραμμα Leo (12–30)", fr: "Le programme Leo (12–30 ans)" },
-  "form.o3":   { en: "Full membership", el: "Πλήρης εγγραφή", fr: "Adhésion complète" },
-  "form.o4":   { en: "Volunteering on one project", el: "Εθελοντισμός σε ένα έργο", fr: "Bénévolat sur un projet" },
-  "form.o5":   { en: "Partnering with the club", el: "Συνεργασία με το κλαμπ", fr: "Partenariat avec le club" },
-  "form.o6":   { en: "Something else", el: "Κάτι άλλο", fr: "Autre chose" },
-  "form.err":  { en: "Please add your name and a valid email address.", el: "Συμπλήρωσε το όνομά σου και μια έγκυρη διεύθυνση email.", fr: "Veuillez indiquer votre nom et une adresse e-mail valide." },
-  "form.sending": { en: "Sending…", el: "Αποστολή…", fr: "Envoi…" },
-  "form.ok":   { en: "Thank you — we have your message and will reply soon.", el: "Ευχαριστούμε — λάβαμε το μήνυμά σου και θα απαντήσουμε σύντομα.", fr: "Merci — nous avons votre message et répondrons bientôt." },
-  "form.fail": { en: "Something went wrong. Please email us directly at", el: "Κάτι πήγε στραβά. Στείλε μας email απευθείας στο", fr: "Une erreur est survenue. Écrivez-nous directement à" },
-  "form.mail": { en: "Opening your email app… if nothing happens, write to", el: "Ανοίγει η εφαρμογή email… αν δεν συμβεί τίποτα, γράψε στο", fr: "Ouverture de votre messagerie… si rien ne se passe, écrivez à" },
-  "form.subject": { en: "Website enquiry", el: "Ερώτημα από τον ιστότοπο", fr: "Demande via le site" },
+  "form.o1":   { en: "Coming to an open night", el: "Συμμετοχή σε μια συνάντηση γνωριμίας", fr: "Participer à une réunion découverte" },
+  "form.o2":   { en: "The Leo programme (12–30)", el: "Το πρόγραμμα Leo (12 έως 30 ετών)", fr: "Le programme Leo (12 à 30 ans)" },
+  "form.o3":   { en: "Full membership", el: "Γίνετε μέλος", fr: "Devenir membre" },
+  "form.o4":   { en: "Volunteering on one project", el: "Γίνετε εθελοντής/εθελόντρια σε ένα έργο", fr: "Être bénévole pour un projet" },
+  "form.o5":   { en: "Partnering with the club", el: "Γίνετε συνεργάτης της λέσχης", fr: "Devenir partenaire du club" },
+  "form.o6":   { en: "Something else", el: "Άλλο", fr: "Autre" },
+  "form.err":  { en: "Please add your name and a valid email address.", el: "Παρακαλώ συμπληρώστε το όνομά σας και μια έγκυρη διεύθυνση e-mail.", fr: "Veuillez indiquer votre nom ainsi qu’une adresse e-mail valide." },
+  "form.sending": { en: "Sending…", el: "Αποστολή…", fr: "Envoi en cours…" },
+  "form.ok":   { en: "Thank you — we have your message and will reply soon.", el: "Ευχαριστούμε! Λάβαμε το μήνυμά σας και θα σας απαντήσουμε σύντομα.", fr: "Merci ! Nous avons bien reçu votre message et vous répondrons très prochainement." },
+  "form.fail": { en: "Something went wrong. Please email us directly at", el: "Παρουσιάστηκε σφάλμα. Παρακαλούμε επικοινωνήστε απευθείας μαζί μας στη διεύθυνση:", fr: "Une erreur est survenue. Veuillez nous contacter directement à l’adresse suivante :" },
+  "form.mail": { en: "Opening your email app… if nothing happens, write to", el: "Άνοιγμα της εφαρμογής ηλεκτρονικού ταχυδρομείου… Αν δεν ανοίξει, γράψτε μας στο", fr: "Ouverture de votre application de messagerie… Si rien ne se passe, écrivez-nous à" },
+  "form.subject": { en: "Website enquiry", el: "Αίτημα μέσω της ιστοσελίδας", fr: "Demande via le site Internet" },
 
   /* ------------------------------------------------------------- FOOTER --- */
   "foot.about":   { en: "About", el: "Σχετικά", fr: "À propos" },
   "foot.projects":{ en: "Projects", el: "Έργα", fr: "Projets" },
   "foot.contact": { en: "Contact", el: "Επικοινωνία", fr: "Contact" },
-  "foot.motto":   { en: "“We Serve” — since 1917, worldwide.", el: "«Υπηρετούμε» — από το 1917, παγκοσμίως.", fr: "« Nous Servons » — depuis 1917, dans le monde." },
-  "foot.legal":   { en: "Limassol Fraternité Lions Club. Independent club of Lions Clubs International.", el: "Limassol Fraternité Lions Club. Ανεξάρτητο κλαμπ της Lions Clubs International.", fr: "Limassol Fraternité Lions Club. Club indépendant du Lions Clubs International." },
-  "foot.built":   { en: "Built static. Hosted free. No trackers, no cookies.", el: "Στατικός ιστότοπος. Δωρεάν φιλοξενία. Χωρίς ιχνηλάτες, χωρίς cookies.", fr: "Site statique. Hébergement gratuit. Sans traceurs ni cookies." },
+  "foot.motto":   { en: "“We Serve” — since 1917, worldwide.", el: "«Υπηρετούμε» — από το 1917, σε όλο τον κόσμο.", fr: "« Nous servons » — depuis 1917, dans le monde entier." },
+  "foot.legal":   { en: "Limassol Fraternité Lions Club. Autonomous club of Lions Clubs International.", el: "Limassol Fraternité Lions Club. Αυτόνομη λέσχη, μέλος των Διεθνών Lions.", fr: "Limassol Fraternité Lions Club. Club autonome membre du Lions Clubs International." },
+  "foot.built":   { en: "Built static. Hosted free. No trackers, no cookies.", el: "Στατική ιστοσελίδα. Δωρεάν φιλοξενία. Χωρίς trackers, χωρίς cookies.", fr: "Site statique. Hébergement gratuit. Aucun traceur, Aucun cookie." },
   "toTop":        { en: "Back to top", el: "Επιστροφή στην κορυφή", fr: "Retour en haut" },
 
   /* --------------------------------------------------------- NO SCRIPT ---- */
   "nojs": {
     en: "JavaScript is disabled. Project, gallery and news listings will not appear. Everything else works. Contact us at",
-    el: "Η JavaScript είναι απενεργοποιημένη. Οι λίστες έργων, φωτογραφιών και νέων δεν θα εμφανιστούν. Όλα τα άλλα λειτουργούν. Επικοινώνησε μαζί μας στο",
-    fr: "JavaScript est désactivé. Les listes de projets, photos et actualités ne s’afficheront pas. Tout le reste fonctionne. Contactez-nous à"
+    el: "Η JavaScript είναι απενεργοποιημένη. Οι λίστες των έργων, της γκαλερί και των νέων δεν θα εμφανίζονται. Το υπόλοιπο της ιστοσελίδας λειτουργεί κανονικά. Μπορείτε να επικοινωνήσετε μαζί μας στη διεύθυνση:",
+    fr: "JavaScript est désactivé. Les listes des projets, de la galerie et des actualités ne s’afficheront pas. Le reste du site fonctionne normalement. Vous pouvez nous contacter à l’adresse suivante :"
   }
 };

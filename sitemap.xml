@@ -14,24 +14,8 @@
       <image:title>Limassol Fraternité Lions Club, Cyprus</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://limassolfraternite.github.io/assets/img/gallery/01-blood-2024-10-1.webp</image:loc>
-      <image:title>Blood donation drive — October 2024</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://limassolfraternite.github.io/assets/img/gallery/01-blood-2024-10-2.webp</image:loc>
-      <image:title>Blood donation drive — October 2024</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://limassolfraternite.github.io/assets/img/gallery/01-blood-2024-10-3.webp</image:loc>
-      <image:title>Blood donation drive — October 2024</image:title>
-    </image:image>
-    <image:image>
       <image:loc>https://limassolfraternite.github.io/assets/img/gallery/01-blood-2024-10-4.webp</image:loc>
       <image:title>Blood donation drive — October 2024</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://limassolfraternite.github.io/assets/img/gallery/02-foini-2025-05-1.webp</image:loc>
-      <image:title>Health screening, Foini — May 2025</image:title>
     </image:image>
     <image:image>
       <image:loc>https://limassolfraternite.github.io/assets/img/gallery/02-foini-2025-05-2.webp</image:loc>
@@ -54,10 +38,6 @@
       <image:title>MedicAlert &amp; Diabetic Village — October 2025</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://limassolfraternite.github.io/assets/img/gallery/03-medicalert-2025-10-4.webp</image:loc>
-      <image:title>MedicAlert &amp; Diabetic Village — October 2025</image:title>
-    </image:image>
-    <image:image>
       <image:loc>https://limassolfraternite.github.io/assets/img/gallery/04-limnati-2025-11-1.webp</image:loc>
       <image:title>Eye &amp; diabetes screenings, Limnati — November 2025</image:title>
     </image:image>
@@ -70,16 +50,8 @@
       <image:title>Eye &amp; diabetes screenings, Limnati — November 2025</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://limassolfraternite.github.io/assets/img/gallery/04-limnati-2025-11-4.webp</image:loc>
-      <image:title>Eye &amp; diabetes screenings, Limnati — November 2025</image:title>
-    </image:image>
-    <image:image>
       <image:loc>https://limassolfraternite.github.io/assets/img/gallery/04-limnati-2025-11-5.webp</image:loc>
       <image:title>Eye &amp; diabetes screenings, Limnati — November 2025</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://limassolfraternite.github.io/assets/img/gallery/05-tree-2026-02-1.webp</image:loc>
-      <image:title>Tree planting, Mallia — February 2026</image:title>
     </image:image>
     <image:image>
       <image:loc>https://limassolfraternite.github.io/assets/img/gallery/05-tree-2026-02-2.webp</image:loc>
@@ -88,6 +60,30 @@
     <image:image>
       <image:loc>https://limassolfraternite.github.io/assets/img/gallery/05-tree-2026-02-3.webp</image:loc>
       <image:title>Tree planting, Mallia — February 2026</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://limassolfraternite.github.io/assets/img/gallery/06-schoolyard-2026.webp</image:loc>
+      <image:title>A schoolyard repainted for play — 2026</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://limassolfraternite.github.io/assets/img/gallery/01-blood-2024-10-2.webp</image:loc>
+      <image:title>Blood donation drive — Limassol Fraternité Lions Club</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://limassolfraternite.github.io/assets/img/gallery/02-foini-2025-05-1.webp</image:loc>
+      <image:title>Health screening in Foini — Limassol Fraternité Lions Club</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://limassolfraternite.github.io/assets/img/gallery/03-medicalert-2025-10-4.webp</image:loc>
+      <image:title>MedicAlert &amp; Diabetic Village — Limassol Fraternité Lions Club</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://limassolfraternite.github.io/assets/img/gallery/04-limnati-2025-11-4.webp</image:loc>
+      <image:title>Eye &amp; diabetes screenings, Limnati — Limassol Fraternité Lions Club</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://limassolfraternite.github.io/assets/img/gallery/05-tree-2026-02-1.webp</image:loc>
+      <image:title>Tree planting in Mallia — Limassol Fraternité Lions Club</image:title>
     </image:image>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>

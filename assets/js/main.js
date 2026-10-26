@@ -273,7 +273,8 @@
     C.gallery.forEach(function (g, i) {
       galleryItems.push(g);
       var media = g.src
-        ? '<img src="' + esc(g.src) + '" alt="' + esc(tr(g.alt)) + '" loading="lazy" decoding="async">'
+        ? '<img src="' + esc(g.src) + '" alt="' + esc(tr(g.alt)) + '" loading="lazy" decoding="async"' +
+          (g.pos ? ' style="object-position:' + esc(g.pos) + '"' : '') + '>'
         : placeholder(t('gal.soonPhoto'));
       var cap = tr(g.caption) || tr(g.alt);
       var f = el('figure', 'gcell', media + '<figcaption>' + esc(cap) + '</figcaption>');
@@ -286,6 +287,10 @@
   }
 
   /* ------------------------------------------------------------- VIDEOS ---- */
+  /* gold disc with a true-centred triangle (a text ▶ glyph sits off-centre) */
+  var PLAY = '<span class="vid__play"><svg viewBox="0 0 64 64" aria-hidden="true">' +
+    '<circle cx="32" cy="32" r="32" fill="#FFCB05"/><path d="M26 20.5v23L44 32z" fill="#0B0F1C"/></svg></span>';
+
   function renderVideos() {
     var host = $('#videos');
     if (!host || !C.videos) return;
@@ -301,7 +306,7 @@
           '<button class="vid__lite" type="button" data-yt="' + esc(v.id) +
             '" aria-label="' + esc(t('gal.play') + ': ' + title) + '">' +
             '<img src="https://i.ytimg.com/vi/' + esc(v.id) + '/hqdefault.jpg" alt="" loading="lazy" decoding="async">' +
-            '<span class="vid__play"><span>▶</span></span>' +
+            PLAY +
           '</button>';
       } else if (v.file) {
         /* Local file facade: nothing downloads until play is pressed, so a
@@ -313,14 +318,16 @@
             (v.poster
               ? '<img src="' + esc(v.poster) + '" alt="" loading="lazy" decoding="async">'
               : '<span class="vid__ph"></span>') +
-            '<span class="vid__play"><span>▶</span></span>' +
+            PLAY +
+            (v.duration ? '<span class="vid__dur">' + esc(v.duration) + '</span>' : '') +
           '</button>';
       } else {
         frame = placeholder(t('gal.soonVideo'));
       }
       host.appendChild(el('article', 'vid reveal',
         '<div class="vid__frame">' + frame + '</div>' +
-        '<div class="vid__meta"><b>' + esc(title) + '</b><i>' + esc(v.duration || '') + '</i></div>'));
+        '<div class="vid__meta"><b>' + esc(title) + '</b>' +
+          (v.desc ? '<p>' + esc(tr(v.desc)) + '</p>' : '') + '</div>'));
     });
     watch(host);
   }
@@ -362,12 +369,17 @@
           ? '<a class="btn btn--ghost btn--sm" href="' + esc((a.cta && a.cta.href) || '#contact') + '">' +
             esc(label) + '</a>'
           : '<span></span>';
-        host.appendChild(el('article', 'item reveal',
+        var img = a.image
+          ? '<img class="item__img" src="' + esc(a.image) + '" alt="' + esc(tr(a.alt)) +
+            '" loading="lazy" decoding="async" width="96" height="96">'
+          : '';
+        host.appendChild(el('article', 'item reveal' + (img ? ' item--img' : ''),
           '<div class="item__date">' +
             '<span class="tag tag--cat">' + esc(t('kind.' + a.type)) + '</span>' +
             '<time datetime="' + esc(a.date) + '">' + esc(fmt(a.date)) + '</time>' +
           '</div>' +
-          '<div><h3>' + esc(tr(a.title)) + '</h3><p>' + esc(tr(a.body)) + '</p></div>' + cta));
+          '<div class="item__body">' + img +
+            '<div><h3>' + esc(tr(a.title)) + '</h3><p>' + esc(tr(a.body)) + '</p></div></div>' + cta));
       });
     watch(host);
   }
@@ -439,6 +451,10 @@
     set('#m-when', tr(c.meetDay) + ' · ' + c.meetTime);
     set('#m-where', tr(c.venue));
     set('#m-addr', tr(c.address));
+    /* The venue changes month to month; the address row and map button only
+       appear once a fixed address is filled in (data/content.js). */
+    var addrRow = $('#m-addr-row');
+    if (addrRow) addrRow.hidden = !tr(c.address);
     set('#m-lang', tr(c.languages));
     set('#m-dist', tr(c.district));
     set('#f-dist', tr(c.district));
@@ -448,8 +464,14 @@
     if (mail) { mail.textContent = c.email; mail.href = 'mailto:' + c.email; }
 
     var map = $('#m-map');
-    if (map) map.href = 'https://www.google.com/maps/search/?api=1&query=' +
-      encodeURIComponent(c.mapQuery || tr(c.address));
+    if (map) {
+      map.hidden = !(c.mapQuery || tr(c.address));
+      map.href = 'https://www.google.com/maps/search/?api=1&query=' +
+        encodeURIComponent(c.mapQuery || tr(c.address));
+    }
+    var ask = $('#m-ask');
+    if (ask) ask.href = 'mailto:' + c.email + '?subject=' +
+      encodeURIComponent(c.name + ' — ' + t('con.askSubject'));
 
     var soc = $('#social');
     if (soc && c.social) {
@@ -855,7 +877,7 @@
   /* Builds a recurring .ics for the monthly meeting entirely in the browser,
      so someone interested at 1am can put it straight into their calendar. */
   (function () {
-    var host = $('#m-map');
+    var host = $('#m-ask');
     if (!host || !C.club) return;
 
     var btn = el('button', 'btn btn--ghost btn--sm');
@@ -864,9 +886,9 @@
     host.insertAdjacentElement('afterend', btn);
 
     var pad = function (n) { return (n < 10 ? '0' : '') + n; };
-    var lastFriday = function (y, m) {
-      var d = new Date(y, m + 1, 0);                        /* last day of month */
-      d.setDate(d.getDate() - ((d.getDay() + 2) % 7));      /* walk back to Friday */
+    var fourthMonday = function (y, m) {
+      var d = new Date(y, m, 1);
+      d.setDate(1 + ((8 - d.getDay()) % 7) + 21);           /* first Monday + 3 weeks */
       return d;
     };
     var stamp = function (d) {
@@ -880,10 +902,10 @@
       var c = C.club;
       var hhmm = (c.meetTime || '19:30').split(':');
       var now = new Date();
-      var first = lastFriday(now.getFullYear(), now.getMonth());
+      var first = fourthMonday(now.getFullYear(), now.getMonth());
       first.setHours(+hhmm[0] || 19, +hhmm[1] || 30, 0, 0);
       if (first < now) {
-        first = lastFriday(now.getFullYear(), now.getMonth() + 1);
+        first = fourthMonday(now.getFullYear(), now.getMonth() + 1);
         first.setHours(+hhmm[0] || 19, +hhmm[1] || 30, 0, 0);
       }
       var end = new Date(first.getTime() + 90 * 60000);
@@ -899,10 +921,10 @@
         'DTSTAMP:' + stamp(new Date()),
         'DTSTART:' + stamp(first),
         'DTEND:' + stamp(end),
-        'RRULE:FREQ=MONTHLY;BYDAY=-1FR',
+        'RRULE:FREQ=MONTHLY;BYDAY=4MO',
         'SUMMARY:' + ics(c.name + ' — ' + t('con.h2a')),
-        'LOCATION:' + ics(tr(c.venue) + ', ' + tr(c.address)),
-        'DESCRIPTION:' + ics(t('news.lead') + ' ' + c.email),
+        'LOCATION:' + ics(tr(c.address) ? tr(c.venue) + ', ' + tr(c.address) : tr(c.venue)),
+        'DESCRIPTION:' + ics(t('con.venueNote') + ' ' + c.email),
         'END:VEVENT',
         'END:VCALENDAR'
       ].join('\r\n');
