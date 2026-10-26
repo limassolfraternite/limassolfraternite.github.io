@@ -229,7 +229,7 @@ const I18N = {
     fr: "Le service n’est pas une idée abstraite. Voilà à quoi il ressemble un samedi matin."
   },
   "gal.photosH": { en: "Photographs", el: "Φωτογραφίες", fr: "Photographies" },
-  "gal.videosH": { en: "On film", el: "Σε βίντεο", fr: "En vidéo" },
+  "gal.videosH": { en: "Videos", el: "Βίντεο", fr: "Vidéos" },
   "gal.watch":   { en: "Watch", el: "Παρακολούθηση", fr: "Regarder" },
   "gal.soonPhoto":{ en: "Photo coming soon", el: "Φωτογραφία σύντομα διαθέσιμη", fr: "Photo bientôt disponible" },
   "gal.soonVideo":{ en: "Video coming soon", el: "Βίντεο σύντομα διαθέσιμο",     fr: "Vidéo bientôt disponible" },
