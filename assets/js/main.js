@@ -74,6 +74,28 @@
     return v[lang] || v[DEFAULT_LANG] || '';
   };
 
+  /* Sub-pages (e.g. /projects/x/) set <html data-base="../../"> so that the
+     relative asset paths written in content.js still resolve correctly. */
+  var BASE = document.documentElement.getAttribute('data-base') || '';
+  var url = function (p) {
+    p = String(p || '');
+    return (!p || /^(https?:|\/|data:|#|mailto:)/.test(p)) ? p : BASE + p;
+  };
+  var limitOf = function (host) {
+    var n = parseInt(host.getAttribute('data-limit'), 10);
+    return n > 0 ? n : 0;
+  };
+  /* "See all (12)" link under a shortened list — only shown when needed */
+  var moreLink = function (id, key, total, limit) {
+    var a = $(id);
+    if (!a) return;
+    a.hidden = !(limit && total > limit);
+    a.textContent = t(key) + ' (' + total + ') →';
+  };
+  var projectUrl = function (p) { return url('projects/' + p.slug + '/'); };
+  /* "#contact" means the home page section — from a sub-page go back there */
+  var hashHref = function (h) { return (BASE && h.charAt(0) === '#') ? BASE + h : h; };
+
   var CAT = function (k) { return t('cat.' + k) === 'cat.' + k ? k : t('cat.' + k); };
   var placeholder = function (label) {
     return '<div class="ph"><span>' + esc(label || t('gal.soonPhoto')) + '</span></div>';
@@ -209,9 +231,17 @@
   }
 
   /* ----------------------------------------------------------- PROJECTS ---- */
+  /* Home page:      <div id="projects" data-limit="3">  → the 3 most recent
+     /projects/ page: no limit, with category filters      → all of them      */
+  var byDate = function (a, b) {
+    if (!a.date || !b.date) return 0;
+    return a.date < b.date ? -1 : a.date > b.date ? 1 : 0;
+  };
+
   function renderProjects() {
     var host = $('#projects'), bar = $('#filters'), empty = $('#projectsEmpty');
     if (!host || !C.projects) return;
+    var limit = limitOf(host);
 
     var order = ['environment', 'health', 'youth', 'hunger', 'tech', 'community'];
     var present = ['all'].concat(order.filter(function (k) {
@@ -219,14 +249,16 @@
     }));
     if (present.indexOf(activeFilter) === -1) activeFilter = 'all';
 
-    bar.innerHTML = '';
-    present.forEach(function (k) {
-      var b = el('button', 'filter', k === 'all' ? esc(t('work.filterAll')) : esc(CAT(k)));
-      b.type = 'button';
-      b.setAttribute('aria-pressed', k === activeFilter ? 'true' : 'false');
-      b.dataset.cat = k;
-      bar.appendChild(b);
-    });
+    if (bar) {
+      bar.innerHTML = '';
+      present.forEach(function (k) {
+        var b = el('button', 'filter', k === 'all' ? esc(t('work.filterAll')) : esc(CAT(k)));
+        b.type = 'button';
+        b.setAttribute('aria-pressed', k === activeFilter ? 'true' : 'false');
+        b.dataset.cat = k;
+        bar.appendChild(b);
+      });
+    }
 
     host.innerHTML = '';
     var list = C.projects.filter(function (p) {
@@ -234,47 +266,101 @@
     });
     /* Keep the timeline chronological (oldest first) even if entries are added
        to content.js out of order. Undated items keep their written position. */
-    list = list.slice().sort(function (a, b) {
-      if (!a.date || !b.date) return 0;
-      return a.date < b.date ? -1 : a.date > b.date ? 1 : 0;
-    });
-    empty.hidden = list.length > 0;
+    list = list.slice().sort(byDate);
+    /* shortened list = the most recent ones, still shown oldest → newest */
+    if (limit) list = list.slice(-limit);
+    if (empty) empty.hidden = list.length > 0;
+    moreLink('#projectsMore', 'work.all', C.projects.length, limit);
 
     list.forEach(function (p) {
       var media = p.image
-        ? '<img src="' + esc(p.image) + '" alt="' + esc(tr(p.alt) || tr(p.title)) +
+        ? '<img src="' + esc(url(p.image)) + '" alt="' + esc(tr(p.alt) || tr(p.title)) +
           '" loading="lazy" decoding="async" width="640" height="400">'
         : placeholder(CAT(p.category));
+      var title = p.slug
+        ? '<a href="' + esc(projectUrl(p)) + '">' + esc(tr(p.title)) + '</a>'
+        : esc(tr(p.title));
 
-      host.appendChild(el('article', 'card reveal',
+      host.appendChild(el('article', 'card reveal' + (p.slug ? ' card--link' : ''),
         '<div class="card__img">' + media + '</div>' +
         '<div class="card__body">' +
           '<div class="card__top">' +
             '<span class="tag tag--' + esc(p.status) + '">' + esc(t('status.' + p.status)) + '</span>' +
             '<span class="tag tag--cat">' + esc(CAT(p.category)) + '</span>' +
           '</div>' +
-          '<h3>' + esc(tr(p.title)) + '</h3>' +
+          '<h3>' + title + '</h3>' +
           '<p>' + esc(tr(p.summary)) + '</p>' +
           '<div class="card__foot">' +
             '<span class="card__impact">' + esc(tr(p.impact)) + '</span>' +
             '<span class="card__yr">' + esc(tr(p.year)) + '</span>' +
           '</div>' +
+          (p.slug ? '<span class="card__more" aria-hidden="true">' + esc(t('proj.more')) + ' →</span>' : '') +
         '</div>'));
     });
     watch(host);
   }
 
+  /* ------------------------------------------------------- PROJECT PAGE ---- */
+  /* Translates the project's own page (/projects/<slug>/). The page is written
+     in English at build time for search engines; this swaps in the visitor's
+     language using the same content.js entry. */
+  function renderProjectPage() {
+    var page = $('[data-proj]');
+    if (!page || !C.projects) return;
+    var slug = page.getAttribute('data-proj');
+    var list = C.projects.slice().sort(byDate);
+    var i = -1;
+    list.forEach(function (p, n) { if (p.slug === slug) i = n; });
+    var p = list[i];
+    if (!p) return;
+
+    [].forEach.call(page.querySelectorAll('[data-pf]'), function (n) {
+      n.textContent = tr(p[n.getAttribute('data-pf')]);
+    });
+    var img = page.querySelector('[data-pf-alt]');
+    if (img) img.alt = tr(p.alt) || tr(p.title);
+    var st = page.querySelector('[data-pstatus]');
+    if (st) st.textContent = t('status.' + p.status);
+    var cat = page.querySelector('[data-pcat]');
+    if (cat) cat.textContent = CAT(p.category);
+
+    var link = function (id, q) {
+      var a = $(id);
+      if (!a) return;
+      a.hidden = !q;
+      if (!q) return;
+      a.href = projectUrl(q);
+      var b = a.querySelector('b');
+      if (b) b.textContent = tr(q.title);
+    };
+    link('#projPrev', list[i - 1]);
+    link('#projNext', list[i + 1]);
+    document.title = tr(p.title) + ' (' + tr(p.year) + ') — ' + ((C.club && C.club.name) || '');
+  }
+
   /* ------------------------------------------------------------ GALLERY ---- */
+  /* data-project="<slug>" → only that project's photos (its own page)
+     data-limit="12"       → home page shows the first 12, rest on /gallery/ */
   function renderGallery() {
     var host = $('#gallery-grid');
     if (!host || !C.gallery) return;
     host.innerHTML = '';
     galleryItems = [];
 
-    C.gallery.forEach(function (g, i) {
+    var only = host.getAttribute('data-project');
+    var limit = limitOf(host);
+    var items = C.gallery.filter(function (g) { return !only || g.project === only; });
+    moreLink('#galleryMore', 'gal.all', items.length, limit);
+    if (limit) items = items.slice(0, limit);
+
+    /* hide a project page's photo block when that project has no extra photos */
+    var wrap = host.closest('[data-hide-empty]');
+    if (wrap) wrap.hidden = !items.length;
+
+    items.forEach(function (g, i) {
       galleryItems.push(g);
       var media = g.src
-        ? '<img src="' + esc(g.src) + '" alt="' + esc(tr(g.alt)) + '" loading="lazy" decoding="async"' +
+        ? '<img src="' + esc(url(g.src)) + '" alt="' + esc(tr(g.alt)) + '" loading="lazy" decoding="async"' +
           (g.pos ? ' style="object-position:' + esc(g.pos) + '"' : '') + '>'
         : placeholder(t('gal.soonPhoto'));
       var cap = tr(g.caption) || tr(g.alt);
@@ -313,11 +399,11 @@
         /* Local file facade: nothing downloads until play is pressed, so a
            large video never affects the initial page load. */
         frame =
-          '<button class="vid__lite vid__local" type="button" data-file="' + esc(v.file) +
-            (v.poster ? '" data-poster="' + esc(v.poster) : '') +
+          '<button class="vid__lite vid__local" type="button" data-file="' + esc(url(v.file)) +
+            (v.poster ? '" data-poster="' + esc(url(v.poster)) : '') +
             '" aria-label="' + esc(t('gal.play') + ': ' + title) + '">' +
             (v.poster
-              ? '<img src="' + esc(v.poster) + '" alt="" loading="lazy" decoding="async">'
+              ? '<img src="' + esc(url(v.poster)) + '" alt="" loading="lazy" decoding="async">'
               : '<span class="vid__ph"></span>') +
             PLAY +
             (v.duration ? '<span class="vid__dur">' + esc(v.duration) + '</span>' : '') +
@@ -358,7 +444,7 @@
       var initials = String(p.name || '').split(/\s+/).map(function (w) { return w.charAt(0); })
         .join('').slice(0, 2).toUpperCase();
       var face = p.photo
-        ? '<img src="' + esc(p.photo) + '" alt="' + esc(p.name) + '" loading="lazy" decoding="async" width="320" height="320">'
+        ? '<img src="' + esc(url(p.photo)) + '" alt="' + esc(p.name) + '" loading="lazy" decoding="async" width="320" height="320">'
         : '<span class="leader__init" aria-hidden="true">' + esc(initials) + '</span>';
       host.appendChild(el('figure', 'leader reveal',
         '<div class="leader__face">' + face + '</div>' +
@@ -383,16 +469,19 @@
       } catch (e) { return iso; }
     };
 
-    C.announcements.slice()
-      .sort(function (a, b) { return a.date < b.date ? 1 : -1; })
-      .forEach(function (a) {
+    var limit = limitOf(host);
+    moreLink('#newsMore', 'news.all', C.announcements.length, limit);
+    var items = C.announcements.slice()
+      .sort(function (a, b) { return a.date < b.date ? 1 : -1; });
+    if (limit) items = items.slice(0, limit);
+    items.forEach(function (a) {
         var label = a.cta ? tr(a.cta.label) : '';
         var cta = label
-          ? '<a class="btn btn--ghost btn--sm" href="' + esc((a.cta && a.cta.href) || '#contact') + '">' +
+          ? '<a class="btn btn--ghost btn--sm" href="' + esc(hashHref((a.cta && a.cta.href) || '#contact')) + '">' +
             esc(label) + '</a>'
           : '<span></span>';
         var img = a.image
-          ? '<img class="item__img" src="' + esc(a.image) + '" alt="' + esc(tr(a.alt)) +
+          ? '<img class="item__img" src="' + esc(url(a.image)) + '" alt="' + esc(tr(a.alt)) +
             '" loading="lazy" decoding="async" width="96" height="96">'
           : '';
         host.appendChild(el('article', 'item reveal' + (img ? ' item--img' : ''),
@@ -535,6 +624,7 @@
   function renderAll() {
     renderStats();
     renderProjects();
+    renderProjectPage();
     renderGallery();
     renderVideos();
     renderVoices();
@@ -642,7 +732,7 @@
       var g = galleryItems[idx];
       if (!g) return;
       host.innerHTML = g.src
-        ? '<img src="' + esc(g.src) + '" alt="' + esc(tr(g.alt)) + '">'
+        ? '<img src="' + esc(url(g.src)) + '" alt="' + esc(tr(g.alt)) + '">'
         : placeholder(t('gal.soonPhoto'));
       cap.textContent = (tr(g.caption) || tr(g.alt) || '') +
         '  (' + (idx + 1) + ' ' + t('gal.of') + ' ' + galleryItems.length + ')';

@@ -51,12 +51,36 @@ add('assets/img/og-cover.jpg', 'Limassol Fraternité Lions Club, Cyprus');
 (CONTENT.gallery || []).forEach((g) => add(g.src, en(g.caption) || en(g.alt)));
 (CONTENT.projects || []).forEach((p) => add(p.image, en(p.title) ? en(p.title) + ' — Limassol Fraternité Lions Club' : en(p.alt)));
 
-const imageXml = images.map((im) =>
+const imgXml = (list) => list.map((im) =>
   '    <image:image>\n' +
   '      <image:loc>' + xml(im.url) + '</image:loc>\n' +
   '      <image:title>' + xml(im.title) + '</image:title>\n' +
   '    </image:image>'
 ).join('\n');
+const imageXml = imgXml(images);
+
+/* the extra pages made by tools/build-pages.js — one per project, plus the
+   full lists of projects, news and photos */
+const entry = (loc, imgs, freq, prio) => `  <url>
+    <loc>${loc}</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="${loc}?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="el" href="${loc}?lang=el"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="${loc}?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="${loc}"/>
+${imgs.length ? imgXml(imgs) + '\n' : ''}    <changefreq>${freq}</changefreq>
+    <priority>${prio}</priority>
+  </url>`;
+const projectPages = (CONTENT.projects || []).filter((p) => p.slug).map((p) => {
+  const pics = [p.image].concat((CONTENT.gallery || []).filter((g) => g.project === p.slug).map((g) => g.src))
+    .filter(Boolean).map((src) => ({ url: abs(src), title: en(p.title) + ' — Limassol Fraternité Lions Club' }));
+  return entry(SITE + 'projects/' + p.slug + '/', pics, 'monthly', '0.8');
+});
+const extra = [
+  entry(SITE + 'projects/', [], 'weekly', '0.9'),
+  ...projectPages,
+  entry(SITE + 'news/', [], 'weekly', '0.7'),
+  entry(SITE + 'gallery/', [], 'monthly', '0.6')
+].join('\n');
 
 const out =
 `<?xml version="1.0" encoding="UTF-8"?>
@@ -74,8 +98,9 @@ ${imageXml}
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+${extra}
 </urlset>
 `;
 
 fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), out);
-console.log('sitemap.xml written with ' + images.length + ' image(s).');
+console.log('sitemap.xml written: ' + (4 + projectPages.length) + ' page(s), ' + images.length + ' image(s) on the home entry.');

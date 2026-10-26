@@ -76,10 +76,15 @@ const CONTENT = {
      Real, completed service projects with genuine dates, shown in chronological
      order (oldest first) so the page reads as a timeline of the club's work.
      `date` (YYYY-MM-DD) is used for ordering and for SEO structured data.
+     `slug` is the project's own web address: /projects/<slug>/ — lowercase,
+     words joined by hyphens, never changed once published.
+     The home page shows the 3 most recent projects; all of them are listed
+     on /projects/ and each one gets its own page automatically.
      ========================================================================== */
   projects: [
     {
       date: "2024-10-16",
+      slug: "blood-donation-limassol-2024",
       title: { en: "Blood donation drive", el: "Αιμοδοσία", fr: "Collecte de sang" },
       category: "health",
       status: "complete",
@@ -97,6 +102,7 @@ const CONTENT = {
     },
     {
       date: "2025-05-04",
+      slug: "health-screening-foini-2025",
       title: { en: "Health screening in Foini", el: "Ημέρα προληπτικού ελέγχου στο χωριό Φοινί", fr: "Journée de dépistage à Foini" },
       category: "health",
       status: "complete",
@@ -114,6 +120,7 @@ const CONTENT = {
     },
     {
       date: "2025-10-24",
+      slug: "medicalert-diabetic-village-2025",
       title: { en: "MedicAlert & Diabetic Village", el: "MedicAlert & Διαβητικό Χωριό", fr: "MedicAlert & Village du Diabète" },
       category: "health",
       status: "complete",
@@ -131,6 +138,7 @@ const CONTENT = {
     },
     {
       date: "2025-11-09",
+      slug: "eye-diabetes-screening-limnati-2025",
       title: { en: "Eye & diabetes screenings, Limnati", el: "Έλεγχοι όρασης και διαβήτη στο χωριό Λιμνάτι", fr: "Dépistages de la vue et du diabète à Limnati" },
       category: "health",
       status: "complete",
@@ -148,6 +156,7 @@ const CONTENT = {
     },
     {
       date: "2026-02-25",
+      slug: "tree-planting-mallia-2026",
       title: { en: "Tree planting in Mallia", el: "Δενδροφύτευση στο χωριό Μαλλιά", fr: "Plantation d’arbres à Mallia" },
       category: "environment",
       status: "complete",
@@ -224,39 +233,41 @@ const CONTENT = {
      Real club photos, in chronological order (oldest first). Every photo
      appears once only — the photos already used on project cards above are
      deliberately left out of this list.
+     project: "<slug>" (optional) also shows the photo on that project's own
+     page. The home page shows up to 12 photos; the rest go on /gallery/.
      ========================================================================== */
   gallery: [
-    { src: "assets/img/gallery/01-blood-2024-10-4.webp",
+    { src: "assets/img/gallery/01-blood-2024-10-4.webp", project: "blood-donation-limassol-2024",
       alt: { en: "Lions members at the Limassol blood donation drive", el: "Μέλη των Lions κατά την αιμοδοσία στη Λεμεσό", fr: "Membres des Lions lors de la collecte de sang à Limassol" },
       caption: { en: "Blood donation drive — October 2024", el: "Αιμοδοσία — Οκτώβριος 2024", fr: "Collecte de sang — octobre 2024" } },
-    { src: "assets/img/gallery/02-foini-2025-05-2.webp",
+    { src: "assets/img/gallery/02-foini-2025-05-2.webp", project: "health-screening-foini-2025",
       alt: { en: "Community health screening in Foini village", el: "Ημέρα προληπτικού ελέγχου στο χωριό Φοινί", fr: "Journée de dépistage dans le village de Foini" },
       caption: { en: "Health screening, Foini — May 2025", el: "Έλεγχος υγείας στο Φοινί — Μάιος 2025", fr: "Dépistage de santé à Foini — mai 2025" } },
-    { src: "assets/img/gallery/02-foini-2025-05-3.webp",
+    { src: "assets/img/gallery/02-foini-2025-05-3.webp", project: "health-screening-foini-2025",
       alt: { en: "Community health screening in Foini village", el: "Ημέρα προληπτικού ελέγχου στο χωριό Φοινί", fr: "Journée de dépistage dans le village de Foini" },
       caption: { en: "Health screening, Foini — May 2025", el: "Έλεγχος υγείας στο Φοινί — Μάιος 2025", fr: "Dépistage de santé à Foini — mai 2025" } },
-    { src: "assets/img/gallery/03-medicalert-2025-10-1.webp",
+    { src: "assets/img/gallery/03-medicalert-2025-10-1.webp", project: "medicalert-diabetic-village-2025",
       alt: { en: "Supporting the MedicAlert and Diabetic Village events", el: "Συμμετοχή στις εκδηλώσεις MedicAlert και Χωριό Διαβήτη", fr: "Participation aux événements MedicAlert et Village du Diabète" },
       caption: { en: "MedicAlert & Diabetic Village — October 2025", el: "MedicAlert & Χωριό Διαβήτη — Οκτώβριος 2025", fr: "MedicAlert & Village du Diabète — octobre 2025" } },
-    { src: "assets/img/gallery/03-medicalert-2025-10-3.webp",
+    { src: "assets/img/gallery/03-medicalert-2025-10-3.webp", project: "medicalert-diabetic-village-2025",
       alt: { en: "Supporting the MedicAlert and Diabetic Village events", el: "Συμμετοχή στις εκδηλώσεις MedicAlert και Χωριό Διαβήτη", fr: "Participation aux événements MedicAlert et Village du Diabète" },
       caption: { en: "MedicAlert & Diabetic Village — October 2025", el: "MedicAlert & Χωριό Διαβήτη — Οκτώβριος 2025", fr: "MedicAlert & Village du Diabète — octobre 2025" } },
-    { src: "assets/img/gallery/04-limnati-2025-11-1.webp",
+    { src: "assets/img/gallery/04-limnati-2025-11-1.webp", project: "eye-diabetes-screening-limnati-2025",
       alt: { en: "Eye and diabetes screening day in Limnati", el: "Ημέρα προληπτικού ελέγχου όρασης και διαβήτη στο Λιμνάτι", fr: "Journée de dépistage de la vue et du diabète à Limnati" },
       caption: { en: "Eye & diabetes screenings, Limnati — November 2025", el: "Έλεγχοι όρασης και διαβήτη στο Λιμνάτι — Νοέμβριος 2025", fr: "Dépistages de la vue et du diabète à Limnati — novembre 2025" } },
-    { src: "assets/img/gallery/04-limnati-2025-11-2.webp",
+    { src: "assets/img/gallery/04-limnati-2025-11-2.webp", project: "eye-diabetes-screening-limnati-2025",
       alt: { en: "Eye and diabetes screening day in Limnati", el: "Ημέρα προληπτικού ελέγχου όρασης και διαβήτη στο Λιμνάτι", fr: "Journée de dépistage de la vue et du diabète à Limnati" },
       caption: { en: "Eye & diabetes screenings, Limnati — November 2025", el: "Έλεγχοι όρασης και διαβήτη στο Λιμνάτι — Νοέμβριος 2025", fr: "Dépistages de la vue et du diabète à Limnati — novembre 2025" } },
-    { src: "assets/img/gallery/04-limnati-2025-11-3.webp",
+    { src: "assets/img/gallery/04-limnati-2025-11-3.webp", project: "eye-diabetes-screening-limnati-2025",
       alt: { en: "Eye and diabetes screening day in Limnati", el: "Ημέρα προληπτικού ελέγχου όρασης και διαβήτη στο Λιμνάτι", fr: "Journée de dépistage de la vue et du diabète à Limnati" },
       caption: { en: "Eye & diabetes screenings, Limnati — November 2025", el: "Έλεγχοι όρασης και διαβήτη στο Λιμνάτι — Νοέμβριος 2025", fr: "Dépistages de la vue et du diabète à Limnati — novembre 2025" } },
-    { src: "assets/img/gallery/04-limnati-2025-11-5.webp",
+    { src: "assets/img/gallery/04-limnati-2025-11-5.webp", project: "eye-diabetes-screening-limnati-2025",
       alt: { en: "Eye and diabetes screening day in Limnati", el: "Ημέρα προληπτικού ελέγχου όρασης και διαβήτη στο Λιμνάτι", fr: "Journée de dépistage de la vue et du diabète à Limnati" },
       caption: { en: "Eye & diabetes screenings, Limnati — November 2025", el: "Έλεγχοι όρασης και διαβήτη στο Λιμνάτι — Νοέμβριος 2025", fr: "Dépistages de la vue et du diabète à Limnati — novembre 2025" } },
-    { src: "assets/img/gallery/05-tree-2026-02-2.webp",
+    { src: "assets/img/gallery/05-tree-2026-02-2.webp", project: "tree-planting-mallia-2026",
       alt: { en: "Lions members planting trees in Mallia", el: "Μέλη των Lions φυτεύουν δέντρα στα Μαλλιά", fr: "Membres des Lions plantant des arbres à Mallia" },
       caption: { en: "Tree planting, Mallia — February 2026", el: "Δενδροφύτευση στα Μαλλιά — Φεβρουάριος 2026", fr: "Plantation d’arbres à Mallia — février 2026" } },
-    { src: "assets/img/gallery/05-tree-2026-02-3.webp",
+    { src: "assets/img/gallery/05-tree-2026-02-3.webp", project: "tree-planting-mallia-2026",
       alt: { en: "Lions members planting trees in Mallia", el: "Μέλη των Lions φυτεύουν δέντρα στα Μαλλιά", fr: "Membres des Lions plantant des arbres à Mallia" },
       caption: { en: "Tree planting, Mallia — February 2026", el: "Δενδροφύτευση στα Μαλλιά — Φεβρουάριος 2026", fr: "Plantation d’arbres à Mallia — février 2026" } },
     { src: "assets/img/gallery/06-schoolyard-2026.webp",

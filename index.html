@@ -69,7 +69,7 @@
 
     <nav class="nav__links" id="navLinks" aria-label="Main">
       <a href="#work" data-i18n="nav.work">Our work</a>
-      <a href="#innovation" data-i18n="nav.beyond">Beyond charity</a>
+      <a href="#innovation" data-i18n="nav.beyond">Our approach</a>
       <a href="#youth" data-i18n="nav.youth">Youth</a>
       <a href="#gallery" data-i18n="nav.gallery">Gallery</a>
       <a href="#news" data-i18n="nav.news">News</a>
@@ -286,9 +286,9 @@
       <p class="lead" data-i18n="work.lead">Live, completed and upcoming. No rounding up, no vanity metrics.</p>
     </div>
 
-    <div class="filters" id="filters" role="group" data-i18n-attr="aria-label:work.filterAria"></div>
-    <div class="projects" id="projects"></div>
-    <p class="empty" id="projectsEmpty" data-i18n="work.empty" hidden>No projects in this category yet.</p>
+    <!-- the 3 most recent; every project has its own page, all listed on /projects/ -->
+    <div class="projects" id="projects" data-limit="3"></div>
+    <p class="more"><a class="btn btn--ghost" id="projectsMore" href="projects/" hidden>See all projects →</a></p>
   </div>
 </section>
 
@@ -305,7 +305,8 @@
     <div class="videos" id="videos"></div>
 
     <div class="subhead reveal"><h3 class="h3" data-i18n="gal.photosH">Photographs</h3><span class="subhead__rule"></span></div>
-    <div class="gallery" id="gallery-grid"></div>
+    <div class="gallery" id="gallery-grid" data-limit="12"></div>
+    <p class="more"><a class="btn btn--ghost" id="galleryMore" href="gallery/" hidden>See all photos →</a></p>
   </div>
 </section>
 
@@ -335,7 +336,8 @@ AND REMOVE THIS LINE TOO -->
       <h2 class="h2" data-i18n="news.h2">What’s next.</h2>
       <p class="lead" data-i18n="news.lead">Events, calls for volunteers and club news. Nothing here requires membership to attend.</p>
     </div>
-    <div class="news" id="news-list"></div>
+    <div class="news" id="news-list" data-limit="3"></div>
+    <p class="more"><a class="btn btn--ghost" id="newsMore" href="news/" hidden>See all news →</a></p>
   </div>
 </section>
 
@@ -507,9 +509,9 @@ AND REMOVE THIS LINE TOO -->
 
     <nav class="foot__nav" aria-label="Footer">
       <a href="#about" data-i18n="foot.about">About</a>
-      <a href="#work" data-i18n="foot.projects">Projects</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#news">News</a>
+      <a href="projects/" data-i18n="foot.projects">Projects</a>
+      <a href="#gallery" data-i18n="nav.gallery">Gallery</a>
+      <a href="news/" data-i18n="nav.news">News</a>
       <a href="#join" data-i18n="nav.join">Join</a>
       <a href="#contact" data-i18n="foot.contact">Contact</a>
     </nav>
@@ -581,11 +583,11 @@ AND REMOVE THIS LINE TOO -->
   "name":"Limassol Fraternité Lions Club — service projects",
   "itemListOrder":"https://schema.org/ItemListOrderAscending",
   "itemListElement":[
-    {"@type":"ListItem","position":1,"item":{"@type":"Event","name":"Blood donation drive","startDate":"2024-10-16","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"Limassol, Cyprus"},"organizer":{"@id":"https://limassolfraternite.github.io/#org"},"description":"The club took part in the Lions Region of Limassol blood donation drive."}},
-    {"@type":"ListItem","position":2,"item":{"@type":"Event","name":"Health screening in Foini","startDate":"2025-05-04","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"Foini, Cyprus"},"organizer":{"@id":"https://limassolfraternite.github.io/#org"},"description":"A community health screening day in the mountain village of Foini."}},
-    {"@type":"ListItem","position":3,"item":{"@type":"Event","name":"MedicAlert & Diabetic Village","startDate":"2025-10-24","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"Cyprus"},"organizer":{"@id":"https://limassolfraternite.github.io/#org"},"description":"The club supported the MedicAlert Foundation Cyprus and the Diabetic Village events."}},
-    {"@type":"ListItem","position":4,"item":{"@type":"Event","name":"Eye & diabetes screenings, Limnati","startDate":"2025-11-09","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"Limnati, Cyprus"},"organizer":{"@id":"https://limassolfraternite.github.io/#org"},"description":"Eye and diabetes screenings run with the Phoenicians Lions Club and the Cyprus Association for people with Diabetes."}},
-    {"@type":"ListItem","position":5,"item":{"@type":"Event","name":"Tree planting in Mallia","startDate":"2026-02-25","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"Mallia, Cyprus"},"organizer":{"@id":"https://limassolfraternite.github.io/#org"},"description":"Tree planting in Mallia alongside fellow Lions clubs."}}
+    {"@type":"ListItem","position":1,"item":{"@type":"Event","name":"Blood donation drive","startDate":"2024-10-16","url":"https://limassolfraternite.github.io/projects/blood-donation-limassol-2024/","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"Limassol, Cyprus"},"organizer":{"@id":"https://limassolfraternite.github.io/#org"},"description":"The club took part in the Lions Region of Limassol blood donation drive."}},
+    {"@type":"ListItem","position":2,"item":{"@type":"Event","name":"Health screening in Foini","startDate":"2025-05-04","url":"https://limassolfraternite.github.io/projects/health-screening-foini-2025/","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"Foini, Cyprus"},"organizer":{"@id":"https://limassolfraternite.github.io/#org"},"description":"A community health screening day in the mountain village of Foini."}},
+    {"@type":"ListItem","position":3,"item":{"@type":"Event","name":"MedicAlert & Diabetic Village","startDate":"2025-10-24","url":"https://limassolfraternite.github.io/projects/medicalert-diabetic-village-2025/","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"Cyprus"},"organizer":{"@id":"https://limassolfraternite.github.io/#org"},"description":"The club supported the MedicAlert Foundation Cyprus and the Diabetic Village events."}},
+    {"@type":"ListItem","position":4,"item":{"@type":"Event","name":"Eye & diabetes screenings, Limnati","startDate":"2025-11-09","url":"https://limassolfraternite.github.io/projects/eye-diabetes-screening-limnati-2025/","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"Limnati, Cyprus"},"organizer":{"@id":"https://limassolfraternite.github.io/#org"},"description":"Eye and diabetes screenings run with the Phoenicians Lions Club and the Cyprus Association for people with Diabetes."}},
+    {"@type":"ListItem","position":5,"item":{"@type":"Event","name":"Tree planting in Mallia","startDate":"2026-02-25","url":"https://limassolfraternite.github.io/projects/tree-planting-mallia-2026/","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"Mallia, Cyprus"},"organizer":{"@id":"https://limassolfraternite.github.io/#org"},"description":"Tree planting in Mallia alongside fellow Lions clubs."}}
   ]
 }
 </script>

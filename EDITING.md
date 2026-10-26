@@ -277,3 +277,22 @@ The section appears automatically as soon as the list has at least one person.
 A photo should appear in **one place only** on the site. The photo used on a
 project card is not repeated in the gallery, and the members photo at the top
 of the page is not repeated anywhere else.
+
+---
+
+## Project pages, news page and gallery page (automatic)
+
+Every project gets **its own page**, e.g.
+`https://limassolfraternite.github.io/projects/tree-planting-mallia-2026/`,
+with its own title in Google, its own social-media preview and its photos.
+
+- Give each project a `slug` in `data/content.js` — its web address, in lowercase
+  words joined by hyphens. **Never change a slug once published** (old links break).
+- To show extra photos on a project's page, add `project: "<that slug>"` to those
+  photos in the `gallery` list.
+- The home page stays short: it shows the **3 most recent projects**, the
+  **3 newest announcements** and up to **12 photos**, each with a "See all" link
+  to `/projects/`, `/news/` and `/gallery/` when there are more.
+
+You never edit these pages by hand: on every push, `tools/build-pages.js`
+rebuilds them from `data/content.js` and the sitemap is updated for Google.

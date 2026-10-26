@@ -24,6 +24,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Build project, news and gallery pages from content.js
+        # One page per project (/projects/<slug>/) plus /projects/, /news/ and
+        # /gallery/. Adding a project to data/content.js is all it takes.
+        run: node tools/build-pages.js
+
       - name: Regenerate sitemap from content.js (auto-lists every photo)
         # Reads the gallery in data/content.js and rewrites sitemap.xml so any
         # photo the club adds automatically appears in Google Images. The club

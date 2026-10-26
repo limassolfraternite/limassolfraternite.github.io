@@ -180,6 +180,22 @@ const I18N = {
   "work.empty":     { en: "No projects in this category yet.", el: "Δεν υπάρχουν προς το παρόν έργα σε αυτή την κατηγορία.", fr: "Aucun projet dans cette catégorie pour le moment." },
   "work.filterAria":{ en: "Filter projects by category", el: "Φιλτράρισμα έργων ανά κατηγορία", fr: "Filtrer les projets par catégorie" },
 
+  "work.all":   { en: "See all projects", el: "Δείτε όλα τα έργα", fr: "Voir tous les projets" },
+  "proj.more":  { en: "Read more", el: "Περισσότερα", fr: "En savoir plus" },
+  "proj.photos":{ en: "Photos from the day", el: "Φωτογραφίες από την ημέρα", fr: "Photos de la journée" },
+  "proj.prev":  { en: "Previous project", el: "Προηγούμενο έργο", fr: "Projet précédent" },
+  "proj.next":  { en: "Next project", el: "Επόμενο έργο", fr: "Projet suivant" },
+  "proj.back":  { en: "All projects", el: "Όλα τα έργα", fr: "Tous les projets" },
+  "proj.when":  { en: "When", el: "Πότε", fr: "Quand" },
+  "proj.result":{ en: "Result", el: "Αποτέλεσμα", fr: "Résultat" },
+  "proj.ctaH":  { en: "Want to help with the next one?", el: "Θέλετε να βοηθήσετε στο επόμενο;", fr: "Envie d’aider pour le prochain ?" },
+  "proj.ctaP":  {
+    en: "Every project is run by volunteers like you. Come to a meeting or send us one line — no commitment needed.",
+    el: "Κάθε έργο γίνεται από εθελοντές σαν εσάς. Ελάτε σε μια συνάντηση ή στείλτε μας μία γραμμή — χωρίς καμία δέσμευση.",
+    fr: "Chaque projet est mené par des bénévoles comme vous. Venez à une réunion ou écrivez-nous une ligne — sans aucun engagement."
+  },
+  "crumb.home": { en: "Home", el: "Αρχική", fr: "Accueil" },
+
   "cat.environment": { en: "Environment", el: "Περιβάλλον", fr: "Environnement" },
   "cat.health":      { en: "Health",      el: "Υγεία",      fr: "Santé" },
   "cat.youth":       { en: "Youth",       el: "Νεολαία",       fr: "Jeunesse" },
@@ -201,6 +217,7 @@ const I18N = {
   },
   "gal.photosH": { en: "Photographs", el: "Φωτογραφίες", fr: "Photographies" },
   "gal.videosH": { en: "Videos", el: "Βίντεο", fr: "Vidéos" },
+  "gal.all":     { en: "See all photos", el: "Δείτε όλες τις φωτογραφίες", fr: "Voir toutes les photos" },
   "gal.watch":   { en: "Watch", el: "Παρακολούθηση", fr: "Regarder" },
   "gal.soonPhoto":{ en: "Photo coming soon", el: "Φωτογραφία σύντομα διαθέσιμη", fr: "Photo bientôt disponible" },
   "gal.soonVideo":{ en: "Video coming soon", el: "Βίντεο σύντομα διαθέσιμο",     fr: "Vidéo bientôt disponible" },
@@ -220,6 +237,7 @@ const I18N = {
     el: "Εκδηλώσεις, προσκλήσεις προς εθελοντές και νέα της λέσχης. Όλες οι δραστηριότητές μας είναι ανοικτές στο κοινό, χωρίς υποχρέωση εγγραφής.",
     fr: "Événements, appels aux bénévoles et actualités du club. Toutes nos activités sont ouvertes au public, sans obligation d’adhésion."
   },
+  "news.all":   { en: "See all news", el: "Δείτε όλα τα νέα", fr: "Voir toutes les actualités" },
   "kind.event": { en: "Event",             el: "Εκδήλωση",         fr: "Événement" },
   "kind.news":  { en: "Club news",         el: "Νέα της λέσχης",    fr: "Actualités du club" },
   "kind.call":  { en: "Volunteers needed", el: "Αναζητούνται εθελοντές", fr: "Bénévoles recherchés" },

@@ -361,6 +361,16 @@ ul,ol{margin:0;padding:0;list-style:none}
   display:flex;justify-content:space-between;align-items:center;gap:.75rem}
 .card__impact{font-weight:800;font-size:.9rem;color:var(--blue)}
 .card__yr{font-size:.8rem;color:var(--mut);font-variant-numeric:tabular-nums}
+/* whole card is clickable through its title link (keeps one link per card
+   for screen readers instead of wrapping everything in an <a>) */
+.card--link{position:relative;cursor:pointer}
+.card--link h3 a::after{content:"";position:absolute;inset:0;z-index:1;border-radius:inherit}
+.card--link h3 a:focus-visible{outline:0}
+.card--link:focus-within{outline:3px solid var(--gold);outline-offset:3px}
+.card__more{margin-top:.9rem;font-size:.85rem;font-weight:750;color:var(--blue)}
+.card--link:hover .card__more{text-decoration:underline;text-underline-offset:3px}
+.more{display:flex;justify-content:center;margin:clamp(2rem,4vw,2.75rem) 0 0}
+.more:has(> [hidden]){display:none}
 
 .tag{font-size:.68rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
   padding:.3rem .65rem;border-radius:5px}
@@ -444,6 +454,45 @@ ul,ol{margin:0;padding:0;list-style:none}
 .leader__init{display:grid;place-items:center;height:100%;color:#fff;font-size:2.2rem;font-weight:800;letter-spacing:.02em}
 .leader figcaption b{display:block;font-size:1.02rem;font-weight:750;letter-spacing:-.01em}
 .leader figcaption span{display:block;font-size:.85rem;color:var(--mut);margin-top:.15rem}
+
+/* ---------- 14c. Sub-pages (projects, news, gallery) ------------------------ */
+.phead{background:linear-gradient(165deg,var(--ink-3) 0%,var(--ink) 70%);color:#fff;
+  padding:clamp(7.5rem,14vw,9.5rem) 0 clamp(3rem,6vw,4.5rem)}
+.phead .h2{color:#fff;max-width:20ch}
+.phead .h2{margin-bottom:1.25rem}
+.phead .lead{color:var(--mut-l);max-width:62ch}
+.phead .tag--cat{background:rgba(255,203,5,.14);color:var(--gold)}
+.crumbs{display:flex;flex-wrap:wrap;gap:.5rem;font-size:.8rem;font-weight:650;color:var(--mut-l);margin:0 0 1.5rem}
+.crumbs a{color:#fff;opacity:.85}
+.crumbs a:hover{color:var(--gold);opacity:1}
+.crumbs span[aria-hidden]{opacity:.5}
+
+.proj{display:grid;gap:clamp(2rem,5vw,4rem);grid-template-columns:1fr;align-items:center}
+@media(min-width:900px){.proj{grid-template-columns:1.05fr 1fr}}
+.proj__tags{display:flex;gap:.55rem;flex-wrap:wrap;margin-bottom:1.25rem}
+.proj h1{font-size:clamp(2.1rem,1.2rem + 3.6vw,3.6rem);font-weight:850;letter-spacing:-.035em;margin:0 0 1.25rem}
+.proj__sum{font-size:clamp(1.02rem,.98rem + .3vw,1.15rem);color:var(--mut-l);max-width:58ch;margin-bottom:1.75rem}
+.proj__facts{display:flex;flex-wrap:wrap;gap:1.5rem 2.5rem;margin:0;padding-top:1.25rem;border-top:1px solid var(--line-l)}
+.proj__facts dt{font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--mut-l)}
+.proj__facts dd{margin:.2rem 0 0;font-weight:750;color:var(--gold)}
+.proj__img{border-radius:var(--r);overflow:hidden;aspect-ratio:4/3;background:var(--ink-2);
+  box-shadow:0 30px 60px -30px rgba(0,0,0,.7)}
+.proj__img img{width:100%;height:100%;object-fit:cover}
+
+.pnav{display:grid;gap:1rem;grid-template-columns:1fr;margin-top:clamp(2.5rem,5vw,3.5rem)}
+@media(min-width:700px){.pnav{grid-template-columns:1fr 1fr}}
+.pnav a{display:flex;flex-direction:column;gap:.3rem;padding:1.25rem 1.5rem;border:1px solid var(--line);
+  border-radius:var(--r);background:var(--paper);transition:border-color .25s,transform .25s var(--ease),box-shadow .25s}
+.pnav a:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:var(--shadow)}
+.pnav span{font-size:.75rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
+.pnav b{font-size:1rem;font-weight:750;letter-spacing:-.01em}
+.pnav__next{text-align:right}
+@media(min-width:700px){.pnav__next:only-child{grid-column:2}}
+
+.ctaband{background:linear-gradient(165deg,var(--blue) 0%,var(--ink) 75%);color:#fff;border-radius:var(--r);
+  padding:clamp(2rem,4vw,3rem);display:flex;flex-wrap:wrap;gap:1.5rem 2.5rem;align-items:center;justify-content:space-between}
+.ctaband h2{font-size:clamp(1.4rem,1.1rem + 1.2vw,2rem);font-weight:800;letter-spacing:-.025em;margin:0 0 .5rem}
+.ctaband p{margin:0;color:var(--mut-l);max-width:52ch}
 
 /* ---------- 15. Voices ----------------------------------------------------- */
 .voices{display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr))}
