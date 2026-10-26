@@ -175,6 +175,7 @@
           (s.plain ? ' data-plain="1"' : '') + '>0</b>' +
         '<u>' + esc(tr(s.label)) + '</u><i>' + esc(tr(s.note)) + '</i>'));
     });
+    watch(host);   /* rebuilt cards must be revealed again after a language switch */
 
     /* `plain` skips thousands separators — years must read 1917, not 1,917 */
     var fmt = function (v, plain) { return plain ? String(v) : v.toLocaleString('en-GB'); };
