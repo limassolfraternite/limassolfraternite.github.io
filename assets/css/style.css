@@ -92,11 +92,14 @@ ul,ol{margin:0;padding:0;list-style:none}
 }
 .btn--sm{padding:.65rem 1.25rem;font-size:.875rem}
 .btn--gold{background:var(--gold);color:var(--ink);box-shadow:0 8px 24px -10px rgba(255,203,5,.8)}
-.btn--gold:hover{background:#fff;transform:translateY(-2px)}
+.btn--gold:hover{background:var(--gold-2);transform:translateY(-2px)}
+/* Explicit colours on hover — a `currentColor` fill would turn white along
+   with the text and make the button vanish against a white section. */
 .btn--ghost{border-color:currentColor;background:transparent}
-.btn--ghost:hover{background:currentColor;transform:translateY(-2px)}
-.btn--ghost:hover{color:var(--paper)}
-.sec--dark .btn--ghost:hover,.join .btn--ghost:hover{color:var(--ink)}
+.btn--ghost:hover,.btn--ghost:focus-visible{background:var(--ink);border-color:var(--ink);color:#fff;transform:translateY(-2px)}
+.hero .btn--ghost:hover,.sec--dark .btn--ghost:hover,.join .btn--ghost:hover,
+.hero .btn--ghost:focus-visible,.sec--dark .btn--ghost:focus-visible,.join .btn--ghost:focus-visible{
+  background:#fff;border-color:#fff;color:var(--ink)}
 .btn:active{transform:translateY(0)}
 
 /* ---------- 6. Nav --------------------------------------------------------- */
@@ -621,11 +624,8 @@ ul,ol{margin:0;padding:0;list-style:none}
 .copy--ok{background:#DCFCE7;border-color:#86EFAC;color:#14532D}
 .copy--ok:hover{background:#DCFCE7;color:#14532D}
 
-/* the meeting panel now holds two buttons */
-#m-map + .btn{margin-left:.5rem}
-@media(max-width:420px){
-  #m-map,#m-map + .btn{display:flex;width:100%;margin:0 0 .6rem}
-}
+/* meeting panel buttons stack full-width on small phones */
+@media(max-width:420px){.meet__acts .btn{display:flex;width:100%}}
 
 /* ---------- 22. Reveal animation ------------------------------------------- */
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
