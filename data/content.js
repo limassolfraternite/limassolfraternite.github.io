@@ -73,8 +73,8 @@ const CONTENT = {
      category  must be one of:  environment | health | youth | hunger | tech | community
      status    must be one of:  live | complete | upcoming
 
-     Real, completed service projects with genuine dates, shown in chronological
-     order (oldest first) so the page reads as a timeline of the club's work.
+     Real, completed service projects with genuine dates, shown newest first
+     (automatically, by date — the order here does not matter).
      `date` (YYYY-MM-DD) is used for ordering and for SEO structured data.
      `slug` is the project's own web address: /projects/<slug>/ — lowercase,
      words joined by hyphens, never changed once published.
@@ -230,7 +230,7 @@ const CONTENT = {
   /* ==========================================================================
      4. PHOTO GALLERY
      Put image files in  assets/img/gallery/  then reference them here.
-     Real club photos, in chronological order (oldest first). Every photo
+     Real club photos. The site shows them newest first (by their project's date). Every photo
      appears once only — the photos already used on project cards above are
      deliberately left out of this list.
      project: "<slug>" (optional) also shows the photo on that project's own

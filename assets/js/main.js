@@ -250,6 +250,12 @@
     if (!a.date || !b.date) return 0;
     return a.date < b.date ? -1 : a.date > b.date ? 1 : 0;
   };
+  var newestFirst = function (a, b) { return byDate(b, a); };
+  /* a photo is as recent as its project; photos with no project go last */
+  var photoDate = function (g) {
+    var p = (C.projects || []).filter(function (x) { return x.slug === g.project; })[0];
+    return (p && p.date) || '';
+  };
 
   function renderProjects() {
     var host = $('#projects'), bar = $('#filters'), empty = $('#projectsEmpty');
@@ -277,11 +283,10 @@
     var list = C.projects.filter(function (p) {
       return activeFilter === 'all' || p.category === activeFilter;
     });
-    /* Keep the timeline chronological (oldest first) even if entries are added
-       to content.js out of order. Undated items keep their written position. */
-    list = list.slice().sort(byDate);
-    /* shortened list = the most recent ones, still shown oldest → newest */
-    if (limit) list = list.slice(-limit);
+    /* Newest first, even if entries are added to content.js out of order.
+       Undated items keep their written position. */
+    list = list.slice().sort(newestFirst);
+    if (limit) list = list.slice(0, limit);
     if (empty) empty.hidden = list.length > 0;
     moreLink('#projectsMore', 'work.all', C.projects.length, limit);
 
@@ -362,7 +367,10 @@
 
     var only = host.getAttribute('data-project');
     var limit = limitOf(host);
-    var items = C.gallery.filter(function (g) { return !only || g.project === only; });
+    var items = C.gallery.filter(function (g) { return !only || g.project === only; })
+      .map(function (g, n) { return { g: g, n: n, d: photoDate(g) }; })
+      .sort(function (a, b) { return a.d < b.d ? 1 : a.d > b.d ? -1 : a.n - b.n; })
+      .map(function (x) { return x.g; });
     moreLink('#galleryMore', 'gal.all', items.length, limit);
     if (limit) items = items.slice(0, limit);
 

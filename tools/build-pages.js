@@ -138,14 +138,18 @@ const breadcrumbLd = (items) => ({
 });
 
 const pages = [];
-const projects = (CONTENT.projects || []).slice().sort(byDate);
+const projects = (CONTENT.projects || []).slice().sort((a, b) => byDate(b, a));   // newest first
+/* photos newest first (by their project's date); photos with no project go last */
+const dateOf = (g) => ((CONTENT.projects || []).find((p) => p.slug === g.project) || {}).date || '';
+const gallery = (CONTENT.gallery || []).map((g, n) => ({ g, n, d: dateOf(g) }))
+  .sort((a, b) => (a.d < b.d ? 1 : a.d > b.d ? -1 : a.n - b.n)).map((x) => x.g);
 
 /* -------------------------------------------------------- /projects/<slug>/ */
 projects.forEach((p, i) => {
   if (!p.slug) return;
   const base = '../../';
   const photos = (CONTENT.gallery || []).filter((g) => g.project === p.slug);
-  const prev = projects[i - 1], next = projects[i + 1];
+  const prev = projects[i + 1], next = projects[i - 1];   // previous = older, next = newer
   const pTitle = en(p.title);
   const main = `
 <section class="phead" data-proj="${esc(p.slug)}">
@@ -279,7 +283,7 @@ pages.push({ path: page({
 <section class="sec">
   <div class="wrap">
     <div class="gallery" id="gallery-grid">
-${(CONTENT.gallery || []).map((g) => `      <figure class="gcell"><img src="../${esc(sm(g.src))}" alt="${esc(en(g.alt))}" loading="lazy" decoding="async"><figcaption>${esc(en(g.caption))}</figcaption></figure>`).join('\n')}
+${gallery.map((g) => `      <figure class="gcell"><img src="../${esc(sm(g.src))}" alt="${esc(en(g.alt))}" loading="lazy" decoding="async"><figcaption>${esc(en(g.caption))}</figcaption></figure>`).join('\n')}
     </div>
   </div>
 </section>`,
