@@ -180,6 +180,10 @@ const I18N = {
   "work.empty":     { en: "No projects in this category yet.", el: "Δεν υπάρχουν προς το παρόν έργα σε αυτή την κατηγορία.", fr: "Aucun projet dans cette catégorie pour le moment." },
   "work.filterAria":{ en: "Filter projects by category", el: "Φιλτράρισμα έργων ανά κατηγορία", fr: "Filtrer les projets par catégorie" },
 
+  "page.home":     { en: "Limassol Fraternité Lions Club | Community Service in Limassol, Cyprus", el: "Limassol Fraternité Lions Club | Κοινωνική προσφορά στη Λεμεσό, Κύπρος", fr: "Limassol Fraternité Lions Club | Action bénévole à Limassol, Chypre" },
+  "page.projects": { en: "Service projects — Limassol Fraternité Lions Club", el: "Δράσεις προσφοράς — Limassol Fraternité Lions Club", fr: "Nos actions — Limassol Fraternité Lions Club" },
+  "page.news":     { en: "News & announcements — Limassol Fraternité Lions Club", el: "Νέα και ανακοινώσεις — Limassol Fraternité Lions Club", fr: "Actualités et annonces — Limassol Fraternité Lions Club" },
+  "page.gallery":  { en: "Photo gallery — Limassol Fraternité Lions Club", el: "Φωτογραφίες — Limassol Fraternité Lions Club", fr: "Galerie photos — Limassol Fraternité Lions Club" },
   "work.all":   { en: "See all projects", el: "Δείτε όλα τα έργα", fr: "Voir tous les projets" },
   "proj.more":  { en: "Read more", el: "Περισσότερα", fr: "En savoir plus" },
   "proj.photos":{ en: "Photos from the day", el: "Φωτογραφίες από την ημέρα", fr: "Photos de la journée" },

@@ -204,13 +204,13 @@ const CONTENT = {
                el: "Lions Recycle For Sight — δώστε δεύτερη ζωή στα παλιά σας γυαλιά",
                fr: "Lions Recycle For Sight — offrez une seconde vie à vos anciennes lunettes" },
       body: {
-        en: "Through the Lions Recycle For Sight programme, used prescription glasses and sunglasses are collected and passed on to people who cannot afford them. Have a pair you no longer wear? Contact us and we will tell you how to hand them in.",
-        el: "Μέσω του προγράμματος Lions Recycle For Sight, μεταχειρισμένα γυαλιά οράσεως και ηλίου συλλέγονται και δίνονται σε ανθρώπους που δεν μπορούν να τα αγοράσουν. Έχετε ένα ζευγάρι που δεν φοράτε πια; Επικοινωνήστε μαζί μας και θα σας πούμε πώς να το παραδώσετε.",
-        fr: "Grâce au programme Lions Recycle For Sight, les lunettes de vue et de soleil usagées sont collectées et remises à des personnes qui ne peuvent pas se les offrir. Vous avez une paire que vous ne portez plus ? Contactez-nous et nous vous dirons comment la déposer."
+        en: "Lions Recycle For Sight is a Lions Clubs International programme: used prescription glasses and sunglasses are collected, sorted and passed on to people who cannot afford them. Have a pair you no longer wear? Send us a message and we will point you to a collection point.",
+        el: "Το Lions Recycle For Sight είναι πρόγραμμα των Διεθνών Lions: μεταχειρισμένα γυαλιά οράσεως και ηλίου συλλέγονται, ταξινομούνται και δίνονται σε ανθρώπους που δεν μπορούν να τα αγοράσουν. Έχετε ένα ζευγάρι που δεν φοράτε πια; Στείλτε μας μήνυμα και θα σας υποδείξουμε σημείο συλλογής.",
+        fr: "Lions Recycle For Sight est un programme du Lions Clubs International : les lunettes de vue et de soleil usagées sont collectées, triées et remises à des personnes qui ne peuvent pas se les offrir. Vous avez une paire que vous ne portez plus ? Écrivez-nous et nous vous indiquerons un point de collecte."
       },
       image: "assets/img/news/recycle-for-sight.webp",
       alt: { en: "Lions Recycle For Sight logo", el: "Λογότυπο Lions Recycle For Sight", fr: "Logo Lions Recycle For Sight" },
-      cta: { label: { en: "Ask how to donate", el: "Ρωτήστε πώς να τα δωρίσετε", fr: "Savoir comment donner" }, href: "#contact" }
+      cta: { label: { en: "Ask where to drop them off", el: "Ρωτήστε πού να τα αφήσετε", fr: "Savoir où les déposer" }, href: "#contact" }
     },
     {
       date: "2026-10-24",
@@ -271,8 +271,8 @@ const CONTENT = {
       alt: { en: "Lions members planting trees in Mallia", el: "Μέλη των Lions φυτεύουν δέντρα στα Μαλλιά", fr: "Membres des Lions plantant des arbres à Mallia" },
       caption: { en: "Tree planting, Mallia — February 2026", el: "Δενδροφύτευση στα Μαλλιά — Φεβρουάριος 2026", fr: "Plantation d’arbres à Mallia — février 2026" } },
     { src: "assets/img/gallery/06-schoolyard-2026.webp",
-      alt: { en: "A school playground freshly painted with colourful games", el: "Σχολική αυλή φρεσκοβαμμένη με πολύχρωμα παιχνίδια", fr: "Une cour d’école fraîchement peinte de jeux colorés" },
-      caption: { en: "A schoolyard repainted for play — 2026", el: "Μια σχολική αυλή ξαναβαμμένη για παιχνίδι — 2026", fr: "Une cour d’école repeinte pour le jeu — 2026" } }
+      alt: { en: "A school playground painted with colourful games", el: "Σχολική αυλή βαμμένη με πολύχρωμα παιχνίδια", fr: "Une cour d’école peinte de jeux colorés" },
+      caption: { en: "A schoolyard painted with playground games", el: "Σχολική αυλή βαμμένη με παιχνίδια για τα παιδιά", fr: "Une cour d’école peinte de jeux pour les enfants" } }
   ],
 
   /* ==========================================================================
@@ -287,12 +287,12 @@ const CONTENT = {
   videos: [
     { file: "assets/video/year-of-service-2026.mp4",
       poster: "assets/img/posters/year-of-service-2026.webp",
-      title: { en: "Limassol Fraternité Lions Club in the community",
-               el: "Η Λέσχη Lions Fraternité Λεμεσού στην υπηρεσία της κοινότητας",
-               fr: "Le Limassol Fraternité Lions Club au service de la communauté" },
-      desc:  { en: "A look back at our service: wildfire relief, furnishings for families in need, tree planting, the Special Olympics Unified Run, support for schools and the people who made it happen.",
-               el: "Μια ματιά στη δράση μας: στήριξη μετά τις πυρκαγιές, έπιπλα για οικογένειες που τα έχουν ανάγκη, δενδροφυτεύσεις, ο Unified Run των Special Olympics, στήριξη σχολείων και οι άνθρωποι που τα έκαναν πραγματικότητα.",
-               fr: "Retour sur nos actions : aide après les incendies, mobilier pour des familles dans le besoin, plantations d’arbres, l’Unified Run des Special Olympics, soutien aux écoles et les personnes qui ont tout rendu possible." },
+      title: { en: "Our 2025–2026 year of service",
+               el: "Η χρονιά προσφοράς μας 2025–2026",
+               fr: "Notre année de service 2025–2026" },
+      desc:  { en: "Our 2025–2026 Lions year in under five minutes: wildfires, support for local businesses, furnishings for people in need, the environment, mental health, the Special Olympics Unified Run, vision and diabetes, hunger, a charity cruise, and €2,500 for Episkopi Primary School.",
+               el: "Η χρονιά μας 2025–2026 σε λιγότερο από πέντε λεπτά: πυρκαγιές, στήριξη τοπικών επιχειρήσεων, έπιπλα για όσους τα έχουν ανάγκη, περιβάλλον, ψυχική υγεία, ο Unified Run των Special Olympics, όραση και διαβήτης, πείνα, μια φιλανθρωπική κρουαζιέρα και 2.500 € για το Δημοτικό Σχολείο Επισκοπής.",
+               fr: "Notre année Lions 2025–2026 en moins de cinq minutes : incendies, soutien aux commerces locaux, mobilier pour les personnes dans le besoin, environnement, santé mentale, l’Unified Run des Special Olympics, vue et diabète, faim, une croisière solidaire et 2 500 € pour l’école primaire d’Episkopi." },
       duration: "4:40" },
     { file: "assets/video/hunger-week-2026.mp4",
       poster: "assets/img/posters/hunger-week-2026.webp",

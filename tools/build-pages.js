@@ -63,7 +63,7 @@ const rebase = (html, base) => html
   .replace(/(href|src)="(?!https?:|\/|#|mailto:|data:)([^"]+)"/g, (m, a, p) =>
     p.startsWith(base) && base ? m : a + '="' + base + p + '"');
 
-function page({ dir, base, title, desc, image, imageAlt, bodyClass, main, jsonld }) {
+function page({ dir, base, title, titleKey, desc, image, imageAlt, bodyClass, main, jsonld }) {
   const urlPath = dir.replace(/\\/g, '/') + '/';
   const canonical = SITE + urlPath;
   const img = abs(image || 'assets/img/og-cover.jpg');
@@ -72,7 +72,7 @@ function page({ dir, base, title, desc, image, imageAlt, bodyClass, main, jsonld
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>${esc(title)}</title>
+<title${titleKey ? ` data-i18n="${titleKey}"` : ''}>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
 <meta name="theme-color" content="#0B0F1C">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -214,7 +214,7 @@ ${photos.map((g) => `      <figure class="gcell"><img src="${base}${esc(sm(g.src
 /* ---------------------------------------------------------------- /projects/ */
 pages.unshift({ path: page({
   dir: 'projects', base: '../',
-  title: 'Service projects — ' + CLUB.name,
+  title: 'Service projects — ' + CLUB.name, titleKey: 'page.projects',
   desc: 'Every community service project by ' + CLUB.name + ' in Limassol and its villages, Cyprus: ' +
         projects.map((p) => en(p.title)).join(', ') + '.',
   main: `
@@ -241,7 +241,7 @@ ${projects.map((p) => `      <article class="card"><div class="card__body"><h3><
 /* -------------------------------------------------------------------- /news/ */
 pages.push({ path: page({
   dir: 'news', base: '../',
-  title: 'News & announcements — ' + CLUB.name,
+  title: 'News & announcements — ' + CLUB.name, titleKey: 'page.news',
   desc: 'Club meetings, events, calls for volunteers and news from ' + CLUB.name + ', Limassol, Cyprus.',
   main: `
 <section class="phead">
@@ -265,7 +265,7 @@ ${(CONTENT.announcements || []).map((a) => `      <article class="item"><div><h3
 /* ----------------------------------------------------------------- /gallery/ */
 pages.push({ path: page({
   dir: 'gallery', base: '../',
-  title: 'Photo gallery — ' + CLUB.name,
+  title: 'Photo gallery — ' + CLUB.name, titleKey: 'page.gallery',
   desc: 'Photos of ' + CLUB.name + ' members serving the community in Limassol and its villages, Cyprus.',
   main: `
 <section class="phead">
