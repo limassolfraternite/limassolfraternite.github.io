@@ -37,6 +37,11 @@ const t = (k) => en(I18N[k]) || k;
 const esc = (s) => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
   .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const abs = (p) => (/^https?:/.test(p) ? p : SITE + String(p).replace(/^\//, ''));
+/* small copy made by tools/build-thumbs.js, if it exists */
+const sm = (p) => {
+  const small = String(p).replace(/\.(webp|jpe?g|png)$/i, '-sm.webp');
+  return /^assets\/img\/(gallery|posters)\//.test(p) && fs.existsSync(path.join(ROOT, small)) ? small : p;
+};
 const byDate = (a, b) => (!a.date || !b.date ? 0 : a.date < b.date ? -1 : a.date > b.date ? 1 : 0);
 
 /* ---------------------------------------------------------- shared chrome -- */
@@ -168,7 +173,7 @@ projects.forEach((p, i) => {
   <div class="wrap">
     <div class="subhead reveal"><h2 class="h3" data-i18n="proj.photos">Photos from the day</h2><span class="subhead__rule"></span></div>
     <div class="gallery" id="gallery-grid" data-project="${esc(p.slug)}">
-${photos.map((g) => `      <figure class="gcell"><img src="${base}${esc(g.src)}" alt="${esc(en(g.alt))}" loading="lazy" decoding="async"><figcaption>${esc(en(g.caption))}</figcaption></figure>`).join('\n')}
+${photos.map((g) => `      <figure class="gcell"><img src="${base}${esc(sm(g.src))}" alt="${esc(en(g.alt))}" loading="lazy" decoding="async"><figcaption>${esc(en(g.caption))}</figcaption></figure>`).join('\n')}
     </div>
   </div>
 </section>
@@ -274,7 +279,7 @@ pages.push({ path: page({
 <section class="sec">
   <div class="wrap">
     <div class="gallery" id="gallery-grid">
-${(CONTENT.gallery || []).map((g) => `      <figure class="gcell"><img src="../${esc(g.src)}" alt="${esc(en(g.alt))}" loading="lazy" decoding="async"><figcaption>${esc(en(g.caption))}</figcaption></figure>`).join('\n')}
+${(CONTENT.gallery || []).map((g) => `      <figure class="gcell"><img src="../${esc(sm(g.src))}" alt="${esc(en(g.alt))}" loading="lazy" decoding="async"><figcaption>${esc(en(g.caption))}</figcaption></figure>`).join('\n')}
     </div>
   </div>
 </section>`,

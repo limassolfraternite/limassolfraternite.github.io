@@ -24,6 +24,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Make small copies of photos for fast tiles and cards
+        # Photos added through the GitHub web editor get their "-sm" copy here.
+        # If this ever fails the site still works (it falls back to full size).
+        continue-on-error: true
+        run: |
+          command -v convert >/dev/null || (sudo apt-get update -qq && sudo apt-get install -y -qq imagemagick)
+          node tools/build-thumbs.js
+
       - name: Build project, news and gallery pages from content.js
         # One page per project (/projects/<slug>/) plus /projects/, /news/ and
         # /gallery/. Adding a project to data/content.js is all it takes.
@@ -34,6 +42,15 @@ jobs:
         # photo the club adds automatically appears in Google Images. The club
         # never edits the sitemap by hand.
         run: node tools/build-sitemap.js
+
+      - name: Minify CSS and JavaScript (published copy only — sources stay readable)
+        run: |
+          set -euo pipefail
+          npx -y esbuild@0.24.0 assets/css/style.css --minify --charset=utf8 --allow-overwrite --outfile=assets/css/style.css --log-level=warning
+          for f in assets/js/main.js data/i18n.js data/content.js; do
+            npx -y esbuild@0.24.0 "$f" --minify --charset=utf8 --allow-overwrite --outfile="$f" --log-level=warning
+          done
+          ls -l assets/css/style.css assets/js/main.js data/*.js
 
       - name: Stamp asset URLs with the commit hash (cache busting)
         run: |

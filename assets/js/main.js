@@ -81,6 +81,18 @@
     p = String(p || '');
     return (!p || /^(https?:|\/|data:|#|mailto:)/.test(p)) ? p : BASE + p;
   };
+  /* Small copy of a gallery/poster photo (made by tools/build-thumbs.js) for
+     tiles and cards; the full photo loads only in the viewer. If the small copy
+     is missing, the image quietly falls back to the full one. */
+  var thumb = function (p) {
+    return /^assets\/img\/(gallery|posters)\/.+\.(webp|jpe?g|png)$/i.test(p)
+      ? p.replace(/\.(webp|jpe?g|png)$/i, '-sm.webp') : p;
+  };
+  var imgSrc = function (p) {
+    var small = thumb(p);
+    return 'src="' + esc(url(small)) + '"' + (small !== p
+      ? ' onerror="this.onerror=null;this.src=\'' + esc(url(p)) + '\'"' : '');
+  };
   var limitOf = function (host) {
     var n = parseInt(host.getAttribute('data-limit'), 10);
     return n > 0 ? n : 0;
@@ -90,6 +102,7 @@
     var a = $(id);
     if (!a) return;
     a.hidden = !(limit && total > limit);
+    if (a.parentNode && a.parentNode.classList.contains('more')) a.parentNode.hidden = a.hidden;
     a.textContent = t(key) + ' (' + total + ') →';
   };
   var projectUrl = function (p) { return url('projects/' + p.slug + '/'); };
@@ -274,7 +287,7 @@
 
     list.forEach(function (p) {
       var media = p.image
-        ? '<img src="' + esc(url(p.image)) + '" alt="' + esc(tr(p.alt) || tr(p.title)) +
+        ? '<img ' + imgSrc(p.image) + ' alt="' + esc(tr(p.alt) || tr(p.title)) +
           '" loading="lazy" decoding="async" width="640" height="400">'
         : placeholder(CAT(p.category));
       var title = p.slug
@@ -360,7 +373,7 @@
     items.forEach(function (g, i) {
       galleryItems.push(g);
       var media = g.src
-        ? '<img src="' + esc(url(g.src)) + '" alt="' + esc(tr(g.alt)) + '" loading="lazy" decoding="async"' +
+        ? '<img ' + imgSrc(g.src) + ' alt="' + esc(tr(g.alt)) + '" loading="lazy" decoding="async"' +
           (g.pos ? ' style="object-position:' + esc(g.pos) + '"' : '') + '>'
         : placeholder(t('gal.soonPhoto'));
       var cap = tr(g.caption) || tr(g.alt);
@@ -403,7 +416,7 @@
             (v.poster ? '" data-poster="' + esc(url(v.poster)) : '') +
             '" aria-label="' + esc(t('gal.play') + ': ' + title) + '">' +
             (v.poster
-              ? '<img src="' + esc(url(v.poster)) + '" alt="" loading="lazy" decoding="async">'
+              ? '<img ' + imgSrc(v.poster) + ' alt="" loading="lazy" decoding="async">'
               : '<span class="vid__ph"></span>') +
             PLAY +
             (v.duration ? '<span class="vid__dur">' + esc(v.duration) + '</span>' : '') +
@@ -889,50 +902,6 @@
     tick();
   })();
 
-  /* ------------------------------------------------ HERO MOUSE PARALLAX --- */
-  (function () {
-    var bg = $('.hero__bg');
-    if (!bg || reduce || !window.matchMedia('(pointer:fine)').matches) return;
-    var blobs = bg.querySelectorAll('i'), raf = null, mx = 0, my = 0;
-
-    $('.hero').addEventListener('mousemove', function (e) {
-      mx = (e.clientX / window.innerWidth - 0.5);
-      my = (e.clientY / window.innerHeight - 0.5);
-      if (raf) return;
-      raf = requestAnimationFrame(function () {
-        raf = null;
-        [].forEach.call(blobs, function (b, i) {
-          var d = (i + 1) * 26;
-          b.style.translate = (mx * d) + 'px ' + (my * d) + 'px';
-        });
-      });
-    });
-  })();
-
-  /* ------------------------------------------------ HERO WORD ENTRANCE ---- */
-  function heroWords() {
-    var h = $('.hero__h');
-    if (!h || reduce) return;
-    /* snapshot first — childNodes is live and we are replacing nodes inside it */
-    [].slice.call(h.childNodes).forEach(function (node) {
-      if (node.nodeType !== 3 || !node.textContent.trim()) return;
-      var frag = document.createDocumentFragment();
-      node.textContent.split(/(\s+)/).forEach(function (w) {
-        if (!w.trim()) { frag.appendChild(document.createTextNode(w)); return; }
-        frag.appendChild(el('span', 'word', esc(w)));
-      });
-      node.replaceWith(frag);
-    });
-    /* Keep the entrance quick: the headline is the LCP element, so a long
-       stagger would delay Largest Contentful Paint and hurt Core Web Vitals.
-       Small delays, capped, so all words are painted within ~0.5s. */
-    var words = h.querySelectorAll('.word, .hw, .gold');
-    [].forEach.call(words, function (w, i) {
-      w.style.animationDelay = Math.min(30 + i * 40, 260) + 'ms';
-      w.classList.add('rise');
-    });
-  }
-
   /* ------------------------------------------------------- SCROLL SPY ----- */
   (function () {
     var navLinks = [].slice.call(document.querySelectorAll('.nav__links a[href^="#"]:not(.btn)'));
@@ -1072,8 +1041,26 @@
   /* --------------------------------------------------------------- INIT --- */
   buildSwitcher();
   applyI18n();
-  renderAll();
-  heroWords();
-  watch(document);
-  firstRender = false;
+
+  /* First load: build the sections one small task at a time instead of in a
+     single long block, so the phone stays responsive and the banner (already
+     in the HTML) paints immediately. A language switch later re-renders in
+     one go via renderAll(). */
+  var steps = [renderStats, renderProjects, renderProjectPage, renderGallery, renderVideos,
+               renderVoices, renderLeaders, renderNews, renderFaq, renderClub];
+  var next = function (i) {
+    if (i < steps.length) {
+      steps[i]();
+      setTimeout(function () { next(i + 1); }, 0);
+      return;
+    }
+    watch(document);
+    firstRender = false;
+    /* arrived on a link like /#faq: jump again now the section is built */
+    if (location.hash.length > 1) {
+      var target = document.getElementById(location.hash.slice(1));
+      if (target) target.scrollIntoView();
+    }
+  };
+  next(0);
 })();

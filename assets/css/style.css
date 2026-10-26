@@ -24,7 +24,7 @@
   --r:16px;
   --r-s:10px;
   --pad:clamp(1.25rem,5vw,2rem);
-  --sec:clamp(4.5rem,10vw,8rem);
+  --sec:clamp(3.75rem,7.5vw,6.25rem);
   --shadow:0 1px 2px rgba(11,15,28,.05),0 12px 32px -12px rgba(11,15,28,.14);
   --shadow-h:0 2px 4px rgba(11,15,28,.06),0 28px 60px -20px rgba(11,15,28,.26);
   --ease:cubic-bezier(.22,1,.36,1);
@@ -42,7 +42,9 @@ img{max-width:100%;display:block;height:auto}
 a{color:inherit;text-decoration:none}
 button,input,select,textarea{font:inherit;color:inherit}
 h1,h2,h3{line-height:1.06;letter-spacing:-.03em;margin:0;text-wrap:balance}
-p{margin:0 0 1rem;text-wrap:pretty}
+p{margin:0 0 1rem}
+/* nicer line breaks only where it shows — on every paragraph it slows layout */
+.lead,.hero__p{text-wrap:pretty}
 ul,ol{margin:0;padding:0;list-style:none}
 :focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:4px}
 
@@ -79,8 +81,18 @@ ul,ol{margin:0;padding:0;list-style:none}
 .lead{font-size:clamp(1.05rem,1rem + .35vw,1.25rem);color:var(--mut);line-height:1.6}
 .lead--light{color:var(--mut-l)}
 .gold{color:var(--gold)}
-.sechead{max-width:60ch;margin-bottom:clamp(2.5rem,5vw,4rem)}
-.sechead .lead{margin-top:1.25rem}
+/* Section heads: on wide screens the title sits left and its intro text right,
+   both using the full width — no tall, narrow headline beside empty space. */
+.sechead{margin-bottom:clamp(2rem,4vw,3.25rem)}
+.sechead .lead{margin-top:1.1rem;max-width:62ch}
+@media(min-width:900px){
+  .sechead{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
+    column-gap:clamp(2.5rem,6vw,5.5rem);align-items:end}
+  .sechead>.eyebrow,.sechead>.h2{grid-column:1}
+  .sechead>.lead{grid-column:2;grid-row:1 / span 2;margin:0;padding-bottom:.3rem}
+  .sechead--solo{display:block}
+  .sechead--solo .h2{max-width:24ch}
+}
 
 /* ---------- 5. Buttons ----------------------------------------------------- */
 .btn{
@@ -222,15 +234,11 @@ ul,ol{margin:0;padding:0;list-style:none}
   min-height:min(94svh,880px);display:flex;align-items:center;
   padding-block:clamp(7rem,16vh,10rem) clamp(4rem,10vh,7rem);
 }
-.hero__bg{position:absolute;inset:0;pointer-events:none}
-.hero__bg i{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5;display:block}
-.hero__bg i:nth-child(1){width:52vw;height:52vw;background:var(--blue);top:-14%;right:-10%;animation:drift 26s ease-in-out infinite}
-.hero__bg i:nth-child(2){width:38vw;height:38vw;background:var(--gold);bottom:-18%;left:-8%;opacity:.22;animation:drift 32s ease-in-out infinite reverse}
-.hero__bg i:nth-child(3){width:30vw;height:30vw;background:var(--blue-2);top:38%;left:42%;opacity:.28;animation:drift 22s ease-in-out infinite}
-@keyframes drift{
-  0%,100%{transform:translate(0,0) scale(1)}
-  50%{transform:translate(4%,-6%) scale(1.12)}
-}
+/* Static colour wash behind the photo. (Previously three huge animated blur
+   shapes — expensive to draw on phones and now hidden by the photo anyway.) */
+.hero__bg{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(60% 70% at 85% 5%,rgba(0,51,141,.6),transparent 70%),
+             radial-gradient(45% 55% at 0% 100%,rgba(255,203,5,.1),transparent 70%)}
 /* Readability scrim. Kept light on the right so the colour mesh stays visible,
    heavier behind the headline column on the left where the text sits. */
 .hero__bg::after{
@@ -370,7 +378,6 @@ ul,ol{margin:0;padding:0;list-style:none}
 .card__more{margin-top:.9rem;font-size:.85rem;font-weight:750;color:var(--blue)}
 .card--link:hover .card__more{text-decoration:underline;text-underline-offset:3px}
 .more{display:flex;justify-content:center;margin:clamp(2rem,4vw,2.75rem) 0 0}
-.more:has(> [hidden]){display:none}
 
 .tag{font-size:.68rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
   padding:.3rem .65rem;border-radius:5px}
@@ -529,7 +536,7 @@ ul,ol{margin:0;padding:0;list-style:none}
 .path{
   background:rgba(255,255,255,.06);border:1px solid var(--line-l);border-radius:var(--r);
   padding:clamp(1.75rem,3vw,2.25rem);position:relative;display:flex;flex-direction:column;
-  backdrop-filter:blur(6px);transition:transform .35s var(--ease),background .35s;
+  transition:transform .35s var(--ease),background .35s;
 }
 .path:hover{transform:translateY(-5px);background:rgba(255,255,255,.11)}
 .path--feat{background:var(--paper);color:var(--ink);border-color:transparent;box-shadow:var(--shadow-h)}
@@ -657,20 +664,13 @@ ul,ol{margin:0;padding:0;list-style:none}
 .lb__next{right:1.25rem;top:50%;transform:translateY(-50%)}
 .lb__x:hover,.lb__nav:hover{background:var(--gold);color:var(--ink);border-color:var(--gold)}
 
-/* ---------- 21b. Scroll progress + hero entrance --------------------------- */
+/* ---------- 21b. Scroll progress ------------------------------------------- */
 .prog{
   position:fixed;left:0;top:0;height:3px;width:100%;z-index:150;
   background:linear-gradient(90deg,var(--gold),#fff 60%,var(--gold));
   transform:scaleX(0);transform-origin:0 50%;will-change:transform;
   transition:transform .08s linear;pointer-events:none;
 }
-.hero__h .word,.hero__h .gold{display:inline-block}
-/* Transform-only (no opacity): the headline is the LCP element and is already
-   painted at first paint, so we must NOT fade it from 0 — that would delay LCP
-   and cause a flash. A small upward slide keeps the entrance without the cost. */
-.rise{transform:translateY(.42em);animation:rise .5s var(--ease) forwards}
-@keyframes rise{from{transform:translateY(.42em)}to{transform:none}}
-.hero__bg i{transition:translate .5s var(--ease)}
 
 /* keyword highlight sweep */
 .hero__p b,.lead b{
